@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal Infrastruktur Jaringan — Cuatrodia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Corporate Dark Theme */
+            --bg-dark: #050b14;
+            --bg-card: rgba(15, 23, 42, 0.6);
+            --bg-card-hover: rgba(30, 41, 59, 0.8);
+            --primary: #38bdf8; /* Professional Blue */
+            --primary-glow: rgba(56, 189, 248, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --danger: #ef4444;
+            --success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.05) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        /* Typography & Utilities */
+        .text-primary { color: var(--primary); }
+        .text-muted { color: var(--text-muted); }
+        .text-danger { color: var(--danger); }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-4 { margin-bottom: 2rem; }
+        .mt-4 { margin-top: 2rem; }
+        .text-center { text-align: center; }
+        .font-semibold { font-weight: 600; }
+
+        /* Layout */
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 11, 20, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--text-main); }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 0 5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        /* Cards & Boxes (Glassmorphism Corporate) */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            background: var(--bg-card-hover);
+        }
+
+        /* Data Viz / Stats */
+        .stat-box {
+            background: rgba(0,0,0,0.2);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--primary);
+            border: 1px solid var(--border);
+            border-left-width: 4px;
+        }
+        .stat-box.danger { border-left-color: var(--danger); }
+        
+        .stat-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.05em;
+        }
+
+        /* Topology Section */
+        .topology-image-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #ffffff;
+            padding: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .topology-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .node-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .node-item {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .node-item h4 {
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+        }
+
+        /* Table Styles */
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background: var(--bg-card);
+        }
+
+        th, td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        th {
+            font-family: 'Syne', sans-serif;
+            background: rgba(0,0,0,0.3);
+            color: var(--text-main);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+
+        .price { font-family: 'Inter', monospace; font-weight: 500; color: var(--primary); }
+
+        /* Justification points */
+        .justification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .justification-card {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .justification-card h4 {
+            font-size: 1.05rem;
+        }
+
+        /* Buttons */
+        .btn-aesthetic {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-aesthetic:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+        }
+        .btn-primary-aesthetic {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+            font-weight: 600;
+        }
+        .btn-primary-aesthetic:hover {
+            background: #2ea8e0;
+            border-color: #2ea8e0;
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo">Cuatro<span>dia</span></a>
+            <div class="nav-links">
+                <a href="#analisis">Analisis Kapasitas</a>
+                <a href="#topologi">Arsitektur Topologi</a>
+                <a href="#budgeting">Proyeksi CAPEX</a>
+                <a href="#urgensi-upgrade">Executive Summary</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container fade-in">
+            <h1>Proposal Peningkatan Infrastruktur<br><span class="text-primary">Jaringan Cuatrodia</span></h1>
+            <p>Evaluasi komprehensif performa jaringan aktual, rancangan arsitektur operasional, dan justifikasi investasi (CAPEX) untuk menjamin stabilitas produktivitas perusahaan.</p>
+        </div>
+    </section>
+
+    <!-- Document Links Section -->
+    <section id="dokumen-unduh" style="padding: 0 0 4rem 0; border: none;">
+        <div class="container fade-in">
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="./WOI DEDICATED/Infrastruktur_Jaringan_Kantor_v1.1.docx" download class="btn-aesthetic btn-primary-aesthetic">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Unduh Proposal (Word)
+                </a>
+                <a href="./WOI DEDICATED/Topologi.drawio.png" target="_blank" class="btn-aesthetic">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    Lihat Topologi (PDF)
+                </a>
+                <a href="./WOI DEDICATED/_Infrastruktur_Jaringan_Cuatrodia_v1.2.docx" download class="btn-aesthetic">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    Konfigurasi Script
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Realita Internet -->
+    <section id="analisis">
+        <div class="container">
+            <div class="grid-2">
+                <div class="fade-in">
+                    <h2 class="mb-2">Analisis Kapasitas Aktual</h2>
+                    <p class="mb-4 text-muted">Infrastruktur saat ini mengandalkan layanan <strong>Home Broadband 500 Mbps</strong>. Metrik aktual menunjukkan penurunan performa hingga batas <strong>~200 Mbps</strong> akibat limitasi <em>Shared Broadband</em>.</p>
+                    
+                    <h4 class="mb-1 text-primary">Identifikasi Masalah: Contention Ratio</h4>
+                    <p class="text-muted mb-4 text-sm">Ketiadaan FUP (Fair Usage Policy) tidak ekuivalen dengan ketersediaan Bandwidth Dedikasi. Jaringan saat ini mengalami isu <em>Contention Ratio</em>, memperebutkan kapasitas di level distribusi ISP dengan entitas residensial lainnya.</p>
+
+                    <h4 class="mb-1 text-primary">Proyeksi Beban Perangkat (Skalabilitas)</h4>
+                    <p class="text-muted text-sm">Beban saat ini (Lantai 1) adalah <strong>48 perangkat aktif</strong> (rasio ~4 Mbps/perangkat saat utilisasi puncak). Aktivasi area Lantai 2 akan meningkatkan total beban menjadi <strong>~76 perangkat</strong>. Hal ini memicu penurunan bandwidth hingga <strong>~2.6 Mbps/perangkat</strong>—jauh di bawah standar operasional untuk kebutuhan paralel <em>Video Conference</em> dan transfer aset visual berskala besar.</p>
+                </div>
+                
+                <div class="fade-in">
+                    <div class="card">
+                        <h3 class="mb-4 text-center">Metrik Jaringan Berjalan</h3>
+                        <div class="stat-box">
+                            <div class="stat-value text-primary">500 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">Mbps</span></div>
+                            <div class="text-muted text-sm">Kapasitas Maksimal Berlangganan (Up To)</div>
+                        </div>
+                        <div class="stat-box danger">
+                            <div class="stat-value text-danger">~200 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">Mbps</span></div>
+                            <div class="text-muted text-sm">Throughput Aktual (Isu Contention)</div>
+                        </div>
+                        <div class="stat-box" style="border-left-color: var(--text-muted);">
+                            <div class="stat-value">48 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/ ~76</span></div>
+                            <div class="text-muted text-sm">Perangkat Aktif (Fase 1 / Total Estimasi)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Topologi Lantai 1 -->
+    <section id="topologi">
+        <div class="container fade-in">
+            <h2 class="text-center mb-1">Arsitektur Topologi Jaringan</h2>
+            <p class="text-center text-muted mb-4">Desain infrastruktur dioptimalkan menggunakan pendekatan sentralisasi <em>Layer 3 Routing</em> dan distribusi <em>Layer 2 Switching</em> untuk mitigasi latensi.</p>
+
+            <div class="topology-image-container">
+                <img src="./WOI DEDICATED/Topologi.drawio.png" alt="Diagram Topologi Jaringan Cuatrodia">
+            </div>
+
+            <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat</h3>
+            <ul class="node-list">
+                <li class="node-item">
+                    <h4><span style="font-size:1.2rem;">🧠</span> Core Gateway (MikroTik)</h4>
+                    <p class="text-muted text-sm">Pusat kontrol utama. Menangani Inter-VLAN Routing, manajemen bandwidth (PCQ), dan orkestrasi WiFi terpusat via CAPsMAN.</p>
+                </li>
+                <li class="node-item">
+                    <h4><span style="font-size:1.2rem;">🔀</span> Core Switch (Managed L2)</h4>
+                    <p class="text-muted text-sm">Agregator utama. Menerima trunk VLAN dari Gateway dan mendistribusikan jalur ke Switch area spesifik secara terstruktur.</p>
+                </li>
+                <li class="node-item">
+                    <h4><span style="font-size:1.2rem;">🏢</span> Switch Distribusi</h4>
+                    <p class="text-muted text-sm">Fasilitator *wired connection* per departemen (terutama PC Editing) untuk memastikan stabilitas transfer data lokal tanpa utilisasi WiFi.</p>
+                </li>
+                <li class="node-item">
+                    <h4><span style="font-size:1.2rem;">📡</span> Access Point (WiFi)</h4>
+                    <p class="text-muted text-sm">Distribusi nirkabel terintegrasi dengan kapabilitas <em>seamless roaming</em>, menjaga koneksi rapat virtual tetap stabil saat mobilitas antar area.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 3: Budgeting Best Value -->
+    <section id="budgeting">
+        <div class="container fade-in">
+            <h2 class="text-center mb-1">Proyeksi Kebutuhan Perangkat (CAPEX)</h2>
+            <p class="text-center text-muted mb-4">Pemilihan perangkat didasarkan pada strategi *Cost-Effective Performance* (Mid-tier Enterprise) guna mengakomodasi eskalasi beban tanpa *over-engineering*.</p>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kategori Perangkat</th>
+                            <th>Qty</th>
+                            <th>Spesifikasi Model</th>
+                            <th>Estimasi Biaya</th>
+                            <th>Fungsi Esensial</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Core Router</strong></td>
+                            <td>1</td>
+                            <td>MikroTik RB5009UG+S+IN</td>
+                            <td class="price">Rp 4.500.000</td>
+                            <td class="text-muted">Prosesing routing berat & manajemen CAPsMAN.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Core Switch</strong></td>
+                            <td>1</td>
+                            <td>TP-Link TL-SG3428</td>
+                            <td class="price">Rp 2.800.000</td>
+                            <td class="text-muted">Manajemen 24 Port Gigabit VLAN.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Switch Distribusi</strong></td>
+                            <td>4</td>
+                            <td>TP-Link TL-SG108E</td>
+                            <td class="price">Rp 550.000 / unit</td>
+                            <td class="text-muted">Edge-switching ke perangkat end-user.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Access Point</strong></td>
+                            <td>5</td>
+                            <td>MikroTik hAP ax2</td>
+                            <td class="price">Rp 1.500.000 / unit</td>
+                            <td class="text-muted">Transmisi WiFi 6 dengan kapabilitas Roaming.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Switch Server</strong></td>
+                            <td>1</td>
+                            <td>TP-Link TL-SG2210MP</td>
+                            <td class="price">Rp 2.400.000</td>
+                            <td class="text-muted">Distribusi daya terpusat (PoE) untuk AP.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>UPS</strong></td>
+                            <td>1</td>
+                            <td>CyberPower UT1500E</td>
+                            <td class="price">Rp 2.500.000</td>
+                            <td class="text-muted">Mitigasi fluktuasi daya pada infrastruktur inti.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-4 mb-5">
+                <a href="https://docs.google.com/spreadsheets/d/1pUNIaOUrhWsQj4f9-3LzG4tRbsrqRBghLbfsaXO8-a4/edit?gid=252383558#gid=252383558" target="_blank" rel="noopener noreferrer" class="btn-aesthetic btn-primary-aesthetic">
+                    Lihat Rincian Anggaran Lengkap (Spreadsheet)
+                </a>
+            </div>
+
+            <h3 class="text-center mb-3">Justifikasi Pengadaan</h3>
+            <div class="justification-grid">
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">Proporsional Area</h4>
+                    <p class="text-muted text-sm">Rasio 5 unit AP dan 4 Switch Distribusi dihitung secara matematis untuk eliminasi <em>blind spot</em> di Lantai 1.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">Zero Bottleneck Processor</h4>
+                    <p class="text-muted text-sm">Router RB5009 (ARM 64-bit) diproyeksikan untuk mengelola beban puncak inter-VLAN routing bagi ~76 perangkat secara bersamaan.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">Skalabilitas (Future-Proof)</h4>
+                    <p class="text-muted text-sm">Desain siap ekspansi. Penambahan area Lantai 2 hanya memerlukan tarikan kabel trunk tunggal tanpa merestrukturisasi Core Router.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">Efisiensi Finansial</h4>
+                    <p class="text-muted text-sm">Bukan perangkat *consumer-grade* yang rentan <em>hang</em>, namun tidak perlu investasi level *Enterprise* yang berlebih (High ROI).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Perbandingan Layanan ISP -->
+    <section id="internet-comparison">
+        <div class="container fade-in">
+            <h2 class="text-center mb-1">Komparasi Layanan ISP</h2>
+            <p class="text-center text-muted mb-4">Evaluasi parameter teknis untuk peningkatan kelas layanan internet perusahaan.</p>
+
+            <div class="table-responsive mb-4">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter Teknis</th>
+                            <th>Home Broadband <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(MyRepublic Prime)</span></th>
+                            <th>Business Broadband <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(MyRepublic BizPro)</span></th>
+                            <th>Dedicated Internet <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(Corporate Leased Line)</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Estimasi Harga (Opex)</strong></td>
+                            <td class="price">± Rp 565.000 / bln</td>
+                            <td class="price">± Rp 6.034.000 / bln</td>
+                            <td class="price">Mulai Rp 5.000.000 (100 Mbps)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alokasi Bandwidth</strong></td>
+                            <td>Shared (Tingkat kontensi tinggi)</td>
+                            <td>Shared Priority (Prioritas traffic tinggi)</td>
+                            <td>Dedicated 1:1 (Garansi penuh)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alamat IP</strong></td>
+                            <td>Dynamic Private / NAT</td>
+                            <td>1 IP Public Static</td>
+                            <td>Blok IP Public Static (/29 atau /28)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rasio Kecepatan (Up/Down)</strong></td>
+                            <td>Asimetris (Fluktuatif)</td>
+                            <td>Simetris (1:1 Terjamin)</td>
+                            <td>Simetris (1:1 Garansi 100%)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Service Level Agreement</strong></td>
+                            <td>Best-effort (Tanpa penjaminan)</td>
+                            <td>Support Prioritas</td>
+                            <td>SLA 99.5% (Terdapat klausul kompensasi)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card mt-4" style="border-left: 4px solid var(--primary); padding: 1.5rem;">
+                <h4 class="mb-2">Rekomendasi Strategis</h4>
+                <p class="text-muted text-sm mb-0">Untuk menyeimbangkan biaya dan kebutuhan operasional bersama arsitektur baru, transisi menuju <strong>Business Broadband (mis. Biznet Metronet / Indibiz)</strong> adalah langkah esensial. Namun, jika urgensi stabilitas server lokal bersifat kritikal, opsi <strong>Dedicated Internet (50-100 Mbps)</strong> sangat disarankan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Urgensi -->
+    <section id="urgensi-upgrade">
+        <div class="container fade-in">
+            <h2 class="text-center mb-4">Executive Summary: Urgensi Implementasi</h2>
+            
+            <div class="grid-2">
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">1. Limitasi Kapasitas Hardware Lama</h4>
+                    <p class="text-muted text-sm">Router *consumer-grade* memiliki batas optimal utilisasi ~25 perangkat. Memaksakan beban 76 perangkat (estimasi Lantai 1 & 2) pada arsitektur lama akan memicu degradasi performa masif harian.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">2. Mitigasi Latensi Internal</h4>
+                    <p class="text-muted text-sm">Distribusi melalui kabel (Switch) untuk stasiun kerja berat (PC Editing), dipadukan dengan *Seamless Roaming* AP, mengeliminasi isu putusnya koneksi saat mobilitas di area kantor.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">3. Biaya Downtime vs Biaya Infrastruktur</h4>
+                    <p class="text-muted text-sm">Kerugian finansial akibat tertundanya produktivitas (*idle time*) dan <em>deadline</em> klien secara signifikan melampaui biaya investasi alat jaringan (*CAPEX*).</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">4. Simbiosis Alat dan ISP</h4>
+                    <p class="text-muted text-sm">Meningkatkan paket ISP tanpa <em>upgrade hardware</em> lokal akan menciptakan *bottleneck* internal. Sebaliknya, <em>hardware</em> canggih tanpa dukungan ISP bisnis tidak akan menghasilkan performa maksimal. Keduanya harus diselaraskan.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-5 p-4" style="background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+                <h3 class="text-primary mb-2">Kesimpulan</h3>
+                <p class="text-muted mb-0 mx-auto" style="max-width: 800px;">Pembaruan topologi dan transisi layanan ISP ini diposisikan sebagai <strong>Inisiatif Business Continuity</strong>. Hal ini krusial untuk mengamankan arus operasional digital dan memastikan produktivitas tim di seluruh area dapat berjalan pada tingkat efisiensi tertinggi tanpa interupsi teknis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Cuatrodia Network Infrastructure Proposal. Disiapkan oleh IT Department.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts for Animations -->
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach((element) => {
+            observer.observe(element);
+        });
+
+        // Sticky Navigation Highlight
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href').includes(current) && current !== '') {
+                    link.style.color = 'var(--text-main)';
+                    link.style.textShadow = '0 0 10px rgba(255,255,255,0.3)';
+                } else {
+                    link.style.textShadow = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
