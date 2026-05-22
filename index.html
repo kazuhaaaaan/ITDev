@@ -9,39 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Corporate Dark Theme (Default) */
-            --bg-main: #050b14;
-            --bg-nav: rgba(5, 11, 20, 0.85);
+            /* Corporate Dark Theme */
+            --bg-dark: #050b14;
             --bg-card: rgba(15, 23, 42, 0.6);
             --bg-card-hover: rgba(30, 41, 59, 0.8);
-            --bg-input: rgba(0,0,0,0.2);
-            --bg-table-header: rgba(0,0,0,0.3);
             --primary: #38bdf8; /* Professional Blue */
             --primary-glow: rgba(56, 189, 248, 0.1);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --text-active: #ffffff;
             --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(56, 189, 248, 0.3);
             --danger: #ef4444;
             --success: #10b981;
-        }
-
-        /* Light Theme Variables */
-        [data-theme="light"] {
-            --bg-main: #f8fafc;
-            --bg-nav: rgba(248, 250, 252, 0.85);
-            --bg-card: rgba(255, 255, 255, 0.7);
-            --bg-card-hover: rgba(241, 245, 249, 0.9);
-            --bg-input: rgba(255,255,255,0.8);
-            --bg-table-header: rgba(241, 245, 249, 1);
-            --primary: #0284c7; /* Darker blue for light mode contrast */
-            --primary-glow: rgba(2, 132, 199, 0.1);
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --text-active: #000000;
-            --border: rgba(0, 0, 0, 0.1);
-            --border-hover: rgba(2, 132, 199, 0.4);
         }
 
         * {
@@ -52,15 +30,14 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-main);
+            background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(at 0% 0%, var(--primary-glow) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, var(--primary-glow) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.05) 0px, transparent 50%);
             background-attachment: fixed;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         h1, h2, h3, h4 {
@@ -79,13 +56,12 @@
         .mt-4 { margin-top: 2rem; }
         .text-center { text-align: center; }
         .font-semibold { font-weight: 600; }
-        .text-sm { font-size: 0.875rem; }
 
         /* Layout */
         .container {
             max-width: 1140px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
 
         section {
@@ -98,12 +74,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--bg-nav);
+            background: rgba(5, 11, 20, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             z-index: 1000;
             border-bottom: 1px solid var(--border);
-            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         .nav-content {
@@ -120,20 +95,13 @@
             color: var(--text-main);
             text-decoration: none;
             letter-spacing: -0.5px;
-            z-index: 1001;
         }
-        .logo span { color: var(--primary); }
 
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
+        .logo span { color: var(--primary); }
 
         .nav-links {
             display: flex;
             gap: 2rem;
-            align-items: center;
         }
 
         .nav-links a {
@@ -143,89 +111,27 @@
             font-weight: 500;
             transition: color 0.3s ease;
         }
-        .nav-links a:hover, .nav-links a.active { 
-            color: var(--text-active); 
-            font-weight: 600;
-        }
 
-        /* Theme Toggle Button */
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text-main);
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease;
-            z-index: 1001;
-        }
-        .theme-toggle:hover { transform: scale(1.1); }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 1001;
-            padding: 5px;
-        }
-        .hamburger span {
-            display: block;
-            width: 25px;
-            height: 2px;
-            background-color: var(--text-main);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            .hamburger { display: block; }
-            .nav-actions { gap: 1rem; }
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                max-width: 300px;
-                height: 100vh;
-                background: var(--bg-nav);
-                flex-direction: column;
-                justify-content: center;
-                gap: 2rem;
-                padding: 2rem;
-                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-                backdrop-filter: blur(20px);
-                border-left: 1px solid var(--border);
-            }
-            .nav-links.active { right: 0; }
-            
-            /* Hamburger Animation */
-            .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-            .hamburger.active span:nth-child(2) { opacity: 0; }
-            .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-        }
+        .nav-links a:hover { color: var(--text-main); }
 
         /* Hero Section */
         .hero {
             padding: 10rem 0 5rem;
             text-align: center;
         }
+
         .hero h1 {
             font-size: clamp(2rem, 4vw, 3.5rem);
             line-height: 1.15;
             margin-bottom: 1.25rem;
         }
+
         .hero p {
             font-size: 1.125rem;
             color: var(--text-muted);
             max-width: 800px;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 3rem;
         }
-        @media (max-width: 768px) { .hero { padding: 8rem 0 3rem; } }
 
         /* Grid Layouts */
         .grid-2 {
@@ -234,9 +140,12 @@
             gap: 3rem;
             align-items: center;
         }
-        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; gap: 2rem; } }
 
-        /* Cards & Boxes */
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        /* Cards & Boxes (Glassmorphism Corporate) */
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -245,22 +154,21 @@
             backdrop-filter: blur(12px);
             transition: all 0.3s ease;
         }
+
         .card:hover {
-            border-color: var(--border-hover);
+            border-color: rgba(56, 189, 248, 0.3);
             background: var(--bg-card-hover);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         /* Data Viz / Stats */
         .stat-box {
-            background: var(--bg-input);
+            background: rgba(0,0,0,0.2);
             padding: 1.25rem;
             border-radius: 8px;
             margin-bottom: 1rem;
-            border-left: 4px solid var(--primary);
-            border-top: 1px solid var(--border);
-            border-right: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            border-left: 3px solid var(--primary);
+            border: 1px solid var(--border);
+            border-left-width: 4px;
         }
         .stat-box.danger { border-left-color: var(--danger); }
         
@@ -279,17 +187,15 @@
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border);
-            background: var(--bg-card);
+            background: #ffffff;
             padding: 1rem;
             margin-bottom: 2.5rem;
-            display: flex;
-            justify-content: center;
         }
+
         .topology-image-container img {
             width: 100%;
-            max-width: 800px;
             height: auto;
-            border-radius: 8px;
+            display: block;
         }
 
         .node-list {
@@ -298,14 +204,14 @@
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.25rem;
         }
+
         .node-item {
             background: var(--bg-card);
             padding: 1.5rem;
             border-radius: 8px;
             border: 1px solid var(--border);
-            transition: transform 0.2s ease;
         }
-        .node-item:hover { transform: translateY(-5px); border-color: var(--border-hover); }
+
         .node-item h4 {
             color: var(--text-main);
             margin-bottom: 0.75rem;
@@ -321,69 +227,57 @@
             border-radius: 8px;
             border: 1px solid var(--border);
         }
+
         table {
             width: 100%;
-            min-width: 600px; /* Prevents squishing on mobile */
             border-collapse: collapse;
             text-align: left;
             background: var(--bg-card);
         }
+
         th, td {
             padding: 1rem 1.25rem;
             border-bottom: 1px solid var(--border);
             font-size: 0.9rem;
         }
+
         th {
             font-family: 'Syne', sans-serif;
-            background: var(--bg-table-header);
+            background: rgba(0,0,0,0.3);
             color: var(--text-main);
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 0.05em;
         }
+
         tr:last-child td { border-bottom: none; }
-        tr:hover td { background: var(--bg-card-hover); }
-        .price { font-family: 'Inter', monospace; font-weight: 600; color: var(--primary); }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+
+        .price { font-family: 'Inter', monospace; font-weight: 500; color: var(--primary); }
 
         /* Justification points */
         .justification-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.25rem;
             margin-top: 2rem;
         }
+
         .justification-card {
-            background: var(--bg-card);
+            background: rgba(255, 255, 255, 0.02);
             padding: 1.5rem;
             border-radius: 8px;
             border: 1px solid var(--border);
         }
 
-        /* Form Styles */
-        .form-group { margin-bottom: 1.25rem; }
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            background: var(--bg-input);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        .justification-card h4 {
+            font-size: 1.05rem;
         }
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px var(--primary-glow);
-        }
-        .form-control::placeholder { color: var(--text-muted); }
-        textarea.form-control { min-height: 120px; resize: vertical; }
 
         /* Buttons */
         .btn-aesthetic {
-            background: var(--bg-input);
+            background: rgba(255, 255, 255, 0.05);
             color: var(--text-main);
             border: 1px solid var(--border);
             padding: 12px 20px;
@@ -395,35 +289,21 @@
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
         }
         .btn-aesthetic:hover {
-            background: var(--bg-card-hover);
+            background: rgba(255, 255, 255, 0.1);
             border-color: var(--primary);
         }
         .btn-primary-aesthetic {
             background: var(--primary);
-            color: #ffffff; /* Selalu putih agar kontras di tombol biru */
+            color: #000;
             border-color: var(--primary);
             font-weight: 600;
         }
         .btn-primary-aesthetic:hover {
             background: #2ea8e0;
             border-color: #2ea8e0;
-            color: #ffffff;
-        }
-
-        /* Document links container */
-        .doc-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        @media (max-width: 640px) {
-            .doc-links { flex-direction: column; }
-            .doc-links a { width: 100%; }
         }
 
         /* Animation Classes */
@@ -440,11 +320,10 @@
         /* Footer */
         footer {
             text-align: center;
-            padding: 2rem 1.5rem;
+            padding: 2rem 0;
             color: var(--text-muted);
             font-size: 0.875rem;
             border-top: 1px solid var(--border);
-            margin-top: 3rem;
         }
     </style>
 </head>
@@ -454,57 +333,33 @@
     <nav>
         <div class="container nav-content">
             <a href="#" class="logo">Cuatro<span>dia</span></a>
-            
-            <div class="nav-actions">
-                <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark/Light Mode">
-                    <!-- Sun Icon (Default shown in dark mode) -->
-                    <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-
-                <!-- Hamburger Menu -->
-                <button class="hamburger" aria-label="Toggle Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <!-- Desktop Links -->
-                <div class="nav-links">
-                    <a href="#analisis">Analisis Kapasitas</a>
-                    <a href="#topologi">Arsitektur</a>
-                    <a href="#budgeting">Proyeksi CAPEX</a>
-                    <a href="#urgensi-upgrade">Kesimpulan</a>
-                    <a href="#pesan">Kontak</a>
-                </div>
+            <div class="nav-links">
+                <a href="#analisis">Analisis Kapasitas</a>
+                <a href="#topologi">Arsitektur Topologi</a>
+                <a href="#budgeting">Proyeksi CAPEX</a>
+                <a href="#urgensi-upgrade">Executive Summary</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container fade-in">
             <h1>Proposal Peningkatan Infrastruktur<br><span class="text-primary">Jaringan Cuatrodia</span></h1>
             <p>Evaluasi komprehensif performa jaringan aktual, rancangan arsitektur operasional, dan justifikasi investasi (CAPEX) untuk menjamin stabilitas produktivitas perusahaan.</p>
-            
-            <div class="doc-links">
+        </div>
+    </section>
+
+    <!-- Document Links Section -->
+    <section id="dokumen-unduh" style="padding: 0 0 4rem 0; border: none;">
+        <div class="container fade-in">
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                 <a href="./materi/Infrastruktur_Jaringan_Kantor_v1.1.docx" download class="btn-aesthetic btn-primary-aesthetic">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                     Unduh Proposal (Word)
                 </a>
                 <a href="./materi/Topologi.drawio.png" target="_blank" class="btn-aesthetic">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                    Lihat Topologi
+                    Lihat Topologi (PDF)
                 </a>
                 <a href="./materi/_Infrastruktur_Jaringan_Cuatrodia_v1.2.docx" download class="btn-aesthetic">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
@@ -517,77 +372,189 @@
     <!-- Section 1: Realita Internet -->
     <section id="analisis">
         <div class="container">
+            <!-- Container Grid-2 untuk membuat layout bersebelahan -->
             <div class="grid-2">
+                
+                <!-- Kolom Kiri: Teks Analisis -->
                 <div class="fade-in">
                     <h2 class="mb-2">Analisis Kapasitas Aktual</h2>
-                    <p class="mb-4 text-muted">Infrastruktur saat ini mengandalkan layanan <strong>Home Broadband 500 Mbps</strong>. Metrik aktual menunjukkan penurunan performa hingga batas <strong>~200 Mbps</strong> akibat limitasi <em>Shared Broadband</em>.</p>
+                    <ul class="mb-4 text-muted list-disc list-inside space-y-1">
+                        <li>Infrastruktur saat ini menggunakan layanan <strong>Home Broadband 500 Mbps</strong>.</li>
+                        <li>Performa aktual drop hingga batas <strong>~200 Mbps</strong> akibat limitasi <em>Shared Broadband</em>.</li>
+                    </ul>
                     
                     <h4 class="mb-1 text-primary">Identifikasi Masalah: Contention Ratio</h4>
-                    <p class="text-muted mb-4 text-sm">Ketiadaan FUP (Fair Usage Policy) tidak ekuivalen dengan ketersediaan Bandwidth Dedikasi. Jaringan saat ini mengalami isu <em>Contention Ratio</em>, memperebutkan kapasitas di level distribusi ISP dengan entitas residensial lainnya.</p>
+                    <ul class="text-muted mb-4 text-sm list-disc list-inside space-y-1">
+                        <li>Ketiadaan FUP (Fair Usage Policy) bukan berarti mendapat <em>Dedicated Bandwidth</em>.</li>
+                        <li>Jaringan mengalami <em>Contention Ratio</em> (kapasitas terbagi dengan pengguna residensial lain di level distribusi ISP).</li>
+                    </ul>
 
                     <h4 class="mb-1 text-primary">Proyeksi Beban Perangkat (Skalabilitas)</h4>
-                    <p class="text-muted text-sm">Beban saat ini (Lantai 1) adalah <strong>48 perangkat aktif</strong> (rasio ~4 Mbps/perangkat saat utilisasi puncak). Aktivasi area Lantai 2 akan meningkatkan total beban menjadi <strong>~76 perangkat</strong>. Hal ini memicu penurunan bandwidth hingga <strong>~2.6 Mbps/perangkat</strong>—jauh di bawah standar operasional untuk kebutuhan paralel <em>Video Conference</em> dan transfer aset visual berskala besar.</p>
+                    <ul class="text-muted text-sm list-disc list-inside space-y-1">
+                        <li><strong>Beban Saat Ini (Lantai 1):</strong> 48 perangkat aktif (rasio ~4 Mbps/perangkat saat utilisasi puncak).</li>
+                        <li><strong>Proyeksi Penambahan (Lantai 2):</strong> Total beban naik menjadi <strong>~76 perangkat</strong>.</li>
+                        <li><strong>Dampak:</strong> Alokasi bandwidth anjlok drastis menjadi <strong>~2.6 Mbps/perangkat</strong>.</li>
+                        <li><strong>Kesimpulan:</strong> Kapasitas ini jauh di bawah standar operasional untuk <em>Video Conference</em> paralel dan transfer aset visual skala besar.</li>
+                    </ul>
                 </div>
-                
+
+                <!-- Kolom Kanan: Card Metrik -->
                 <div class="fade-in">
                     <div class="card">
                         <h3 class="mb-4 text-center">Metrik Jaringan Berjalan</h3>
+                        
                         <div class="stat-box">
                             <div class="stat-value text-primary">500 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">Mbps</span></div>
                             <div class="text-muted text-sm">Kapasitas Maksimal Berlangganan (Up To)</div>
                         </div>
+                        
                         <div class="stat-box danger">
                             <div class="stat-value text-danger">~200 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">Mbps</span></div>
                             <div class="text-muted text-sm">Throughput Aktual (Isu Contention)</div>
                         </div>
+                        
                         <div class="stat-box" style="border-left-color: var(--text-muted);">
                             <div class="stat-value">48 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/ ~76</span></div>
                             <div class="text-muted text-sm">Perangkat Aktif (Fase 1 / Total Estimasi)</div>
                         </div>
+
+                        <!-- Penambahan Metrik Bandwidth per Device -->
+                        <div class="stat-box danger">
+                            <div class="stat-value text-danger">~2.6 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">Mbps</span></div>
+                            <div class="text-muted text-sm">Estimasi Alokasi per Perangkat (Beban Puncak)</div>
+                        </div>
+                        
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
-
-    <!-- Section 2: Topologi Lantai 1 -->
+<!-- Section 2: Topologi Jaringan -->
     <section id="topologi">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Arsitektur Topologi Jaringan</h2>
-            <p class="text-center text-muted mb-4">Desain infrastruktur dioptimalkan menggunakan pendekatan sentralisasi <em>Layer 3 Routing</em> dan distribusi <em>Layer 2 Switching</em> untuk mitigasi latensi.</p>
-
-            <div class="topology-image-container">
-                <!-- Fallback to a placeholder style if image breaks, otherwise loads the image -->
-                <img src="./materi/Topologi.drawio.png" alt="Diagram Topologi Jaringan Cuatrodia" onerror="this.src='https://placehold.co/800x400/1e293b/38bdf8?text=Gambar+Topologi+Tidak+Ditemukan'">
+            
+            <!-- Tombol Navigasi Toggle -->
+            <!-- Note: Sesuaikan class button (btn-primary/btn-outline) dengan CSS yang kamu pakai -->
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; margin-bottom: 2rem;">
+                <button id="btnBaru" onclick="switchTopology('baru')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--primary-color, #007bff); background-color: var(--primary-color, #007bff); color: white;">
+                    Rancangan (Baru)
+                </button>
+                <button id="btnLama" onclick="switchTopology('lama')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid #6c757d; background-color: transparent; color: var(--text-muted, #6c757d);">
+                    Topologi Lama
+                </button>
             </div>
 
-            <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat</h3>
-            <ul class="node-list">
-                <li class="node-item">
-                    <h4><span style="font-size:1.2rem;">🧠</span> Core Gateway (MikroTik)</h4>
-                    <p class="text-muted text-sm">Pusat kontrol utama. Menangani Inter-VLAN Routing, manajemen bandwidth (PCQ), dan orkestrasi WiFi terpusat via CAPsMAN.</p>
-                </li>
-                <li class="node-item">
-                    <h4><span style="font-size:1.2rem;">🔀</span> Core Switch (Managed L2)</h4>
-                    <p class="text-muted text-sm">Agregator utama. Menerima trunk VLAN dari Gateway dan mendistribusikan jalur ke Switch area spesifik secara terstruktur.</p>
-                </li>
-                <li class="node-item">
-                    <h4><span style="font-size:1.2rem;">🏢</span> Switch Distribusi</h4>
-                    <p class="text-muted text-sm">Fasilitator *wired connection* per departemen (terutama PC Editing) untuk memastikan stabilitas transfer data lokal tanpa utilisasi WiFi.</p>
-                </li>
-                <li class="node-item">
-                    <h4><span style="font-size:1.2rem;">📡</span> Access Point (WiFi)</h4>
-                    <p class="text-muted text-sm">Distribusi nirkabel terintegrasi dengan kapabilitas <em>seamless roaming</em>, menjaga koneksi rapat virtual tetap stabil saat mobilitas antar area.</p>
-                </li>
-            </ul>
+            <!-- ========================================== -->
+            <!-- TAB 1: KONTEN TOPOLOGI BARU (RANCANGAN)    -->
+            <!-- ========================================== -->
+            <div id="kontenBaru">
+                <p class="text-center text-muted mb-4">Desain infrastruktur dioptimalkan menggunakan pendekatan sentralisasi <em>Layer 3 Routing</em> dan distribusi <em>Layer 2 Switching</em> untuk mitigasi latensi.</p>
+
+                <div class="topology-image-container">
+                    <img src="./materi/Topologi.drawio.png" alt="Diagram Topologi Jaringan Cuatrodia">
+                </div>
+
+                <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat</h3>
+                <ul class="node-list">
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">🧠</span> Core Gateway (MikroTik)</h4>
+                        <p class="text-muted text-sm">Pusat kontrol utama. Menangani Inter-VLAN Routing, manajemen bandwidth (PCQ), dan orkestrasi WiFi terpusat via CAPsMAN.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">🔀</span> Core Switch (Managed L2)</h4>
+                        <p class="text-muted text-sm">Agregator utama. Menerima trunk VLAN dari Gateway dan mendistribusikan jalur ke Switch area spesifik secara terstruktur.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">🏢</span> Switch Distribusi</h4>
+                        <p class="text-muted text-sm">Fasilitator <em>wired connection</em> per departemen (terutama PC Editing) untuk memastikan stabilitas transfer data lokal tanpa utilisasi WiFi.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">📡</span> Access Point (WiFi)</h4>
+                        <p class="text-muted text-sm">Distribusi nirkabel terintegrasi dengan kapabilitas <em>seamless roaming</em>, menjaga koneksi rapat virtual tetap stabil saat mobilitas antar area.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 2: KONTEN TOPOLOGI LAMA (TERSEMBUNYI)  -->
+            <!-- ========================================== -->
+            <div id="kontenLama" style="display: none;">
+                <p class="text-center text-muted mb-4">Infrastruktur <em>legacy</em> berjalan dalam mode <em>Flat Network</em> (Single Broadcast Domain) tanpa manajemen trafik dan pemisahan <em>broadcast</em>.</p>
+
+                <div class="topology-image-container">
+                    <!-- Pastikan nama file gambar topologi lama sesuai -->
+                    <img src="./materi/topologi lama.jpeg" alt="Diagram Topologi Jaringan Lama">
+                </div>
+
+                <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat (Legacy)</h3>
+                <ul class="node-list">
+                    <li class="node-item" style="border-left-color: #dc3545;"> <!-- Aksen warna merah/danger -->
+                        <h4><span style="font-size:1.2rem;">⚠️</span> Router ISP (Default Gateway)</h4>
+                        <p class="text-muted text-sm">Menjadi <em>Single Point of Failure</em>. Menangani seluruh proses NAT, DHCP, dan DNS secara bersamaan tanpa adanya fitur QoS atau <em>Bandwidth Management</em>.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">🔌</span> Unmanaged Switch</h4>
+                        <p class="text-muted text-sm">Berfungsi sebagai distribusi pasif. Tidak mendukung fitur VLAN 802.1Q, sehingga seluruh perangkat berada dalam satu <em>broadcast domain</em> yang rawan akan kolisi data.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">📶</span> Standalone Access Point</h4>
+                        <p class="text-muted text-sm">Memancarkan SSID secara independen. Sering mengalami tumpang tindih channel (interferensi) dan mengharuskan perangkat melakukan <em>re-connect</em> manual saat berpindah ruangan.</p>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </section>
+
+    <!-- Script untuk fungsi tombol toggle -->
+    <script>
+        function switchTopology(type) {
+            const kontenBaru = document.getElementById('kontenBaru');
+            const kontenLama = document.getElementById('kontenLama');
+            const btnBaru = document.getElementById('btnBaru');
+            const btnLama = document.getElementById('btnLama');
+
+            // Setup styling warna untuk tombol aktif (bisa disesuaikan dengan CSS variabelmu)
+            const activeBg = 'var(--primary-color, #007bff)';
+            const activeColor = 'white';
+            const inactiveBg = 'transparent';
+            const inactiveColor = 'var(--text-muted, #6c757d)';
+            const activeBorder = `1px solid ${activeBg}`;
+            const inactiveBorder = `1px solid ${inactiveColor}`;
+
+            if (type === 'baru') {
+                kontenBaru.style.display = 'block';
+                kontenLama.style.display = 'none';
+                
+                btnBaru.style.backgroundColor = activeBg;
+                btnBaru.style.color = activeColor;
+                btnBaru.style.border = activeBorder;
+                
+                btnLama.style.backgroundColor = inactiveBg;
+                btnLama.style.color = inactiveColor;
+                btnLama.style.border = inactiveBorder;
+            } else {
+                kontenBaru.style.display = 'none';
+                kontenLama.style.display = 'block';
+                
+                btnLama.style.backgroundColor = activeBg;
+                btnLama.style.color = activeColor;
+                btnLama.style.border = activeBorder;
+                
+                btnBaru.style.backgroundColor = inactiveBg;
+                btnBaru.style.color = inactiveColor;
+                btnBaru.style.border = inactiveBorder;
+            }
+        }
+    </script>
 
     <!-- Section 3: Budgeting Best Value -->
     <section id="budgeting">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Proyeksi Kebutuhan Perangkat (CAPEX)</h2>
-            <p class="text-center text-muted mb-4">Pemilihan perangkat didasarkan pada strategi *Cost-Effective Performance* (Mid-tier Enterprise) guna mengakomodasi eskalasi beban.</p>
+            <p class="text-center text-muted mb-4">Pemilihan perangkat didasarkan pada strategi *Cost-Effective Performance* (Mid-tier Enterprise) guna mengakomodasi eskalasi beban tanpa *over-engineering*.</p>
 
             <div class="table-responsive">
                 <table>
@@ -606,42 +573,42 @@
                             <td>1</td>
                             <td>MikroTik RB5009UG+S+IN</td>
                             <td class="price">Rp 4.500.000</td>
-                            <td class="text-muted text-sm">Prosesing routing berat & manajemen CAPsMAN.</td>
+                            <td class="text-muted">Prosesing routing berat & manajemen CAPsMAN.</td>
                         </tr>
                         <tr>
                             <td><strong>Core Switch</strong></td>
                             <td>1</td>
                             <td>TP-Link TL-SG3428</td>
                             <td class="price">Rp 2.800.000</td>
-                            <td class="text-muted text-sm">Manajemen 24 Port Gigabit VLAN.</td>
+                            <td class="text-muted">Manajemen 24 Port Gigabit VLAN.</td>
                         </tr>
                         <tr>
                             <td><strong>Switch Distribusi</strong></td>
                             <td>4</td>
                             <td>TP-Link TL-SG108E</td>
                             <td class="price">Rp 550.000 / unit</td>
-                            <td class="text-muted text-sm">Edge-switching ke perangkat end-user.</td>
+                            <td class="text-muted">Edge-switching ke perangkat end-user.</td>
                         </tr>
                         <tr>
                             <td><strong>Access Point</strong></td>
                             <td>5</td>
                             <td>MikroTik hAP ax2</td>
                             <td class="price">Rp 1.500.000 / unit</td>
-                            <td class="text-muted text-sm">Transmisi WiFi 6 dengan kapabilitas Roaming.</td>
+                            <td class="text-muted">Transmisi WiFi 6 dengan kapabilitas Roaming.</td>
                         </tr>
                         <tr>
                             <td><strong>Switch Server</strong></td>
                             <td>1</td>
                             <td>TP-Link TL-SG2210MP</td>
                             <td class="price">Rp 2.400.000</td>
-                            <td class="text-muted text-sm">Distribusi daya terpusat (PoE) untuk AP.</td>
+                            <td class="text-muted">Distribusi daya terpusat (PoE) untuk AP.</td>
                         </tr>
                         <tr>
                             <td><strong>UPS</strong></td>
                             <td>1</td>
                             <td>CyberPower UT1500E</td>
                             <td class="price">Rp 2.500.000</td>
-                            <td class="text-muted text-sm">Mitigasi fluktuasi daya pada infrastruktur inti.</td>
+                            <td class="text-muted">Mitigasi fluktuasi daya pada infrastruktur inti.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -649,8 +616,7 @@
 
             <div class="text-center mt-4 mb-5">
                 <a href="https://docs.google.com/spreadsheets/d/1pUNIaOUrhWsQj4f9-3LzG4tRbsrqRBghLbfsaXO8-a4/edit?gid=252383558#gid=252383558" target="_blank" rel="noopener noreferrer" class="btn-aesthetic btn-primary-aesthetic">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                    Rincian Anggaran (Spreadsheet)
+                    Lihat Rincian Anggaran Lengkap (Spreadsheet)
                 </a>
             </div>
 
@@ -676,63 +642,91 @@
         </div>
     </section>
 
-   <section id="urgensi-upgrade">
+    <!-- Section 4: Perbandingan Layanan ISP -->
+    <section id="internet-comparison">
+        <div class="container fade-in">
+            <h2 class="text-center mb-1">Komparasi Layanan ISP</h2>
+            <p class="text-center text-muted mb-4">Evaluasi parameter teknis untuk peningkatan kelas layanan internet perusahaan.</p>
+
+            <div class="table-responsive mb-4">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter Teknis</th>
+                            <th>Home Broadband <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(MyRepublic Prime)</span></th>
+                            <th>Business Broadband <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(MyRepublic BizPro)</span></th>
+                            <th>Dedicated Internet <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(Corporate Leased Line)</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Estimasi Harga (Opex)</strong></td>
+                            <td class="price">± Rp 565.000 / bln</td>
+                            <td class="price">± Rp 6.034.000 / bln</td>
+                            <td class="price">Mulai Rp 5.000.000 (100 Mbps)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alokasi Bandwidth</strong></td>
+                            <td>Shared (Tingkat kontensi tinggi)</td>
+                            <td>Shared Priority (Prioritas traffic tinggi)</td>
+                            <td>Dedicated 1:1 (Garansi penuh)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alamat IP</strong></td>
+                            <td>Dynamic Private / NAT</td>
+                            <td>1 IP Public Static</td>
+                            <td>Blok IP Public Static (/29 atau /28)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rasio Kecepatan (Up/Down)</strong></td>
+                            <td>Asimetris (Fluktuatif)</td>
+                            <td>Simetris (1:1 Terjamin)</td>
+                            <td>Simetris (1:1 Garansi 100%)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Service Level Agreement</strong></td>
+                            <td>Best-effort (Tanpa penjaminan)</td>
+                            <td>Support Prioritas</td>
+                            <td>SLA 99.5% (Terdapat klausul kompensasi)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card mt-4" style="border-left: 4px solid var(--primary); padding: 1.5rem;">
+                <h4 class="mb-2">Rekomendasi Strategis</h4>
+                <p class="text-muted text-sm mb-0">Untuk menyeimbangkan biaya dan kebutuhan operasional bersama arsitektur baru, transisi menuju <strong>Business Broadband (mis. Biznet Metronet / Indibiz)</strong> adalah langkah esensial. Namun, jika urgensi stabilitas server lokal bersifat kritikal, opsi <strong>Dedicated Internet (50-100 Mbps)</strong> sangat disarankan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Urgensi -->
+    <section id="urgensi-upgrade">
         <div class="container fade-in">
             <h2 class="text-center mb-4">Executive Summary: Urgensi Implementasi</h2>
             
             <div class="grid-2">
                 <div class="justification-card">
                     <h4 class="text-primary mb-1">1. Limitasi Kapasitas Hardware Lama</h4>
-                    <p class="text-muted text-sm">Router *consumer-grade* memiliki batas optimal utilisasi ~25 perangkat. Memaksakan beban 76 perangkat akan memicu degradasi performa masif.</p>
+                    <p class="text-muted text-sm">Router *consumer-grade* memiliki batas optimal utilisasi ~25 perangkat. Memaksakan beban 76 perangkat (estimasi Lantai 1 & 2) pada arsitektur lama akan memicu degradasi performa masif harian.</p>
                 </div>
                 <div class="justification-card">
                     <h4 class="text-primary mb-1">2. Mitigasi Latensi Internal</h4>
-                    <p class="text-muted text-sm">Distribusi kabel (Switch) untuk stasiun kerja berat dipadukan dengan *Seamless Roaming* AP mengeliminasi isu putusnya koneksi.</p>
+                    <p class="text-muted text-sm">Distribusi melalui kabel (Switch) untuk stasiun kerja berat (PC Editing), dipadukan dengan *Seamless Roaming* AP, mengeliminasi isu putusnya koneksi saat mobilitas di area kantor.</p>
                 </div>
                 <div class="justification-card">
-                    <h4 class="text-primary mb-1">3. Biaya Downtime vs Infrastruktur</h4>
-                    <p class="text-muted text-sm">Kerugian finansial akibat tertundanya produktivitas secara signifikan melampaui biaya investasi alat jaringan (*CAPEX*).</p>
+                    <h4 class="text-primary mb-1">3. Biaya Downtime vs Biaya Infrastruktur</h4>
+                    <p class="text-muted text-sm">Kerugian finansial akibat tertundanya produktivitas (*idle time*) dan <em>deadline</em> klien secara signifikan melampaui biaya investasi alat jaringan (*CAPEX*).</p>
                 </div>
                 <div class="justification-card">
                     <h4 class="text-primary mb-1">4. Simbiosis Alat dan ISP</h4>
-                    <p class="text-muted text-sm">Meningkatkan paket ISP tanpa <em>upgrade hardware</em> menciptakan *bottleneck*. Keduanya harus diselaraskan untuk performa maksimal.</p>
+                    <p class="text-muted text-sm">Meningkatkan paket ISP tanpa <em>upgrade hardware</em> lokal akan menciptakan *bottleneck* internal. Sebaliknya, <em>hardware</em> canggih tanpa dukungan ISP bisnis tidak akan menghasilkan performa maksimal. Keduanya harus diselaraskan.</p>
                 </div>
             </div>
 
-            <div class="text-center" style="margin-top: 3.5rem; padding: 2.5rem 2rem; background: var(--primary-glow); border-radius: 8px; border: 1px solid var(--border-hover);">
+            <div class="text-center mt-5 p-4" style="background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
                 <h3 class="text-primary mb-2">Kesimpulan</h3>
-                <p class="text-muted mb-0" style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.7;">
-                    Pembaruan topologi dan transisi layanan ISP ini diposisikan sebagai <strong>Inisiatif Business Continuity</strong>. Hal ini krusial untuk mengamankan arus operasional digital dan memastikan produktivitas tim dapat berjalan pada tingkat efisiensi tertinggi tanpa interupsi.
-                </p>
-            </div>
-            </div>
-    </section>
-
-    <!-- Form Kesan Pesan (Formspree) -->
-    <section id="pesan" style="border-bottom: none; padding-bottom: 2rem;">
-        <div class="container fade-in">
-            <h2 class="text-center mb-1">Kesan & Pesan</h2>
-            <p class="text-center text-muted mb-4">Silakan tinggalkan tanggapan, pertanyaan, atau persetujuan terkait proposal ini.</p>
-            
-            <div class="card" style="max-width: 600px; margin: 0 auto;">
-                <form action="https://formspree.io/f/mdajeqbq" method="POST">
-                    <div class="form-group">
-                        <input type="text" name="nama" class="form-control" placeholder="Nama Anda (Opsional)">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="Alamat Email (Wajib)" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="pesan" class="form-control" placeholder="Tuliskan kesan, pesan, atau masukan Anda di sini..." required></textarea>
-                    </div>
-                    <!-- Formspree hidden config -->
-                    <input type="hidden" name="_subject" value="Tanggapan Baru: Proposal Infrastruktur Cuatrodia">
-                    
-                    <button type="submit" class="btn-aesthetic btn-primary-aesthetic" style="width: 100%;">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                        Kirim Pesan
-                    </button>
-                </form>
+                <p class="text-muted mb-0 mx-auto" style="max-width: 800px;">Pembaruan topologi dan transisi layanan ISP ini diposisikan sebagai <strong>Inisiatif Business Continuity</strong>. Hal ini krusial untuk mengamankan arus operasional digital dan memastikan produktivitas tim di seluruh area dapat berjalan pada tingkat efisiensi tertinggi tanpa interupsi teknis.</p>
             </div>
         </div>
     </section>
@@ -744,58 +738,9 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Scripts for Animations -->
     <script>
-        /* --- 1. THEME TOGGLE (LIGHT/DARK) --- */
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const htmlElement = document.documentElement;
-        
-        // Icon paths
-        const sunIcon = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
-        const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
-
-        // Check LocalStorage for saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            htmlElement.setAttribute('data-theme', 'light');
-            themeIcon.innerHTML = moonIcon;
-        }
-
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            if (currentTheme === 'light') {
-                htmlElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'dark');
-                themeIcon.innerHTML = sunIcon;
-            } else {
-                htmlElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-                themeIcon.innerHTML = moonIcon;
-            }
-        });
-
-
-        /* --- 2. MOBILE MENU (HAMBURGER) --- */
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        const navItems = document.querySelectorAll('.nav-links a');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-
-        /* --- 3. SCROLL ANIMATIONS (INTERSECTION OBSERVER) --- */
+        // Intersection Observer for scroll animations
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -815,24 +760,26 @@
             observer.observe(element);
         });
 
-
-        /* --- 4. STICKY NAVIGATION HIGHLIGHT --- */
+        // Sticky Navigation Highlight
         const sections = document.querySelectorAll('section');
-        
+        const navLinks = document.querySelectorAll('.nav-links a');
+
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 250)) {
+                if (scrollY >= (sectionTop - 200)) {
                     current = section.getAttribute('id');
                 }
             });
 
-            navItems.forEach(link => {
-                link.classList.remove('active');
+            navLinks.forEach(link => {
+                link.style.color = '';
                 if (link.getAttribute('href').includes(current) && current !== '') {
-                    link.classList.add('active');
+                    link.style.color = 'var(--text-main)';
+                    link.style.textShadow = '0 0 10px rgba(255,255,255,0.3)';
+                } else {
+                    link.style.textShadow = 'none';
                 }
             });
         });
