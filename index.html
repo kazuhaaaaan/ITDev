@@ -8,18 +8,49 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            /* Corporate Dark Theme */
+        /* ========== DARK THEME (default) ========== */
+        :root,
+        [data-theme="dark"] {
             --bg-dark: #050b14;
+            --bg-page: #050b14;
             --bg-card: rgba(15, 23, 42, 0.6);
             --bg-card-hover: rgba(30, 41, 59, 0.8);
-            --primary: #38bdf8; /* Professional Blue */
+            --bg-nav: rgba(5, 11, 20, 0.85);
+            --bg-mobile-menu: #0a1628;
+            --bg-code: rgba(56, 189, 248, 0.1);
+            --primary: #38bdf8;
+            --primary-btn-text: #000;
             --primary-glow: rgba(56, 189, 248, 0.1);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --border: rgba(255, 255, 255, 0.08);
             --danger: #ef4444;
             --success: #10b981;
+            --toggle-bg: rgba(255,255,255,0.08);
+            --toggle-icon: "☀️";
+            --radial-opacity: 0.05;
+        }
+
+        /* ========== LIGHT THEME ========== */
+        [data-theme="light"] {
+            --bg-dark: #f0f4f8;
+            --bg-page: #f0f4f8;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-hover: rgba(255, 255, 255, 0.98);
+            --bg-nav: rgba(255, 255, 255, 0.92);
+            --bg-mobile-menu: #ffffff;
+            --bg-code: rgba(14, 116, 144, 0.1);
+            --primary: #0284c7;
+            --primary-btn-text: #ffffff;
+            --primary-glow: rgba(2, 132, 199, 0.1);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: rgba(0, 0, 0, 0.1);
+            --danger: #dc2626;
+            --success: #059669;
+            --toggle-bg: rgba(0,0,0,0.06);
+            --toggle-icon: "🌙";
+            --radial-opacity: 0.08;
         }
 
         * {
@@ -28,16 +59,22 @@
             box-sizing: border-box;
         }
 
+        /* Smooth theme transitions */
+        nav, .card, .node-item, .justification-card, table, th, td, .stat-box, .topology-image-container, footer {
+            transition: background 0.3s ease, border-color 0.3s ease, color 0.2s ease;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-page);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.05) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.05) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, var(--radial-opacity)) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, var(--radial-opacity)) 0px, transparent 50%);
             background-attachment: fixed;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         h1, h2, h3, h4 {
@@ -74,11 +111,12 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(5, 11, 20, 0.85);
+            background: var(--bg-nav);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             z-index: 1000;
             border-bottom: 1px solid var(--border);
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         .nav-content {
@@ -86,6 +124,7 @@
             justify-content: space-between;
             align-items: center;
             height: 70px;
+            gap: 1rem;
         }
 
         .logo {
@@ -95,6 +134,7 @@
             color: var(--text-main);
             text-decoration: none;
             letter-spacing: -0.5px;
+            flex-shrink: 0;
         }
 
         .logo span { color: var(--primary); }
@@ -113,6 +153,94 @@
         }
 
         .nav-links a:hover { color: var(--text-main); }
+        .nav-links a.active { color: var(--text-main); }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: var(--toggle-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            color: var(--text-muted);
+        }
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Hamburger Button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            transition: border-color 0.2s ease;
+        }
+        .hamburger:hover { border-color: var(--primary); }
+        .hamburger span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: var(--text-muted);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile Menu Dropdown */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: var(--bg-mobile-menu);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+        .mobile-menu.open { display: block; }
+        .mobile-menu a {
+            display: block;
+            padding: 0.875rem 2rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:hover, .mobile-menu a.active {
+            color: var(--primary);
+            background: var(--primary-glow);
+            padding-left: 2.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+        }
 
         /* Hero Section */
         .hero {
@@ -152,13 +280,24 @@
             border-radius: 12px;
             padding: 2.5rem;
             backdrop-filter: blur(12px);
-            transition: all 0.3s ease;
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             border-color: rgba(56, 189, 248, 0.3);
             background: var(--bg-card-hover);
         }
+
+        /* Light mode table and stat adjustments */
+        [data-theme="light"] table { background: var(--bg-card); }
+        [data-theme="light"] th { background: rgba(0,0,0,0.04); color: var(--text-main); }
+        [data-theme="light"] tr:hover td { background: rgba(0,0,0,0.02); }
+        [data-theme="light"] .stat-box { background: rgba(255,255,255,0.6); }
+        [data-theme="light"] .node-item { background: var(--bg-card); }
+        [data-theme="light"] .justification-card { background: rgba(0,0,0,0.02); }
+        [data-theme="light"] .topology-image-container { background: #f8fafc; border-color: var(--border); }
+        [data-theme="light"] .btn-primary-aesthetic { background: var(--primary); color: #fff; border-color: var(--primary); }
+        [data-theme="light"] code { background: rgba(14,116,144,0.1) !important; color: var(--primary) !important; }
 
         /* Data Viz / Stats */
         .stat-box {
@@ -324,6 +463,16 @@
             color: var(--text-muted);
             font-size: 0.875rem;
             border-top: 1px solid var(--border);
+            background: var(--bg-page);
+        }
+
+        /* Responsive: hide nav-right gap on small screens */
+        @media (max-width: 768px) {
+            .hero { padding: 8rem 0 4rem; }
+            section { padding: 3rem 0; }
+            .container { padding: 0 1.25rem; }
+            .justification-grid { grid-template-columns: 1fr; }
+            .node-list { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -336,15 +485,33 @@
             <div class="nav-links">
                 <a href="#analisis">Analisis Kapasitas</a>
                 <a href="#topologi">Arsitektur Topologi</a>
+                <a href="#vlan-ssid">VLAN &amp; SSID</a>
                 <a href="#budgeting">Proyeksi CAPEX</a>
                 <a href="#urgensi-upgrade">Executive Summary</a>
             </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle Light/Dark Mode">
+                <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#analisis" class="mobile-nav-link">Analisis Kapasitas</a>
+            <a href="#topologi" class="mobile-nav-link">Arsitektur Topologi</a>
+            <a href="#vlan-ssid" class="mobile-nav-link">VLAN &amp; SSID</a>
+            <a href="#budgeting" class="mobile-nav-link">Proyeksi CAPEX</a>
+            <a href="#urgensi-upgrade" class="mobile-nav-link">Executive Summary</a>
         </div>
     </nav>
 
     <section class="hero" id="home">
         <div class="container fade-in">
-            <h1>Proposal Peningkatan Infrastruktur<br><span class="text-primary">Jaringan Cuatrodia</span></h1>
+            <h1>Proposal Peningkatan Infrastruktur<br><span class="text-primary">Jaringan Cuatrodia Tahap 1</span></h1>
             <p>Evaluasi komprehensif performa jaringan aktual, rancangan arsitektur operasional, dan justifikasi investasi (CAPEX) untuk menjamin stabilitas produktivitas perusahaan.</p>
         </div>
     </section>
@@ -438,10 +605,10 @@
             <!-- Tombol Navigasi Toggle -->
             <!-- Note: Sesuaikan class button (btn-primary/btn-outline) dengan CSS yang kamu pakai -->
             <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; margin-bottom: 2rem;">
-                <button id="btnBaru" onclick="switchTopology('baru')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--primary-color, #007bff); background-color: var(--primary-color, #007bff); color: white;">
+                <button id="btnBaru" onclick="switchTopology('baru')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--primary); background-color: var(--primary); color: var(--primary-btn-text);">
                     Rancangan (Baru)
                 </button>
-                <button id="btnLama" onclick="switchTopology('lama')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid #6c757d; background-color: transparent; color: var(--text-muted, #6c757d);">
+                <button id="btnLama" onclick="switchTopology('lama')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--text-muted); background-color: transparent; color: var(--text-muted);">
                     Topologi Lama
                 </button>
             </div>
@@ -516,11 +683,10 @@
             const btnBaru = document.getElementById('btnBaru');
             const btnLama = document.getElementById('btnLama');
 
-            // Setup styling warna untuk tombol aktif (bisa disesuaikan dengan CSS variabelmu)
-            const activeBg = 'var(--primary-color, #007bff)';
-            const activeColor = 'white';
+            const activeBg = '#38bdf8';
+            const activeColor = '#000';
             const inactiveBg = 'transparent';
-            const inactiveColor = 'var(--text-muted, #6c757d)';
+            const inactiveColor = '#94a3b8';
             const activeBorder = `1px solid ${activeBg}`;
             const inactiveBorder = `1px solid ${inactiveColor}`;
 
@@ -549,6 +715,134 @@
             }
         }
     </script>
+
+
+    <!-- Section: VLAN & SSID per Divisi -->
+    <section id="vlan-ssid">
+        <div class="container fade-in">
+            <h2 class="text-center mb-1">Alokasi VLAN & SSID per Divisi</h2>
+            <p class="text-center text-muted mb-4">Setiap divisi memiliki segmen jaringan (VLAN) dan SSID Wi-Fi tersendiri yang dikendalikan terpusat oleh CAPsMAN. Bandwidth dialokasikan berbasis prioritas operasional.</p>
+
+            <div class="table-responsive mb-4">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Divisi</th>
+                            <th>VLAN ID</th>
+                            <th>Subnet</th>
+                            <th>SSID Wi-Fi</th>
+                            <th>Band</th>
+                            <th>Bandwidth Max ↓ / ↑</th>
+                            <th>Akses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Management IT</strong></td>
+                            <td><span class="price">10</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.10.0/24</td>
+                            <td><em class="text-muted">— Wired Only —</em></td>
+                            <td class="text-muted">—</td>
+                            <td><span style="color:var(--success)">Unlimited</span></td>
+                            <td>IT Admin</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Motion Tim 1</strong></td>
+                            <td><span class="price">20</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.20.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Motion_Team</code></td>
+                            <td>5 GHz</td>
+                            <td>30 Mbps / 10 Mbps</td>
+                            <td>Karyawan Motion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Design Dorm Tim</strong></td>
+                            <td><span class="price">25</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.25.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">DD_Team</code></td>
+                            <td>5 GHz</td>
+                            <td>30 Mbps / 10 Mbps</td>
+                            <td>Karyawan Design Dorm</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Meeting Room</strong></td>
+                            <td><span class="price">30</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.30.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Meeting_Room</code></td>
+                            <td>2.4 GHz</td>
+                            <td>15 Mbps / 5 Mbps</td>
+                            <td><span style="color:var(--success)">🔄 Auto-rotate harian</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Directory</strong></td>
+                            <td><span class="price">40</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.40.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Directory_Net</code></td>
+                            <td>5 GHz</td>
+                            <td>20 Mbps / 5 Mbps</td>
+                            <td>Karyawan Directory</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Notion Tim</strong></td>
+                            <td><span class="price">50</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.50.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Notion_Net</code></td>
+                            <td>5 GHz</td>
+                            <td>20 Mbps / 5 Mbps</td>
+                            <td>Karyawan Notion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Server Room</strong></td>
+                            <td><span class="price">60</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.60.0/24</td>
+                            <td><em class="text-muted">— Wired Only —</em></td>
+                            <td class="text-muted">—</td>
+                            <td><span style="color:var(--success)">Unlimited</span></td>
+                            <td>Server / Infra</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ekspansi Lantai 2</strong></td>
+                            <td><span class="price">70</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.70.0/24</td>
+                            <td><em class="text-muted">— Reserved —</em></td>
+                            <td class="text-muted">—</td>
+                            <td class="text-muted">TBD</td>
+                            <td class="text-muted">Future Use</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Office Roaming</strong></td>
+                            <td><span class="price">99</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.99.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Office_Roaming</code></td>
+                            <td>5 GHz</td>
+                            <td>10 Mbps / 3 Mbps</td>
+                            <td>Tamu / Non-staff</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Highlight Cards -->
+            <div class="justification-grid">
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">📡 Dual SSID Motion Team</h4>
+                    <p class="text-muted text-sm">Tim Motion menggunakan satu nama SSID <strong>Motion_Team</strong> namun terbagi ke VLAN 20 & 25. Secara teknis, setiap unit tim mendapat segmen IP dan queue bandwidth yang sepenuhnya independen, mencegah interferensi beban kerja antar-tim.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">🔄 Auto-Rotate Password Meeting</h4>
+                    <p class="text-muted text-sm">SSID <strong>Meeting_Room</strong> menggunakan script MikroTik yang merotasi password otomatis setiap tengah malam dan mengirimkan kata sandi baru via Telegram Bot — mencegah penyalahgunaan akun tamu yang overstay.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">🔒 Isolasi Guest Network</h4>
+                    <p class="text-muted text-sm">SSID <strong>Office_Roaming</strong> (VLAN 99) diblokir secara total dari seluruh subnet internal perusahaan oleh firewall rule. Tamu hanya mendapat akses internet keluar, tanpa visibilitas ke resource jaringan internal sama sekali.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">📶 Semua SSID via CAPsMAN</h4>
+                    <p class="text-muted text-sm">Seluruh SSID dipancarkan oleh AP Node (hAP ax2) namun dikonfigurasi dan dikontrol dari satu titik — Core Router MikroTik RB5009. Penambahan atau perubahan konfigurasi Wi-Fi cukup dilakukan sekali di controller, berlaku ke semua AP sekaligus.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Section 3: Budgeting Best Value -->
     <section id="budgeting">
@@ -701,7 +995,7 @@
     </section>
 
     <!-- Urgensi -->
-    <section id="urgensi-upgrade">
+<section id="urgensi-upgrade">
         <div class="container fade-in">
             <h2 class="text-center mb-4">Executive Summary: Urgensi Implementasi</h2>
             
@@ -724,9 +1018,9 @@
                 </div>
             </div>
 
-            <div class="text-center mt-5 p-4" style="background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
-                <h3 class="text-primary mb-2">Kesimpulan</h3>
-                <p class="text-muted mb-0 mx-auto" style="max-width: 800px;">Pembaruan topologi dan transisi layanan ISP ini diposisikan sebagai <strong>Inisiatif Business Continuity</strong>. Hal ini krusial untuk mengamankan arus operasional digital dan memastikan produktivitas tim di seluruh area dapat berjalan pada tingkat efisiensi tertinggi tanpa interupsi teknis.</p>
+            <div class="mt-5 p-4" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+                <h3 class="text-primary mb-2 text-center">Kesimpulan</h3>
+                <p class="text-muted mb-0 mx-auto text-center" style="max-width: 800px; text-align: center;">Pembaruan topologi dan transisi layanan ISP ini diposisikan sebagai <strong>Inisiatif Business Continuity</strong>. Hal ini krusial untuk mengamankan arus operasional digital dan memastikan produktivitas tim di seluruh area dapat berjalan pada tingkat efisiensi tertinggi tanpa interupsi teknis.</p>
             </div>
         </div>
     </section>
@@ -738,51 +1032,100 @@
         </div>
     </footer>
 
-    <!-- Scripts for Animations -->
+    <!-- Scripts -->
     <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
+        // ── THEME TOGGLE ──────────────────────────────────
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const iconSun = document.getElementById('iconSun');
+        const iconMoon = document.getElementById('iconMoon');
 
-        const observer = new IntersectionObserver((entries, observer) => {
+        function applyTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            if (theme === 'light') {
+                iconSun.style.display = 'block';
+                iconMoon.style.display = 'none';
+                themeToggle.title = 'Switch to Dark Mode';
+            } else {
+                iconSun.style.display = 'none';
+                iconMoon.style.display = 'block';
+                themeToggle.title = 'Switch to Light Mode';
+            }
+        }
+
+        // Load saved theme or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            applyTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        // ── HAMBURGER MENU ────────────────────────────────
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Close mobile menu on outside click
+        document.addEventListener('click', (e) => {
+            if (!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburgerBtn.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            }
+        });
+
+        // ── SCROLL ANIMATIONS ─────────────────────────────
+        const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+                    obs.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { root: null, rootMargin: '0px', threshold: 0.15 });
 
-        document.querySelectorAll('.fade-in').forEach((element) => {
-            observer.observe(element);
-        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Sticky Navigation Highlight
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-links a');
+        // ── ACTIVE NAV HIGHLIGHT ──────────────────────────
+        const sections = document.querySelectorAll('section[id]');
+        const allNavLinks = document.querySelectorAll('.nav-links a, .mobile-nav-link');
 
-        window.addEventListener('scroll', () => {
+        function updateActiveNav() {
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (scrollY >= (sectionTop - 200)) {
+                if (scrollY >= section.offsetTop - 200) {
                     current = section.getAttribute('id');
                 }
             });
 
-            navLinks.forEach(link => {
+            allNavLinks.forEach(link => {
+                link.classList.remove('active');
                 link.style.color = '';
-                if (link.getAttribute('href').includes(current) && current !== '') {
-                    link.style.color = 'var(--text-main)';
-                    link.style.textShadow = '0 0 10px rgba(255,255,255,0.3)';
-                } else {
-                    link.style.textShadow = 'none';
+                link.style.textShadow = '';
+                if (current && link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                    link.style.color = 'var(--primary)';
                 }
             });
-        });
+        }
+
+        window.addEventListener('scroll', updateActiveNav, { passive: true });
+        updateActiveNav();
     </script>
 </body>
 </html>
