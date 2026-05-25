@@ -76,7 +76,7 @@
         }
 
         h1, h2, h3, h4 {
-            font-family: 'Syne', sans-serif;
+            font-family: 'inter', sans-serif;
             font-weight: 600;
             letter-spacing: -0.02em;
         }
@@ -115,7 +115,7 @@
             transition: background 0.3s ease, border-color 0.3s ease;
         }
         .nav-content { display: flex; justify-content: space-between; align-items: center; height: 70px; gap: 1rem; }
-        .logo { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--text-main); text-decoration: none; letter-spacing: -0.5px; flex-shrink: 0; }
+        .logo { font-family: 'inter', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--text-main); text-decoration: none; letter-spacing: -0.5px; flex-shrink: 0; }
         .logo span { color: var(--primary); }
         .nav-links { display: flex; gap: 1.5rem; }
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.3s ease; }
@@ -202,7 +202,7 @@
         .table-responsive { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
         table { width: 100%; border-collapse: collapse; text-align: left; background: var(--bg-card); }
         th, td { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-        th { font-family: 'Syne', sans-serif; background: rgba(0,0,0,0.3); color: var(--text-main); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+        th { font-family: 'inter', sans-serif; background: rgba(0,0,0,0.3); color: var(--text-main); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
         tr:last-child td { border-bottom: none; }
         tr:hover td { background: rgba(255,255,255,0.02); }
         .price { font-family: 'Inter', monospace; font-weight: 500; color: var(--primary); }
@@ -218,8 +218,8 @@
             background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.25);
             border-radius: 12px; backdrop-filter: blur(12px);
         }
-        .grand-total-box .label { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-        .grand-total-box .amount { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary); letter-spacing: -0.03em; }
+        .grand-total-box .label { font-family: 'inter', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .grand-total-box .amount { font-family: 'inter', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary); letter-spacing: -0.03em; }
         .grand-total-box .note { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
 
         /* Budget tier toggle */
@@ -280,7 +280,7 @@
         .tl-phase.hidden { display: none; }
 
         .tl-phase-label { display: flex; flex-direction: column; align-items: center; padding-top: 1.25rem; text-align: center; }
-        .tl-phase-num { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--primary); line-height: 1; }
+        .tl-phase-num { font-family: 'inter', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--primary); line-height: 1; }
         .tl-phase-week { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; white-space: nowrap; }
 
         .tl-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; backdrop-filter: blur(12px); transition: border-color 0.2s ease, background 0.3s ease; }
@@ -312,7 +312,7 @@
         /* Summary bar */
         .tl-summary { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0; margin-top: 3rem; padding: 1.5rem 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; backdrop-filter: blur(12px); }
         .tl-summary-item { display: flex; flex-direction: column; align-items: center; padding: 0 2rem; text-align: center; }
-        .tl-summary-val { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary); line-height: 1; }
+        .tl-summary-val { font-family: 'inter', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary); line-height: 1; }
         .tl-summary-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; white-space: nowrap; }
         .tl-summary-divider { width: 1px; height: 40px; background: var(--border); }
 
@@ -332,9 +332,13 @@
 <body>
 
     <!-- Navigation -->
-    <nav>
+   <nav>
         <div class="container nav-content">
-            <a href="#" class="logo">Cuatro<span>dia</span></a>
+            <!-- Teks Cuatrodia diubah menjadi gambar logo.webp -->
+            <a href="#" class="logo">
+                <img src="./materi/logo.webp" alt="Logo Cuatrodia" style="height: 40px; width: auto;">
+            </a>
+            
             <div class="nav-links">
                 <a href="#urgensi-upgrade">Executive Summary</a>
                 <a href="#analisis">Analisis Kapasitas</a>
