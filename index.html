@@ -26,6 +26,7 @@
             --border: rgba(255, 255, 255, 0.08);
             --danger: #ef4444;
             --success: #10b981;
+            --warning: #f59e0b;
             --toggle-bg: rgba(255,255,255,0.08);
             --toggle-icon: "☀️";
             --radial-opacity: 0.05;
@@ -48,16 +49,13 @@
             --border: rgba(0, 0, 0, 0.1);
             --danger: #dc2626;
             --success: #059669;
+            --warning: #d97706;
             --toggle-bg: rgba(0,0,0,0.06);
             --toggle-icon: "🌙";
             --radial-opacity: 0.08;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         /* Smooth theme transitions */
         nav, .card, .node-item, .justification-card, table, th, td, .stat-box, .topology-image-container, footer {
@@ -70,7 +68,7 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: 
+            background-image:
                 radial-gradient(at 0% 0%, rgba(56, 189, 248, var(--radial-opacity)) 0px, transparent 50%),
                 radial-gradient(at 100% 100%, rgba(56, 189, 248, var(--radial-opacity)) 0px, transparent 50%);
             background-attachment: fixed;
@@ -87,30 +85,28 @@
         .text-primary { color: var(--primary); }
         .text-muted { color: var(--text-muted); }
         .text-danger { color: var(--danger); }
+        .text-success { color: var(--success) !important; }
+        .text-warning { color: var(--warning); }
+        .text-sm { font-size: 0.875rem; }
         .mb-1 { margin-bottom: 0.5rem; }
         .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
         .mb-4 { margin-bottom: 2rem; }
+        .mb-5 { margin-bottom: 2.5rem; }
         .mt-4 { margin-top: 2rem; }
+        .mt-5 { margin-top: 2.5rem; }
+        .p-4 { padding: 1.5rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
         .text-center { text-align: center; }
         .font-semibold { font-weight: 600; }
 
         /* Layout */
-        .container {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            padding: 5rem 0;
-            border-bottom: 1px solid var(--border);
-        }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
 
         /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
+            position: fixed; top: 0; width: 100%;
             background: var(--bg-nav);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -118,177 +114,65 @@
             border-bottom: 1px solid var(--border);
             transition: background 0.3s ease, border-color 0.3s ease;
         }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-            gap: 1rem;
-        }
-
-        .logo {
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--text-main);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-            flex-shrink: 0;
-        }
-
+        .nav-content { display: flex; justify-content: space-between; align-items: center; height: 70px; gap: 1rem; }
+        .logo { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--text-main); text-decoration: none; letter-spacing: -0.5px; flex-shrink: 0; }
         .logo span { color: var(--primary); }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.3s ease; }
         .nav-links a:hover { color: var(--text-main); }
-        .nav-links a.active { color: var(--text-main); }
+        .nav-links a.active { color: var(--primary); }
 
         /* Theme Toggle Button */
         .theme-toggle {
-            background: var(--toggle-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            flex-shrink: 0;
-            color: var(--text-muted);
+            background: var(--toggle-bg); border: 1px solid var(--border); border-radius: 8px;
+            width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 1rem; transition: all 0.2s ease; flex-shrink: 0; color: var(--text-muted);
         }
-        .theme-toggle:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
+        .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
 
         /* Hamburger Button */
         .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            background: none;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px;
-            cursor: pointer;
-            width: 36px;
-            height: 36px;
-            flex-shrink: 0;
-            transition: border-color 0.2s ease;
+            display: none; flex-direction: column; justify-content: center; gap: 5px;
+            background: none; border: 1px solid var(--border); border-radius: 8px; padding: 8px;
+            cursor: pointer; width: 36px; height: 36px; flex-shrink: 0; transition: border-color 0.2s ease;
         }
         .hamburger:hover { border-color: var(--primary); }
-        .hamburger span {
-            display: block;
-            width: 18px;
-            height: 2px;
-            background: var(--text-muted);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            transform-origin: center;
-        }
+        .hamburger span { display: block; width: 18px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
         .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
         .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
         /* Mobile Menu Dropdown */
         .mobile-menu {
-            display: none;
-            position: absolute;
-            top: 70px;
-            left: 0;
-            right: 0;
-            background: var(--bg-mobile-menu);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-            z-index: 999;
+            display: none; position: absolute; top: 70px; left: 0; right: 0;
+            background: var(--bg-mobile-menu); border-bottom: 1px solid var(--border);
+            padding: 1rem 0; box-shadow: 0 8px 24px rgba(0,0,0,0.2); z-index: 999;
         }
         .mobile-menu.open { display: block; }
-        .mobile-menu a {
-            display: block;
-            padding: 0.875rem 2rem;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border-bottom: 1px solid var(--border);
-            transition: all 0.2s ease;
-        }
+        .mobile-menu a { display: block; padding: 0.875rem 2rem; color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid var(--border); transition: all 0.2s ease; }
         .mobile-menu a:last-child { border-bottom: none; }
-        .mobile-menu a:hover, .mobile-menu a.active {
-            color: var(--primary);
-            background: var(--primary-glow);
-            padding-left: 2.5rem;
-        }
+        .mobile-menu a:hover, .mobile-menu a.active { color: var(--primary); background: var(--primary-glow); padding-left: 2.5rem; }
 
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-        }
+        @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } }
 
         /* Hero Section */
-        .hero {
-            padding: 10rem 0 5rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            line-height: 1.15;
-            margin-bottom: 1.25rem;
-        }
-
-        .hero p {
-            font-size: 1.125rem;
-            color: var(--text-muted);
-            max-width: 800px;
-            margin: 0 auto 3rem;
-        }
+        .hero { padding: 10rem 0 5rem; text-align: center; }
+        .hero h1 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.15; margin-bottom: 1.25rem; }
+        .hero p { font-size: 1.125rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 3rem; }
 
         /* Grid Layouts */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; gap: 2rem; } }
 
-        @media (max-width: 768px) {
-            .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
-        }
-
-        /* Cards & Boxes (Glassmorphism Corporate) */
+        /* Cards & Boxes */
         .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2.5rem;
-            backdrop-filter: blur(12px);
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+            padding: 2.5rem; backdrop-filter: blur(12px);
             transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
+        .card:hover { border-color: rgba(56, 189, 248, 0.3); background: var(--bg-card-hover); }
 
-        .card:hover {
-            border-color: rgba(56, 189, 248, 0.3);
-            background: var(--bg-card-hover);
-        }
-
-        /* Light mode table and stat adjustments */
+        /* Light mode overrides */
         [data-theme="light"] table { background: var(--bg-card); }
         [data-theme="light"] th { background: rgba(0,0,0,0.04); color: var(--text-main); }
         [data-theme="light"] tr:hover td { background: rgba(0,0,0,0.02); }
@@ -298,182 +182,151 @@
         [data-theme="light"] .topology-image-container { background: #f8fafc; border-color: var(--border); }
         [data-theme="light"] .btn-primary-aesthetic { background: var(--primary); color: #fff; border-color: var(--primary); }
         [data-theme="light"] code { background: rgba(14,116,144,0.1) !important; color: var(--primary) !important; }
+        [data-theme="light"] .total-row td { background: rgba(2,132,199,0.06) !important; }
+        [data-theme="light"] .grand-total-box { background: rgba(2,132,199,0.08); border-color: rgba(2,132,199,0.3); }
+        [data-theme="light"] .monitoring-card { background: rgba(255,255,255,0.7); }
 
         /* Data Viz / Stats */
-        .stat-box {
-            background: rgba(0,0,0,0.2);
-            padding: 1.25rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border-left: 3px solid var(--primary);
-            border: 1px solid var(--border);
-            border-left-width: 4px;
-        }
+        .stat-box { background: rgba(0,0,0,0.2); padding: 1.25rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border); border-left: 4px solid var(--primary); }
         .stat-box.danger { border-left-color: var(--danger); }
-        
-        .stat-value {
-            font-family: 'Inter', sans-serif;
-            font-size: 2.25rem;
-            font-weight: 600;
-            line-height: 1.2;
-            margin-bottom: 0.25rem;
-            letter-spacing: -0.05em;
-        }
+        .stat-value { font-family: 'Inter', sans-serif; font-size: 2.25rem; font-weight: 600; line-height: 1.2; margin-bottom: 0.25rem; letter-spacing: -0.05em; }
 
         /* Topology Section */
-        .topology-image-container {
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            background: #ffffff;
-            padding: 1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .topology-image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .node-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.25rem;
-        }
-
-        .node-item {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .node-item h4 {
-            color: var(--text-main);
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1rem;
-        }
+        .topology-image-container { width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #ffffff; padding: 1rem; margin-bottom: 2.5rem; }
+        .topology-image-container img { width: 100%; height: auto; display: block; }
+        .node-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+        .node-item { background: var(--bg-card); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); }
+        .node-item h4 { color: var(--text-main); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; font-size: 1rem; }
 
         /* Table Styles */
-        .table-responsive {
-            overflow-x: auto;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            background: var(--bg-card);
-        }
-
-        th, td {
-            padding: 1rem 1.25rem;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
-        }
-
-        th {
-            font-family: 'Syne', sans-serif;
-            background: rgba(0,0,0,0.3);
-            color: var(--text-main);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-        }
-
+        .table-responsive { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; text-align: left; background: var(--bg-card); }
+        th, td { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        th { font-family: 'Syne', sans-serif; background: rgba(0,0,0,0.3); color: var(--text-main); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
         tr:last-child td { border-bottom: none; }
         tr:hover td { background: rgba(255,255,255,0.02); }
-
         .price { font-family: 'Inter', monospace; font-weight: 500; color: var(--primary); }
 
+        /* Total row in budget table */
+        .total-row td { background: rgba(56,189,248,0.06) !important; font-weight: 600; border-top: 2px solid rgba(56,189,248,0.3); }
+        .total-row td:first-child { color: var(--text-main); }
+
+        /* Grand Total Box */
+        .grand-total-box {
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+            gap: 1rem; padding: 1.5rem 2rem; margin-top: 1.5rem;
+            background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.25);
+            border-radius: 12px; backdrop-filter: blur(12px);
+        }
+        .grand-total-box .label { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .grand-total-box .amount { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary); letter-spacing: -0.03em; }
+        .grand-total-box .note { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+        /* Budget tier toggle */
+        .tier-tabs { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+        .tier-tab { padding: 7px 18px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; font-family: 'Inter', sans-serif; }
+        .tier-tab:hover { border-color: var(--primary); color: var(--primary); }
+        .tier-tab.active { background: var(--primary); color: var(--primary-btn-text); border-color: var(--primary); font-weight: 600; }
+
         /* Justification points */
-        .justification-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.25rem;
-            margin-top: 2rem;
-        }
-
-        .justification-card {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .justification-card h4 {
-            font-size: 1.05rem;
-        }
+        .justification-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+        .justification-card { background: rgba(255, 255, 255, 0.02); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); }
+        .justification-card h4 { font-size: 1.05rem; }
 
         /* Buttons */
-        .btn-aesthetic {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-main);
-            border: 1px solid var(--border);
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-aesthetic:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary);
-        }
-        .btn-primary-aesthetic {
-            background: var(--primary);
-            color: #000;
-            border-color: var(--primary);
-            font-weight: 600;
-        }
-        .btn-primary-aesthetic:hover {
-            background: #2ea8e0;
-            border-color: #2ea8e0;
-        }
+        .btn-aesthetic { background: rgba(255, 255, 255, 0.05); color: var(--text-main); border: 1px solid var(--border); padding: 12px 20px; border-radius: 8px; font-size: 0.875rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-aesthetic:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--primary); }
+        .btn-primary-aesthetic { background: var(--primary); color: #000; border-color: var(--primary); font-weight: 600; }
+        .btn-primary-aesthetic:hover { background: #2ea8e0; border-color: #2ea8e0; }
 
         /* Animation Classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            border-top: 1px solid var(--border);
-            background: var(--bg-page);
-        }
+        footer { text-align: center; padding: 2rem 0; color: var(--text-muted); font-size: 0.875rem; border-top: 1px solid var(--border); background: var(--bg-page); }
 
-        /* Responsive: hide nav-right gap on small screens */
+        /* Responsive */
         @media (max-width: 768px) {
             .hero { padding: 8rem 0 4rem; }
             section { padding: 3rem 0; }
             .container { padding: 0 1.25rem; }
             .justification-grid { grid-template-columns: 1fr; }
             .node-list { grid-template-columns: 1fr; }
+            .grand-total-box { flex-direction: column; align-items: flex-start; }
+            .grand-total-box .amount { font-size: 1.5rem; }
         }
+
+        /* ====== MONITORING CARDS ====== */
+        .monitoring-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+        .monitoring-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: border-color 0.2s ease, background 0.3s ease; }
+        .monitoring-card:hover { border-color: rgba(56,189,248,0.35); }
+        .monitoring-card .tool-badge { display: inline-block; font-size: 0.68rem; font-weight: 600; padding: 2px 10px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem; }
+        .badge-free { background: rgba(16,185,129,0.12); color: var(--success); }
+        .badge-builtin { background: rgba(56,189,248,0.12); color: var(--primary); }
+        .badge-optional { background: rgba(245,158,11,0.12); color: var(--warning); }
+        .monitoring-card h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+
+        /* ====== ROADMAP / TIMELINE ====== */
+        .phase-tabs { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .phase-tab { padding: 7px 18px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; font-family: 'Inter', sans-serif; }
+        .phase-tab:hover { border-color: var(--primary); color: var(--primary); }
+        .phase-tab.active { background: var(--primary); color: var(--primary-btn-text, #000); border-color: var(--primary); font-weight: 600; }
+
+        .timeline-wrap { position: relative; max-width: 860px; margin: 0 auto; }
+        .tl-connector { width: 2px; height: 28px; background: linear-gradient(to bottom, var(--primary), rgba(56,189,248,0.2)); margin: 0 auto; opacity: 0.4; }
+
+        .tl-phase { display: grid; grid-template-columns: 90px 1fr; gap: 1.25rem; align-items: start; transition: opacity 0.3s ease, transform 0.3s ease; }
+        .tl-phase.hidden { display: none; }
+
+        .tl-phase-label { display: flex; flex-direction: column; align-items: center; padding-top: 1.25rem; text-align: center; }
+        .tl-phase-num { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--primary); line-height: 1; }
+        .tl-phase-week { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; white-space: nowrap; }
+
+        .tl-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; backdrop-filter: blur(12px); transition: border-color 0.2s ease, background 0.3s ease; }
+        .tl-card:hover { border-color: rgba(56,189,248,0.35); }
+        .tl-card-golive { border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.04); }
+        .tl-card-golive:hover { border-color: rgba(16, 185, 129, 0.6); }
+
+        .tl-card-header { display: flex; align-items: flex-start; gap: 0.875rem; margin-bottom: 1rem; }
+        .tl-icon { font-size: 1.4rem; line-height: 1; margin-top: 2px; flex-shrink: 0; }
+        .tl-card-header > div { flex: 1; }
+        .tl-card-header h4 { font-size: 1rem; margin-bottom: 0.25rem; color: var(--text-main); }
+
+        .tl-badge { display: inline-block; font-size: 0.68rem; font-weight: 600; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.04em; }
+        .tl-badge-infra   { background: rgba(56,189,248,0.12); color: var(--primary); }
+        .tl-badge-config  { background: rgba(168,85,247,0.12); color: #a855f7; }
+        .tl-badge-golive  { background: rgba(16,185,129,0.12); color: var(--success); }
+
+        .tl-duration { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; margin-top: 3px; flex-shrink: 0; }
+
+        .tl-tasks { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+        .tl-tasks li { display: flex; align-items: flex-start; gap: 0.625rem; font-size: 0.865rem; color: var(--text-muted); line-height: 1.5; }
+        .tl-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); flex-shrink: 0; margin-top: 6px; opacity: 0.7; }
+        .tl-dot-golive { background: var(--success); }
+
+        .tl-output { font-size: 0.8rem; padding: 0.625rem 0.875rem; background: rgba(56,189,248,0.06); border-left: 3px solid var(--primary); border-radius: 0 6px 6px 0; color: var(--text-muted); }
+        .tl-output-golive { background: rgba(16,185,129,0.06); border-left-color: var(--success); }
+        .tl-output-label { font-weight: 600; color: var(--text-main); margin-right: 0.25rem; }
+
+        /* Summary bar */
+        .tl-summary { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0; margin-top: 3rem; padding: 1.5rem 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; backdrop-filter: blur(12px); }
+        .tl-summary-item { display: flex; flex-direction: column; align-items: center; padding: 0 2rem; text-align: center; }
+        .tl-summary-val { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary); line-height: 1; }
+        .tl-summary-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; white-space: nowrap; }
+        .tl-summary-divider { width: 1px; height: 40px; background: var(--border); }
+
+        @media (max-width: 640px) {
+            .tl-phase { grid-template-columns: 60px 1fr; gap: 0.875rem; }
+            .tl-phase-num { font-size: 1.2rem; }
+            .tl-summary-item { padding: 0 1rem; }
+            .tl-summary-divider { display: none; }
+            .tl-summary { gap: 1rem; }
+            .tl-card-header { flex-wrap: wrap; }
+            .tl-duration { width: 100%; order: 3; }
+        }
+        /* ====== END ROADMAP ====== */
+
     </style>
 </head>
 <body>
@@ -483,32 +336,35 @@
         <div class="container nav-content">
             <a href="#" class="logo">Cuatro<span>dia</span></a>
             <div class="nav-links">
+                <a href="#urgensi-upgrade">Executive Summary</a>
                 <a href="#analisis">Analisis Kapasitas</a>
                 <a href="#topologi">Arsitektur Topologi</a>
                 <a href="#vlan-ssid">VLAN &amp; SSID</a>
                 <a href="#budgeting">Proyeksi CAPEX</a>
-                <a href="#urgensi-upgrade">Executive Summary</a>
+                <a href="#monitoring">Monitoring</a>
+                <a href="#roadmap">Roadmap</a>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle Light/Dark Mode">
                 <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                 <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
             </button>
             <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
+            <a href="#urgensi-upgrade" class="mobile-nav-link">Executive Summary</a>
             <a href="#analisis" class="mobile-nav-link">Analisis Kapasitas</a>
             <a href="#topologi" class="mobile-nav-link">Arsitektur Topologi</a>
             <a href="#vlan-ssid" class="mobile-nav-link">VLAN &amp; SSID</a>
             <a href="#budgeting" class="mobile-nav-link">Proyeksi CAPEX</a>
-            <a href="#urgensi-upgrade" class="mobile-nav-link">Executive Summary</a>
+            <a href="#monitoring" class="mobile-nav-link">Monitoring</a>
+            <a href="#roadmap" class="mobile-nav-link">Roadmap</a>
         </div>
     </nav>
 
+    <!-- Hero -->
     <section class="hero" id="home">
         <div class="container fade-in">
             <h1>Proposal Peningkatan Infrastruktur<br><span class="text-primary">Jaringan Cuatrodia Tahap 1</span></h1>
@@ -526,84 +382,97 @@
                 </a>
                 <a href="./materi/Topologi.drawio.png" target="_blank" class="btn-aesthetic">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                    Lihat Topologi (PDF)
+                    Lihat Topologi (PNG)
                 </a>
                 <a href="./materi/_Infrastruktur_Jaringan_Cuatrodia_v1.2.docx" download class="btn-aesthetic">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                    Konfigurasi Script
+                    Konfigurasi Script (v1.2)
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Section 1: Realita Internet -->
+    <!-- ========== EXECUTIVE SUMMARY (dipindah ke atas) ========== -->
+    <section id="urgensi-upgrade">
+        <div class="container fade-in">
+            <h2 class="text-center mb-4">Executive Summary: Urgensi Implementasi</h2>
+            <div class="grid-2">
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">1. Limitasi Kapasitas Hardware Lama</h4>
+                    <p class="text-muted text-sm">Router consumer-grade memiliki batas optimal utilisasi ~25 perangkat. Memaksakan beban 76 perangkat (estimasi Lantai 1 &amp; 2) pada arsitektur lama akan memicu degradasi performa masif harian.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">2. Mitigasi Latensi Internal</h4>
+                    <p class="text-muted text-sm">Distribusi melalui kabel (Switch) untuk stasiun kerja berat (PC Editing), dipadukan dengan Seamless Roaming AP, mengeliminasi isu putusnya koneksi saat mobilitas di area kantor.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">3. Biaya Downtime vs Biaya Infrastruktur</h4>
+                    <p class="text-muted text-sm">Kerugian finansial akibat tertundanya produktivitas (idle time) dan deadline klien secara signifikan melampaui biaya investasi alat jaringan (CAPEX).</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">4. Simbiosis Alat dan ISP</h4>
+                    <p class="text-muted text-sm">Meningkatkan paket ISP tanpa upgrade hardware lokal akan menciptakan bottleneck internal. Sebaliknya, hardware canggih tanpa dukungan ISP bisnis tidak akan menghasilkan performa maksimal. Keduanya harus diselaraskan.</p>
+                </div>
+            </div>
+            <div class="mt-5 p-4" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+                <h3 class="text-primary mb-2 text-center">Kesimpulan</h3>
+                <p class="text-muted mb-0 mx-auto text-center" style="max-width: 800px;">Pembaruan topologi dan transisi layanan ISP ini diposisikan sebagai <strong>Inisiatif Business Continuity</strong>. Hal ini krusial untuk mengamankan arus operasional digital dan memastikan produktivitas tim di seluruh area dapat berjalan pada tingkat efisiensi tertinggi tanpa interupsi teknis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Section 1: Analisis Kapasitas ========== -->
     <section id="analisis">
         <div class="container">
-            <!-- Container Grid-2 untuk membuat layout bersebelahan -->
             <div class="grid-2">
-                
-                <!-- Kolom Kiri: Teks Analisis -->
                 <div class="fade-in">
                     <h2 class="mb-2">Analisis Kapasitas Aktual</h2>
-                    <ul class="mb-4 text-muted list-disc list-inside space-y-1">
+                    <ul class="mb-4 text-muted" style="padding-left:1.25rem;">
                         <li>Infrastruktur saat ini menggunakan layanan <strong>Home Broadband 500 Mbps</strong>.</li>
                         <li>Performa aktual drop hingga batas <strong>~200 Mbps</strong> akibat limitasi <em>Shared Broadband</em>.</li>
                     </ul>
-                    
                     <h4 class="mb-1 text-primary">Identifikasi Masalah: Contention Ratio</h4>
-                    <ul class="text-muted mb-4 text-sm list-disc list-inside space-y-1">
+                    <ul class="text-muted mb-4 text-sm" style="padding-left:1.25rem;">
                         <li>Ketiadaan FUP (Fair Usage Policy) bukan berarti mendapat <em>Dedicated Bandwidth</em>.</li>
-                        <li>Jaringan mengalami <em>Contention Ratio</em> (kapasitas terbagi dengan pengguna residensial lain di level distribusi ISP).</li>
+                        <li>Jaringan mengalami <em>Contention Ratio</em> — kapasitas terbagi dengan pengguna residensial lain di level distribusi ISP.</li>
                     </ul>
-
                     <h4 class="mb-1 text-primary">Proyeksi Beban Perangkat (Skalabilitas)</h4>
-                    <ul class="text-muted text-sm list-disc list-inside space-y-1">
+                    <ul class="text-muted text-sm" style="padding-left:1.25rem;">
                         <li><strong>Beban Saat Ini (Lantai 1):</strong> 48 perangkat aktif (rasio ~4 Mbps/perangkat saat utilisasi puncak).</li>
                         <li><strong>Proyeksi Penambahan (Lantai 2):</strong> Total beban naik menjadi <strong>~76 perangkat</strong>.</li>
                         <li><strong>Dampak:</strong> Alokasi bandwidth anjlok drastis menjadi <strong>~2.6 Mbps/perangkat</strong>.</li>
-                        <li><strong>Kesimpulan:</strong> Kapasitas ini jauh di bawah standar operasional untuk <em>Video Conference</em> paralel dan transfer aset visual skala besar.</li>
+                        <li><strong>Kesimpulan:</strong> Kapasitas ini jauh di bawah standar operasional untuk Video Conference paralel dan transfer aset visual skala besar.</li>
                     </ul>
                 </div>
-
-                <!-- Kolom Kanan: Card Metrik -->
                 <div class="fade-in">
                     <div class="card">
                         <h3 class="mb-4 text-center">Metrik Jaringan Berjalan</h3>
-                        
                         <div class="stat-box">
                             <div class="stat-value text-primary">500 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">Mbps</span></div>
                             <div class="text-muted text-sm">Kapasitas Maksimal Berlangganan (Up To)</div>
                         </div>
-                        
                         <div class="stat-box danger">
                             <div class="stat-value text-danger">~200 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">Mbps</span></div>
                             <div class="text-muted text-sm">Throughput Aktual (Isu Contention)</div>
                         </div>
-                        
                         <div class="stat-box" style="border-left-color: var(--text-muted);">
                             <div class="stat-value">48 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/ ~76</span></div>
                             <div class="text-muted text-sm">Perangkat Aktif (Fase 1 / Total Estimasi)</div>
                         </div>
-
-                        <!-- Penambahan Metrik Bandwidth per Device -->
                         <div class="stat-box danger">
                             <div class="stat-value text-danger">~2.6 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">Mbps</span></div>
                             <div class="text-muted text-sm">Estimasi Alokasi per Perangkat (Beban Puncak)</div>
                         </div>
-                        
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-<!-- Section 2: Topologi Jaringan -->
+
+    <!-- ========== Section 2: Topologi Jaringan ========== -->
     <section id="topologi">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Arsitektur Topologi Jaringan</h2>
-            
-            <!-- Tombol Navigasi Toggle -->
-            <!-- Note: Sesuaikan class button (btn-primary/btn-outline) dengan CSS yang kamu pakai -->
             <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; margin-bottom: 2rem;">
                 <button id="btnBaru" onclick="switchTopology('baru')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--primary); background-color: var(--primary); color: var(--primary-btn-text);">
                     Rancangan (Baru)
@@ -613,16 +482,12 @@
                 </button>
             </div>
 
-            <!-- ========================================== -->
-            <!-- TAB 1: KONTEN TOPOLOGI BARU (RANCANGAN)    -->
-            <!-- ========================================== -->
+            <!-- TAB 1: TOPOLOGI BARU -->
             <div id="kontenBaru">
                 <p class="text-center text-muted mb-4">Desain infrastruktur dioptimalkan menggunakan pendekatan sentralisasi <em>Layer 3 Routing</em> dan distribusi <em>Layer 2 Switching</em> untuk mitigasi latensi.</p>
-
                 <div class="topology-image-container">
                     <img src="./materi/Topologi.drawio.png" alt="Diagram Topologi Jaringan Cuatrodia">
                 </div>
-
                 <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat</h3>
                 <ul class="node-list">
                     <li class="node-item">
@@ -635,7 +500,7 @@
                     </li>
                     <li class="node-item">
                         <h4><span style="font-size:1.2rem;">🏢</span> Switch Distribusi</h4>
-                        <p class="text-muted text-sm">Fasilitator <em>wired connection</em> per departemen (terutama PC Editing) untuk memastikan stabilitas transfer data lokal tanpa utilisasi WiFi.</p>
+                        <p class="text-muted text-sm">Fasilitator wired connection per departemen (terutama PC Editing) untuk memastikan stabilitas transfer data lokal tanpa utilisasi WiFi.</p>
                     </li>
                     <li class="node-item">
                         <h4><span style="font-size:1.2rem;">📡</span> Access Point (WiFi)</h4>
@@ -644,22 +509,17 @@
                 </ul>
             </div>
 
-            <!-- ========================================== -->
-            <!-- TAB 2: KONTEN TOPOLOGI LAMA (TERSEMBUNYI)  -->
-            <!-- ========================================== -->
+            <!-- TAB 2: TOPOLOGI LAMA (TIDAK DIUBAH) -->
             <div id="kontenLama" style="display: none;">
                 <p class="text-center text-muted mb-4">Infrastruktur <em>legacy</em> berjalan dalam mode <em>Flat Network</em> (Single Broadcast Domain) tanpa manajemen trafik dan pemisahan <em>broadcast</em>.</p>
-
                 <div class="topology-image-container">
-                    <!-- Pastikan nama file gambar topologi lama sesuai -->
                     <img src="./materi/topologi lama.jpeg" alt="Diagram Topologi Jaringan Lama">
                 </div>
-
                 <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat (Legacy)</h3>
                 <ul class="node-list">
-                    <li class="node-item" style="border-left-color: #dc3545;"> <!-- Aksen warna merah/danger -->
+                    <li class="node-item" style="border-left-color: #dc3545;">
                         <h4><span style="font-size:1.2rem;">⚠️</span> Router ISP (Default Gateway)</h4>
-                        <p class="text-muted text-sm">Menjadi <em>Single Point of Failure</em>. Menangani seluruh proses NAT, DHCP, dan DNS secara bersamaan tanpa adanya fitur QoS atau <em>Bandwidth Management</em>.</p>
+                        <p class="text-muted text-sm">Menjadi <em>Single Point of Failure</em>. Menangani seluruh proses NAT, DHCP, dan DNS secara bersamaan tanpa adanya fitur QoS atau Bandwidth Management.</p>
                     </li>
                     <li class="node-item">
                         <h4><span style="font-size:1.2rem;">🔌</span> Unmanaged Switch</h4>
@@ -671,58 +531,36 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </section>
 
-    <!-- Script untuk fungsi tombol toggle -->
     <script>
         function switchTopology(type) {
             const kontenBaru = document.getElementById('kontenBaru');
             const kontenLama = document.getElementById('kontenLama');
             const btnBaru = document.getElementById('btnBaru');
             const btnLama = document.getElementById('btnLama');
-
-            const activeBg = '#38bdf8';
-            const activeColor = '#000';
+            const activeBg = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+            const activeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-btn-text').trim();
             const inactiveBg = 'transparent';
             const inactiveColor = '#94a3b8';
-            const activeBorder = `1px solid ${activeBg}`;
-            const inactiveBorder = `1px solid ${inactiveColor}`;
-
             if (type === 'baru') {
-                kontenBaru.style.display = 'block';
-                kontenLama.style.display = 'none';
-                
-                btnBaru.style.backgroundColor = activeBg;
-                btnBaru.style.color = activeColor;
-                btnBaru.style.border = activeBorder;
-                
-                btnLama.style.backgroundColor = inactiveBg;
-                btnLama.style.color = inactiveColor;
-                btnLama.style.border = inactiveBorder;
+                kontenBaru.style.display = 'block'; kontenLama.style.display = 'none';
+                btnBaru.style.backgroundColor = activeBg; btnBaru.style.color = activeColor; btnBaru.style.borderColor = activeBg;
+                btnLama.style.backgroundColor = inactiveBg; btnLama.style.color = inactiveColor; btnLama.style.borderColor = inactiveColor;
             } else {
-                kontenBaru.style.display = 'none';
-                kontenLama.style.display = 'block';
-                
-                btnLama.style.backgroundColor = activeBg;
-                btnLama.style.color = activeColor;
-                btnLama.style.border = activeBorder;
-                
-                btnBaru.style.backgroundColor = inactiveBg;
-                btnBaru.style.color = inactiveColor;
-                btnBaru.style.border = inactiveBorder;
+                kontenBaru.style.display = 'none'; kontenLama.style.display = 'block';
+                btnLama.style.backgroundColor = activeBg; btnLama.style.color = activeColor; btnLama.style.borderColor = activeBg;
+                btnBaru.style.backgroundColor = inactiveBg; btnBaru.style.color = inactiveColor; btnBaru.style.borderColor = inactiveColor;
             }
         }
     </script>
 
-
-    <!-- Section: VLAN & SSID per Divisi -->
+    <!-- ========== Section: VLAN & SSID ========== -->
     <section id="vlan-ssid">
         <div class="container fade-in">
-            <h2 class="text-center mb-1">Alokasi VLAN & SSID per Divisi</h2>
+            <h2 class="text-center mb-1">Alokasi VLAN &amp; SSID per Divisi</h2>
             <p class="text-center text-muted mb-4">Setiap divisi memiliki segmen jaringan (VLAN) dan SSID Wi-Fi tersendiri yang dikendalikan terpusat oleh CAPsMAN. Bandwidth dialokasikan berbasis prioritas operasional.</p>
-
             <div class="table-responsive mb-4">
                 <table>
                     <thead>
@@ -821,12 +659,10 @@
                     </tbody>
                 </table>
             </div>
-
-            <!-- Highlight Cards -->
             <div class="justification-grid">
                 <div class="justification-card">
                     <h4 class="text-primary mb-1">📡 Dual SSID Motion Team</h4>
-                    <p class="text-muted text-sm">Tim Motion menggunakan satu nama SSID <strong>Motion_Team</strong> namun terbagi ke VLAN 20 & 25. Secara teknis, setiap unit tim mendapat segmen IP dan queue bandwidth yang sepenuhnya independen, mencegah interferensi beban kerja antar-tim.</p>
+                    <p class="text-muted text-sm">Tim Motion menggunakan satu nama SSID <strong>Motion_Team</strong> namun terbagi ke VLAN 20 &amp; 25. Setiap unit tim mendapat segmen IP dan queue bandwidth yang sepenuhnya independen, mencegah interferensi beban kerja antar-tim.</p>
                 </div>
                 <div class="justification-card">
                     <h4 class="text-primary mb-1">🔄 Auto-Rotate Password Meeting</h4>
@@ -844,85 +680,259 @@
         </div>
     </section>
 
-    <!-- Section 3: Budgeting Best Value -->
+    <!-- ========== Section: CAPEX / Budgeting ========== -->
     <section id="budgeting">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Proyeksi Kebutuhan Perangkat (CAPEX)</h2>
-            <p class="text-center text-muted mb-4">Pemilihan perangkat didasarkan pada strategi *Cost-Effective Performance* (Mid-tier Enterprise) guna mengakomodasi eskalasi beban tanpa *over-engineering*.</p>
+            <p class="text-center text-muted mb-4">Pemilihan perangkat didasarkan pada strategi <em>Cost-Effective Performance</em> (Mid-tier Enterprise) guna mengakomodasi eskalasi beban tanpa over-engineering. Tersedia 3 opsi tier berdasarkan budget.</p>
 
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Kategori Perangkat</th>
-                            <th>Qty</th>
-                            <th>Spesifikasi Model</th>
-                            <th>Estimasi Biaya</th>
-                            <th>Fungsi Esensial</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Core Router</strong></td>
-                            <td>1</td>
-                            <td>MikroTik RB5009UG+S+IN</td>
-                            <td class="price">Rp 4.500.000</td>
-                            <td class="text-muted">Prosesing routing berat & manajemen CAPsMAN.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Core Switch</strong></td>
-                            <td>1</td>
-                            <td>TP-Link TL-SG3428</td>
-                            <td class="price">Rp 2.800.000</td>
-                            <td class="text-muted">Manajemen 24 Port Gigabit VLAN.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Switch Distribusi</strong></td>
-                            <td>4</td>
-                            <td>TP-Link TL-SG108E</td>
-                            <td class="price">Rp 550.000 / unit</td>
-                            <td class="text-muted">Edge-switching ke perangkat end-user.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Access Point</strong></td>
-                            <td>5</td>
-                            <td>MikroTik hAP ax2</td>
-                            <td class="price">Rp 1.500.000 / unit</td>
-                            <td class="text-muted">Transmisi WiFi 6 dengan kapabilitas Roaming.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Switch Server</strong></td>
-                            <td>1</td>
-                            <td>TP-Link TL-SG2210MP</td>
-                            <td class="price">Rp 2.400.000</td>
-                            <td class="text-muted">Distribusi daya terpusat (PoE) untuk AP.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>UPS</strong></td>
-                            <td>1</td>
-                            <td>CyberPower UT1500E</td>
-                            <td class="price">Rp 2.500.000</td>
-                            <td class="text-muted">Mitigasi fluktuasi daya pada infrastruktur inti.</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Tier Selector -->
+            <div class="tier-tabs">
+                <button class="tier-tab" data-tier="murah">🟡 Minimal Layak</button>
+                <button class="tier-tab active" data-tier="sedang">✅ Best Value (Rekomendasi)</button>
+                <button class="tier-tab" data-tier="enterprise">🔵 Enterprise</button>
             </div>
 
-            <div class="text-center mt-4 mb-5">
-                <a href="https://docs.google.com/spreadsheets/d/1pUNIaOUrhWsQj4f9-3LzG4tRbsrqRBghLbfsaXO8-a4/edit?gid=252383558#gid=252383558" target="_blank" rel="noopener noreferrer" class="btn-aesthetic btn-primary-aesthetic">
-                    Lihat Rincian Anggaran Lengkap (Spreadsheet)
-                </a>
+            <!-- ===== TIER: SEDANG (default visible) ===== -->
+            <div id="tier-sedang" class="tier-content">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kategori</th>
+                                <th>Qty</th>
+                                <th>Model</th>
+                                <th>Harga / Unit</th>
+                                <th>Total</th>
+                                <th>Fungsi Esensial</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Core Router</strong></td>
+                                <td>1</td>
+                                <td>MikroTik RB5009UG+S+IN</td>
+                                <td class="price">Rp 4.000.000</td>
+                                <td class="price">Rp 4.000.000</td>
+                                <td class="text-muted">Inter-VLAN routing, PCQ, CAPsMAN controller.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Core Switch</strong></td>
+                                <td>1</td>
+                                <td>TP-Link TL-SG3428</td>
+                                <td class="price">Rp 3.400.000</td>
+                                <td class="price">Rp 3.400.000</td>
+                                <td class="text-muted">24 Port Managed Gigabit, trunk VLAN ke distribusi.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Switch Distribusi</strong></td>
+                                <td>4</td>
+                                <td>TP-Link TL-SG108E</td>
+                                <td class="price">Rp 550.000</td>
+                                <td class="price">Rp 2.200.000</td>
+                                <td class="text-muted">Edge-switching per area divisi ke end-user.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Access Point</strong></td>
+                                <td>5</td>
+                                <td>MikroTik hAP ax2</td>
+                                <td class="price">Rp 2.000.000</td>
+                                <td class="price">Rp 10.000.000</td>
+                                <td class="text-muted">WiFi 6, CAPsMAN managed, seamless roaming.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Switch Server (PoE)</strong></td>
+                                <td>1</td>
+                                <td>TP-Link TL-SG2210MP</td>
+                                <td class="price">Rp 2.400.000</td>
+                                <td class="price">Rp 2.400.000</td>
+                                <td class="text-muted">Managed PoE — power + data untuk semua AP.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>UPS</strong></td>
+                                <td>1</td>
+                                <td>CyberPower UT1500E</td>
+                                <td class="price">Rp 2.500.000</td>
+                                <td class="price">Rp 2.500.000</td>
+                                <td class="text-muted">Backup daya core infrastructure ±15 menit.</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td colspan="4"><strong>Subtotal Hardware Aktif</strong></td>
+                                <td class="price"><strong>Rp 24.500.000</strong></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Infrastruktur Pendukung -->
+                <h3 class="mt-5 mb-3">Infrastruktur Pendukung (Kabel &amp; Instalasi)</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Qty</th>
+                                <th>Satuan</th>
+                                <th>Harga / Unit</th>
+                                <th>Total</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Rack Wall Mount 9U</strong></td>
+                                <td>1</td>
+                                <td>unit</td>
+                                <td class="price">Rp 700.000</td>
+                                <td class="price">Rp 700.000</td>
+                                <td class="text-muted">Mounting router, switch, UPS server room.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Patch Panel Cat6 24-port</strong></td>
+                                <td>1</td>
+                                <td>unit</td>
+                                <td class="price">Rp 350.000</td>
+                                <td class="price">Rp 350.000</td>
+                                <td class="text-muted">Structured cabling — terminasi kabel ke rack.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Kabel UTP Cat6 305M</strong></td>
+                                <td>2</td>
+                                <td>roll</td>
+                                <td class="price">Rp 473.000</td>
+                                <td class="price">Rp 946.000</td>
+                                <td class="text-muted">Vascolink, estimasi 7 area × jarak rata-rata 20–30M.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Konektor RJ45 Cat6</strong></td>
+                                <td>1</td>
+                                <td>box (100 pcs)</td>
+                                <td class="price">Rp 100.000</td>
+                                <td class="price">Rp 100.000</td>
+                                <td class="text-muted">Vascolink Cat6, termasuk cadangan.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Kabel Ducting</strong></td>
+                                <td>50</td>
+                                <td>meter</td>
+                                <td class="price">Rp 8.000</td>
+                                <td class="price">Rp 400.000</td>
+                                <td class="text-muted">Penutup kabel dinding/plafon tiap area.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PDU / Power Strip Rack</strong></td>
+                                <td>1</td>
+                                <td>unit</td>
+                                <td class="price">Rp 200.000</td>
+                                <td class="price">Rp 200.000</td>
+                                <td class="text-muted">Distribusi listrik dalam rack.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cable Tie + Label Kabel</strong></td>
+                                <td>1</td>
+                                <td>set</td>
+                                <td class="price">Rp 100.000</td>
+                                <td class="price">Rp 100.000</td>
+                                <td class="text-muted">Manajemen kabel &amp; labeling port untuk troubleshoot.</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td colspan="4"><strong>Subtotal Infrastruktur Pendukung</strong></td>
+                                <td class="price"><strong>Rp 2.796.000</strong></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Grand Total Box -->
+                <div class="grand-total-box">
+                    <div>
+                        <div class="label">Total Estimasi CAPEX</div>
+                        <div class="note">Best Value Tier · Hardware + Infrastruktur Pendukung · Belum termasuk jasa instalasi</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="amount">Rp 27.296.000</div>
+                        <div class="note" style="text-align:right;">Lihat rincian lengkap di spreadsheet →</div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4 mb-5">
+                    <a href="https://docs.google.com/spreadsheets/d/1pUNIaOUrhWsQj4f9-3LzG4tRbsrqRBghLbfsaXO8-a4/edit?gid=252383558#gid=252383558" target="_blank" rel="noopener noreferrer" class="btn-aesthetic btn-primary-aesthetic">
+                        Lihat Rincian Anggaran Lengkap (Spreadsheet)
+                    </a>
+                </div>
             </div>
 
-            <h3 class="text-center mb-3">Justifikasi Pengadaan</h3>
+            <!-- ===== TIER: MURAH ===== -->
+            <div id="tier-murah" class="tier-content" style="display:none;">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th>Kategori</th><th>Qty</th><th>Model</th><th>Harga / Unit</th><th>Total</th><th>Keterangan</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Core Router</strong></td><td>1</td><td>MikroTik RB4011iGS+RM</td><td class="price">Rp 3.800.000</td><td class="price">Rp 3.800.000</td><td class="text-muted">Inter-VLAN routing + PCQ dasar.</td></tr>
+                            <tr><td><strong>Core Switch</strong></td><td>1</td><td>Ruijie RG-ES224GC</td><td class="price">Rp 1.900.000</td><td class="price">Rp 1.900.000</td><td class="text-muted">24 Port, VLAN support dasar.</td></tr>
+                            <tr><td><strong>Switch Distribusi</strong></td><td>4</td><td>Tenda TEG1008D</td><td class="price">Rp 353.000</td><td class="price">Rp 1.412.000</td><td class="text-muted">Gigabit basic, unmanaged.</td></tr>
+                            <tr><td><strong>Access Point</strong></td><td>5</td><td>MikroTik hAP ac2</td><td class="price">Rp 1.420.000</td><td class="price">Rp 7.100.000</td><td class="text-muted">WiFi 5, CAPsMAN support.</td></tr>
+                            <tr><td><strong>Switch Server (PoE)</strong></td><td>1</td><td>Ruijie RG-ES210GS-P</td><td class="price">Rp 1.500.000</td><td class="price">Rp 1.500.000</td><td class="text-muted">PoE basic.</td></tr>
+                            <tr><td><strong>UPS</strong></td><td>1</td><td>ICA CE1200</td><td class="price">Rp 1.400.000</td><td class="price">Rp 1.400.000</td><td class="text-muted">Backup listrik minimal.</td></tr>
+                            <tr class="total-row"><td colspan="4"><strong>Subtotal Hardware</strong></td><td class="price"><strong>Rp 17.112.000</strong></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="grand-total-box" style="margin-top:1.5rem; border-color: rgba(245,158,11,0.3);">
+                    <div>
+                        <div class="label">Total Estimasi CAPEX</div>
+                        <div class="note">Minimal Layak Tier · ⚠️ Tidak ideal untuk bandwidth tinggi &gt;50 perangkat</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="amount" style="color:var(--warning);">Rp 17.112.000</div>
+                        <div class="note">+ Infrastruktur pendukung ~Rp 2.8jt</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== TIER: ENTERPRISE ===== -->
+            <div id="tier-enterprise" class="tier-content" style="display:none;">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th>Kategori</th><th>Qty</th><th>Model</th><th>Harga / Unit</th><th>Total</th><th>Keterangan</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Core Router</strong></td><td>1</td><td>MikroTik CCR2004-16G-2S+</td><td class="price">Rp 7.950.000</td><td class="price">Rp 7.950.000</td><td class="text-muted">Enterprise routing, 16x Gigabit + 2x SFP+.</td></tr>
+                            <tr><td><strong>Core Switch</strong></td><td>1</td><td>MikroTik CRS326-24G-2S+RM</td><td class="price">Rp 4.200.000</td><td class="price">Rp 4.200.000</td><td class="text-muted">24 Port + SFP+ uplink, rack-mount.</td></tr>
+                            <tr><td><strong>Switch Distribusi</strong></td><td>4</td><td>MikroTik CRS112-8G-4S-IN</td><td class="price">Rp 2.300.000</td><td class="price">Rp 9.200.000</td><td class="text-muted">Advanced VLAN, 4x SFP per unit.</td></tr>
+                            <tr><td><strong>Access Point</strong></td><td>5</td><td>MikroTik cAP ax</td><td class="price">Rp 2.200.000</td><td class="price">Rp 11.000.000</td><td class="text-muted">WiFi 6 ceiling-mount enterprise.</td></tr>
+                            <tr><td><strong>Switch Server</strong></td><td>1</td><td>MikroTik CRS310-8G+2S+IN</td><td class="price">Rp 3.500.000</td><td class="price">Rp 3.500.000</td><td class="text-muted">10G ready, future-proof uplink.</td></tr>
+                            <tr><td><strong>UPS</strong></td><td>1</td><td>APC Smart-UPS 1500VA</td><td class="price">Rp 8.000.000</td><td class="price">Rp 8.000.000</td><td class="text-muted">Enterprise UPS, SNMP-managed.</td></tr>
+                            <tr class="total-row"><td colspan="4"><strong>Subtotal Hardware</strong></td><td class="price"><strong>Rp 43.850.000</strong></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="grand-total-box" style="margin-top:1.5rem; border-color: rgba(56,189,248,0.4);">
+                    <div>
+                        <div class="label">Total Estimasi CAPEX</div>
+                        <div class="note">Enterprise Tier · Cocok untuk traffic padat &amp; ekspansi jangka panjang</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="amount">Rp 43.850.000</div>
+                        <div class="note">+ Infrastruktur pendukung ~Rp 2.8jt</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="text-center mb-3" style="margin-top:3rem;">Justifikasi Pengadaan (Best Value)</h3>
             <div class="justification-grid">
                 <div class="justification-card">
                     <h4 class="text-primary mb-1">Proporsional Area</h4>
-                    <p class="text-muted text-sm">Rasio 5 unit AP dan 4 Switch Distribusi dihitung secara matematis untuk eliminasi <em>blind spot</em> di Lantai 1.</p>
+                    <p class="text-muted text-sm">5 unit AP dan 4 Switch Distribusi dihitung untuk eliminasi blind spot di Lantai 1 — mencakup Tim Notion, Motion, Design Dorm, Director, Meeting Room, dan R.Meet.</p>
                 </div>
                 <div class="justification-card">
                     <h4 class="text-primary mb-1">Zero Bottleneck Processor</h4>
-                    <p class="text-muted text-sm">Router RB5009 (ARM 64-bit) diproyeksikan untuk mengelola beban puncak inter-VLAN routing bagi ~76 perangkat secara bersamaan.</p>
+                    <p class="text-muted text-sm">Router RB5009 (ARM 64-bit) diproyeksikan untuk mengelola beban puncak inter-VLAN routing bagi ~76 perangkat secara bersamaan tanpa degradasi.</p>
                 </div>
                 <div class="justification-card">
                     <h4 class="text-primary mb-1">Skalabilitas (Future-Proof)</h4>
@@ -930,105 +940,266 @@
                 </div>
                 <div class="justification-card">
                     <h4 class="text-primary mb-1">Efisiensi Finansial</h4>
-                    <p class="text-muted text-sm">Bukan perangkat *consumer-grade* yang rentan <em>hang</em>, namun tidak perlu investasi level *Enterprise* yang berlebih (High ROI).</p>
+                    <p class="text-muted text-sm">Bukan perangkat consumer-grade yang rentan hang, namun tidak perlu investasi level Enterprise yang berlebih — High ROI untuk kantor skala menengah.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 4: Perbandingan Layanan ISP -->
+    <!-- ========== Section: ISP Comparison ========== -->
     <section id="internet-comparison">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Komparasi Layanan ISP</h2>
             <p class="text-center text-muted mb-4">Evaluasi parameter teknis untuk peningkatan kelas layanan internet perusahaan.</p>
-
             <div class="table-responsive mb-4">
                 <table>
                     <thead>
                         <tr>
                             <th>Parameter Teknis</th>
                             <th>Home Broadband <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(MyRepublic Prime)</span></th>
-                            <th>Business Broadband <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(MyRepublic BizPro)</span></th>
+                            <th>Business Broadband <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(Biznet Metro)</span></th>
                             <th>Dedicated Internet <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(Corporate Leased Line)</span></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><strong>Estimasi Harga (Opex)</strong></td>
-                            <td class="price">± Rp 565.000 / bln</td>
-                            <td class="price">± Rp 6.034.000 / bln</td>
-                            <td class="price">Mulai Rp 5.000.000 (100 Mbps)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Alokasi Bandwidth</strong></td>
-                            <td>Shared (Tingkat kontensi tinggi)</td>
-                            <td>Shared Priority (Prioritas traffic tinggi)</td>
-                            <td>Dedicated 1:1 (Garansi penuh)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Alamat IP</strong></td>
-                            <td>Dynamic Private / NAT</td>
-                            <td>1 IP Public Static</td>
-                            <td>Blok IP Public Static (/29 atau /28)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Rasio Kecepatan (Up/Down)</strong></td>
-                            <td>Asimetris (Fluktuatif)</td>
-                            <td>Simetris (1:1 Terjamin)</td>
-                            <td>Simetris (1:1 Garansi 100%)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Service Level Agreement</strong></td>
-                            <td>Best-effort (Tanpa penjaminan)</td>
-                            <td>Support Prioritas</td>
-                            <td>SLA 99.5% (Terdapat klausul kompensasi)</td>
-                        </tr>
+                        <tr><td><strong>Estimasi Harga (Opex)</strong></td><td class="price">± Rp 565.000 / bln</td><td class="price">± Rp 1.700.000 / bln</td><td class="price">Mulai Rp 5.000.000 (100 Mbps)</td></tr>
+                        <tr><td><strong>Alokasi Bandwidth</strong></td><td>Shared (Kontensi tinggi)</td><td>Shared Priority (Prioritas traffic tinggi)</td><td>Dedicated 1:1 (Garansi penuh)</td></tr>
+                        <tr><td><strong>Alamat IP</strong></td><td>Dynamic Private / NAT</td><td>1 IP Public Static</td><td>Blok IP Public Static (/29 atau /28)</td></tr>
+                        <tr><td><strong>Rasio Kecepatan (Up/Down)</strong></td><td>Asimetris (Fluktuatif)</td><td>Simetris (1:1 Terjamin)</td><td>Simetris (1:1 Garansi 100%)</td></tr>
+                        <tr><td><strong>Service Level Agreement</strong></td><td>Best-effort (Tanpa penjaminan)</td><td>Support Prioritas</td><td>SLA 99.5% (Ada klausul kompensasi)</td></tr>
                     </tbody>
                 </table>
             </div>
-
             <div class="card mt-4" style="border-left: 4px solid var(--primary); padding: 1.5rem;">
                 <h4 class="mb-2">Rekomendasi Strategis</h4>
-                <p class="text-muted text-sm mb-0">Untuk menyeimbangkan biaya dan kebutuhan operasional bersama arsitektur baru, transisi menuju <strong>Business Broadband (mis. Biznet Metronet / Indibiz)</strong> adalah langkah esensial. Namun, jika urgensi stabilitas server lokal bersifat kritikal, opsi <strong>Dedicated Internet (50-100 Mbps)</strong> sangat disarankan.</p>
+                <p class="text-muted text-sm mb-0">Untuk menyeimbangkan biaya dan kebutuhan operasional bersama arsitektur baru, transisi menuju <strong>Business Broadband (mis. Biznet Metronet / Indibiz / Lintasarta)</strong> adalah langkah esensial. Namun, jika urgensi stabilitas server lokal (NAS Synology) bersifat kritikal untuk remote access, opsi <strong>Dedicated Internet 50–100 Mbps</strong> sangat disarankan karena memberikan IP Publik Statis dan SLA tertulis.</p>
             </div>
         </div>
     </section>
 
-    <!-- Urgensi -->
-<section id="urgensi-upgrade">
+    <!-- ========== Section: Monitoring (BARU) ========== -->
+    <section id="monitoring">
         <div class="container fade-in">
-            <h2 class="text-center mb-4">Executive Summary: Urgensi Implementasi</h2>
-            
-            <div class="grid-2">
-                <div class="justification-card">
-                    <h4 class="text-primary mb-1">1. Limitasi Kapasitas Hardware Lama</h4>
-                    <p class="text-muted text-sm">Router *consumer-grade* memiliki batas optimal utilisasi ~25 perangkat. Memaksakan beban 76 perangkat (estimasi Lantai 1 & 2) pada arsitektur lama akan memicu degradasi performa masif harian.</p>
+            <h2 class="text-center mb-1">Rencana Monitoring Jaringan</h2>
+            <p class="text-center text-muted mb-4">Infrastruktur yang sudah dipasang harus dimonitor secara berkelanjutan. Berikut stack monitoring yang direkomendasikan sesuai skalabilitas kantor Cuatrodia.</p>
+
+            <div class="monitoring-grid">
+                <div class="monitoring-card">
+                    <span class="tool-badge badge-builtin">Built-in MikroTik</span>
+                    <h4>The Dude</h4>
+                    <p class="text-muted text-sm">Network monitoring tool gratis dari MikroTik. Auto-discovery semua perangkat di jaringan, live map topologi, alert via email jika device down. Diinstall di laptop IT atau PC Management (VLAN 10).</p>
+                    <p class="text-muted text-sm" style="margin-top:0.5rem;"><strong>Cocok untuk:</strong> Monitoring device up/down, ping latency, alert real-time.</p>
                 </div>
-                <div class="justification-card">
-                    <h4 class="text-primary mb-1">2. Mitigasi Latensi Internal</h4>
-                    <p class="text-muted text-sm">Distribusi melalui kabel (Switch) untuk stasiun kerja berat (PC Editing), dipadukan dengan *Seamless Roaming* AP, mengeliminasi isu putusnya koneksi saat mobilitas di area kantor.</p>
+                <div class="monitoring-card">
+                    <span class="tool-badge badge-builtin">Built-in MikroTik</span>
+                    <h4>Winbox Graphs &amp; Traffic Monitor</h4>
+                    <p class="text-muted text-sm">Dashboard bawaan RouterOS via Winbox atau WebFig. Monitoring real-time traffic per interface/VLAN, DHCP lease aktif, firewall log, dan utilisasi CPU/RAM router.</p>
+                    <p class="text-muted text-sm" style="margin-top:0.5rem;"><strong>Cocok untuk:</strong> Daily check utilisasi bandwidth per divisi, troubleshoot bottleneck.</p>
                 </div>
-                <div class="justification-card">
-                    <h4 class="text-primary mb-1">3. Biaya Downtime vs Biaya Infrastruktur</h4>
-                    <p class="text-muted text-sm">Kerugian finansial akibat tertundanya produktivitas (*idle time*) dan <em>deadline</em> klien secara signifikan melampaui biaya investasi alat jaringan (*CAPEX*).</p>
+                <div class="monitoring-card">
+                    <span class="tool-badge badge-free">Free / Self-hosted</span>
+                    <h4>Grafana + Prometheus (SNMP)</h4>
+                    <p class="text-muted text-sm">Stack monitoring modern. Prometheus scrape data SNMP dari MikroTik &amp; switch, Grafana visualisasikan dalam dashboard custom. Bisa diinstall di Synology NAS via Docker.</p>
+                    <p class="text-muted text-sm" style="margin-top:0.5rem;"><strong>Cocok untuk:</strong> Historical data, trend analysis, dashboard eksekutif yang proper.</p>
                 </div>
-                <div class="justification-card">
-                    <h4 class="text-primary mb-1">4. Simbiosis Alat dan ISP</h4>
-                    <p class="text-muted text-sm">Meningkatkan paket ISP tanpa <em>upgrade hardware</em> lokal akan menciptakan *bottleneck* internal. Sebaliknya, <em>hardware</em> canggih tanpa dukungan ISP bisnis tidak akan menghasilkan performa maksimal. Keduanya harus diselaraskan.</p>
+                <div class="monitoring-card">
+                    <span class="tool-badge badge-free">Free / Self-hosted</span>
+                    <h4>NetData</h4>
+                    <p class="text-muted text-sm">Monitoring ringan berbasis web, real-time, zero-configuration. Bisa diinstall di Synology NAS atau Raspberry Pi. Support SNMP dan plugin MikroTik komunitas.</p>
+                    <p class="text-muted text-sm" style="margin-top:0.5rem;"><strong>Cocok untuk:</strong> Alternatif Grafana yang lebih mudah di-setup tanpa pengetahuan DevOps mendalam.</p>
+                </div>
+                <div class="monitoring-card">
+                    <span class="tool-badge badge-builtin">MikroTik Script</span>
+                    <h4>Alert via Telegram Bot</h4>
+                    <p class="text-muted text-sm">MikroTik RouterOS mendukung script yang dikirim via HTTP ke Telegram API. Bisa trigger alert otomatis: device down, WAN down, CPU spike &gt;80%, atau DHCP pool habis — langsung ke grup Telegram IT.</p>
+                    <p class="text-muted text-sm" style="margin-top:0.5rem;"><strong>Cocok untuk:</strong> Alert system tanpa perlu tools tambahan, sudah proven di SOP v1.2.</p>
+                </div>
+                <div class="monitoring-card">
+                    <span class="tool-badge badge-optional">Optional / Berbayar</span>
+                    <h4>PRTG Network Monitor</h4>
+                    <p class="text-muted text-sm">Solusi enterprise all-in-one. Free tier untuk 100 sensor. Monitoring bandwidth, uptime, SNMP, flow analysis. GUI sangat user-friendly untuk non-technical staff.</p>
+                    <p class="text-muted text-sm" style="margin-top:0.5rem;"><strong>Cocok untuk:</strong> Jika manajemen ingin dashboard monitoring tanpa perlu IT terus standby.</p>
                 </div>
             </div>
 
-            <div class="mt-5 p-4" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
-                <h3 class="text-primary mb-2 text-center">Kesimpulan</h3>
-                <p class="text-muted mb-0 mx-auto text-center" style="max-width: 800px; text-align: center;">Pembaruan topologi dan transisi layanan ISP ini diposisikan sebagai <strong>Inisiatif Business Continuity</strong>. Hal ini krusial untuk mengamankan arus operasional digital dan memastikan produktivitas tim di seluruh area dapat berjalan pada tingkat efisiensi tertinggi tanpa interupsi teknis.</p>
+            <div class="card mt-5" style="border-left: 4px solid var(--success); padding: 1.5rem;">
+                <h4 class="mb-2">Stack Rekomendasi Minimal (Zero Cost)</h4>
+                <p class="text-muted text-sm mb-0">
+                    Untuk implementasi awal: <strong>The Dude</strong> (device monitoring) + <strong>Winbox Traffic Monitor</strong> (bandwidth per VLAN) + <strong>Telegram Bot Alert</strong> (notifikasi insiden otomatis). Ketiga tools ini sudah cukup untuk operasional harian dan tidak memerlukan server tambahan. Jika kebutuhan reporting bertambah, upgrade ke Grafana + Prometheus via Docker di NAS Synology.
+                </p>
             </div>
+        </div>
+    </section>
+
+    <!-- ========== Section: Roadmap ========== -->
+    <section id="roadmap">
+        <div class="container fade-in">
+            <h2 class="text-center mb-1">Roadmap Implementasi</h2>
+            <p class="text-center text-muted mb-2">Rencana eksekusi bertahap dalam <strong style="color:var(--primary)">6 minggu</strong> — dari pengadaan hingga jaringan fully operational.</p>
+
+            <!-- Phase filter tabs -->
+            <div class="phase-tabs">
+                <button class="phase-tab active" data-filter="all">Semua Fase</button>
+                <button class="phase-tab" data-filter="infra">Infrastruktur</button>
+                <button class="phase-tab" data-filter="config">Konfigurasi</button>
+                <button class="phase-tab" data-filter="golive">Go-Live</button>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline-wrap">
+
+                <div class="tl-phase" data-group="infra">
+                    <div class="tl-phase-label"><span class="tl-phase-num">01</span><span class="tl-phase-week">Minggu 1–2</span></div>
+                    <div class="tl-card">
+                        <div class="tl-card-header">
+                            <span class="tl-icon">📦</span>
+                            <div><h4>Procurement &amp; Persiapan</h4><span class="tl-badge tl-badge-infra">Infrastruktur</span></div>
+                            <span class="tl-duration">14 hari</span>
+                        </div>
+                        <ul class="tl-tasks">
+                            <li><span class="tl-dot"></span>Purchase order: RB5009, TL-SG3428, TL-SG108E ×4, hAP ax2 ×5, TL-SG2210MP, UPS CyberPower</li>
+                            <li><span class="tl-dot"></span>Purchase infrastruktur pendukung: rack 9U, patch panel, 2 roll UTP Cat6, ducting, RJ45, PDU</li>
+                            <li><span class="tl-dot"></span>Survey jalur kabel — pemetaan denah Lantai 1 &amp; estimasi panjang kabel per area divisi</li>
+                            <li><span class="tl-dot"></span>Labeling port plan untuk setiap switch distribusi per divisi</li>
+                            <li><span class="tl-dot"></span>Download firmware terbaru MikroTik RouterOS &amp; TP-Link switch firmware</li>
+                        </ul>
+                        <div class="tl-output"><span class="tl-output-label">Output:</span> PO disetujui, denah kabel &amp; label scheme siap, semua barang diterima</div>
+                    </div>
+                </div>
+
+                <div class="tl-connector"></div>
+
+                <div class="tl-phase" data-group="infra">
+                    <div class="tl-phase-label"><span class="tl-phase-num">02</span><span class="tl-phase-week">Minggu 2–3</span></div>
+                    <div class="tl-card">
+                        <div class="tl-card-header">
+                            <span class="tl-icon">🧠</span>
+                            <div><h4>Instalasi Core Infrastructure</h4><span class="tl-badge tl-badge-infra">Infrastruktur</span></div>
+                            <span class="tl-duration">7 hari</span>
+                        </div>
+                        <ul class="tl-tasks">
+                            <li><span class="tl-dot"></span>Pasang &amp; nyalakan UPS CyberPower UT1500E — proteksi daya core device</li>
+                            <li><span class="tl-dot"></span>Rack mounting: Wall rack 9U + Patch Panel + MikroTik RB5009 + Core Switch TL-SG3428 + Switch Server TL-SG2210MP</li>
+                            <li><span class="tl-dot"></span>Koneksi fisik: ISP ONT → ether1 RB5009 → Core Switch (uplink port)</li>
+                            <li><span class="tl-dot"></span>Verifikasi konektivitas internet dasar sebelum VLAN dikonfigurasi</li>
+                        </ul>
+                        <div class="tl-output"><span class="tl-output-label">Output:</span> Core rack berdiri, internet masuk via RB5009 ✓</div>
+                    </div>
+                </div>
+
+                <div class="tl-connector"></div>
+
+                <div class="tl-phase" data-group="config">
+                    <div class="tl-phase-label"><span class="tl-phase-num">03</span><span class="tl-phase-week">Minggu 3</span></div>
+                    <div class="tl-card">
+                        <div class="tl-card-header">
+                            <span class="tl-icon">⚙️</span>
+                            <div><h4>Konfigurasi VLAN &amp; Routing</h4><span class="tl-badge tl-badge-config">Konfigurasi</span></div>
+                            <span class="tl-duration">5 hari</span>
+                        </div>
+                        <ul class="tl-tasks">
+                            <li><span class="tl-dot"></span>Setup Bridge + VLAN Filtering pada RB5009 (9 VLAN: ID 10, 20, 25, 30, 40, 50, 60, 70, 99)</li>
+                            <li><span class="tl-dot"></span>IP addressing &amp; DHCP Server per VLAN interface</li>
+                            <li><span class="tl-dot"></span>Firewall filter: Default-Deny inter-VLAN + allow rules per kebijakan divisi</li>
+                            <li><span class="tl-dot"></span>NAT Masquerade untuk akses internet semua VLAN</li>
+                            <li><span class="tl-dot"></span>VLAN trunk config pada Core Switch → port ke switch distribusi</li>
+                            <li><span class="tl-dot"></span>Test DHCP lease per VLAN dengan laptop uji</li>
+                        </ul>
+                        <div class="tl-output"><span class="tl-output-label">Output:</span> Semua 9 VLAN aktif, isolasi antar-divisi verified ✓</div>
+                    </div>
+                </div>
+
+                <div class="tl-connector"></div>
+
+                <div class="tl-phase" data-group="infra">
+                    <div class="tl-phase-label"><span class="tl-phase-num">04</span><span class="tl-phase-week">Minggu 4</span></div>
+                    <div class="tl-card">
+                        <div class="tl-card-header">
+                            <span class="tl-icon">🏢</span>
+                            <div><h4>Distribusi Switch &amp; Kabling End-User</h4><span class="tl-badge tl-badge-infra">Infrastruktur</span></div>
+                            <span class="tl-duration">5 hari</span>
+                        </div>
+                        <ul class="tl-tasks">
+                            <li><span class="tl-dot"></span>Pasang 4 unit TL-SG108E per area divisi (Motion T1, Motion T2/DD, Directory, Notion)</li>
+                            <li><span class="tl-dot"></span>Terminasi kabel UTP Cat6 via patch panel → core switch ke setiap switch distribusi (trunk port)</li>
+                            <li><span class="tl-dot"></span>Konfigurasi Access Port (untagged) per port end-user pada tiap switch distribusi</li>
+                            <li><span class="tl-dot"></span>Koneksi workstation PC Editing via kabel — prioritas wired untuk beban transfer file besar</li>
+                            <li><span class="tl-dot"></span>Test konektivitas &amp; DHCP lease per workstation</li>
+                        </ul>
+                        <div class="tl-output"><span class="tl-output-label">Output:</span> Semua workstation wired terhubung ke VLAN yang benar ✓</div>
+                    </div>
+                </div>
+
+                <div class="tl-connector"></div>
+
+                <div class="tl-phase" data-group="config">
+                    <div class="tl-phase-label"><span class="tl-phase-num">05</span><span class="tl-phase-week">Minggu 5</span></div>
+                    <div class="tl-card">
+                        <div class="tl-card-header">
+                            <span class="tl-icon">📡</span>
+                            <div><h4>Wireless Deployment &amp; QoS</h4><span class="tl-badge tl-badge-config">Konfigurasi</span></div>
+                            <span class="tl-duration">5 hari</span>
+                        </div>
+                        <ul class="tl-tasks">
+                            <li><span class="tl-dot"></span>Mount 5 unit hAP ax2 sesuai coverage plan — ceiling/wall mount per area (Notion, Motion, Design Dorm, Director, Meeting)</li>
+                            <li><span class="tl-dot"></span>Koneksi PoE via Switch Server TL-SG2210MP → semua AP satu jalur power+data</li>
+                            <li><span class="tl-dot"></span>Konfigurasi CAPsMAN: security profile, channel plan (2.4 GHz &amp; 5 GHz), datapath per VLAN</li>
+                            <li><span class="tl-dot"></span>Provisioning 6 SSID: Motion_Team, DD_Team, Directory_Net, Notion_Net, Meeting_Room, Office_Roaming</li>
+                            <li><span class="tl-dot"></span>Setup PCQ Queue Tree — bandwidth limit per divisi sesuai prioritas</li>
+                            <li><span class="tl-dot"></span>Aktifkan script AutoPassRapat + jadwal Telegram Bot untuk Meeting_Room</li>
+                            <li><span class="tl-dot"></span>Setup The Dude + Telegram Bot Alert untuk monitoring</li>
+                            <li><span class="tl-dot"></span>Roaming test: perpindahan antar AP tanpa disconnect pada perangkat mobile</li>
+                        </ul>
+                        <div class="tl-output"><span class="tl-output-label">Output:</span> Semua SSID aktif, QoS verified, seamless roaming confirmed, monitoring live ✓</div>
+                    </div>
+                </div>
+
+                <div class="tl-connector"></div>
+
+                <div class="tl-phase" data-group="golive">
+                    <div class="tl-phase-label"><span class="tl-phase-num">06</span><span class="tl-phase-week">Minggu 6</span></div>
+                    <div class="tl-card tl-card-golive">
+                        <div class="tl-card-header">
+                            <span class="tl-icon">🚀</span>
+                            <div><h4>Testing, Go-Live &amp; Handover</h4><span class="tl-badge tl-badge-golive">Go-Live</span></div>
+                            <span class="tl-duration">5 hari</span>
+                        </div>
+                        <ul class="tl-tasks">
+                            <li><span class="tl-dot tl-dot-golive"></span>Full load test: simulasi 76 perangkat aktif secara bersamaan</li>
+                            <li><span class="tl-dot tl-dot-golive"></span>Bandwidth verification per VLAN — speedtest dari tiap divisi</li>
+                            <li><span class="tl-dot tl-dot-golive"></span>Penetration test sederhana: verifikasi isolasi Guest (VLAN 99) tidak bisa akses internal</li>
+                            <li><span class="tl-dot tl-dot-golive"></span>Migrasi end-user: cabut koneksi lama, sambung ke infrastruktur baru</li>
+                            <li><span class="tl-dot tl-dot-golive"></span>Monitoring 24 jam pertama — pantau log MikroTik, The Dude, &amp; utilisasi per VLAN</li>
+                            <li><span class="tl-dot tl-dot-golive"></span>Dokumentasi final: IP scheme, password vault, konfigurasi backup (.rsc export)</li>
+                        </ul>
+                        <div class="tl-output tl-output-golive">
+                            <span class="tl-output-label">Output:</span> Infrastruktur fully operational — jaringan Cuatrodia resmi live 🎉
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end timeline-wrap -->
+
+            <!-- Summary bar -->
+            <div class="tl-summary">
+                <div class="tl-summary-item"><span class="tl-summary-val">6</span><span class="tl-summary-label">Minggu Total</span></div>
+                <div class="tl-summary-divider"></div>
+                <div class="tl-summary-item"><span class="tl-summary-val">6</span><span class="tl-summary-label">Fase Eksekusi</span></div>
+                <div class="tl-summary-divider"></div>
+                <div class="tl-summary-item"><span class="tl-summary-val">9</span><span class="tl-summary-label">VLAN Dikonfigurasi</span></div>
+                <div class="tl-summary-divider"></div>
+                <div class="tl-summary-item"><span class="tl-summary-val">6</span><span class="tl-summary-label">SSID Di-deploy</span></div>
+                <div class="tl-summary-divider"></div>
+                <div class="tl-summary-item"><span class="tl-summary-val text-success">Zero</span><span class="tl-summary-label">Downtime Target</span></div>
+            </div>
+
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Cuatrodia Network Infrastructure Proposal. Disiapkan oleh IT Department.</p>
+            <p>&copy; 2026 Cuatrodia Network Infrastructure Proposal &nbsp;·&nbsp; Disiapkan oleh <strong>Nouva Prasetya Ardhana</strong> — MTCNA Certified</p>
         </div>
     </footer>
 
@@ -1044,24 +1215,20 @@
             html.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
             if (theme === 'light') {
-                iconSun.style.display = 'block';
-                iconMoon.style.display = 'none';
+                iconSun.style.display = 'block'; iconMoon.style.display = 'none';
                 themeToggle.title = 'Switch to Dark Mode';
             } else {
-                iconSun.style.display = 'none';
-                iconMoon.style.display = 'block';
+                iconSun.style.display = 'none'; iconMoon.style.display = 'block';
                 themeToggle.title = 'Switch to Light Mode';
             }
         }
 
-        // Load saved theme or system preference
         const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
 
         themeToggle.addEventListener('click', () => {
-            const current = html.getAttribute('data-theme');
-            applyTheme(current === 'dark' ? 'light' : 'dark');
+            applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
         });
 
         // ── HAMBURGER MENU ────────────────────────────────
@@ -1073,7 +1240,6 @@
             mobileMenu.classList.toggle('open');
         });
 
-        // Close mobile menu on link click
         document.querySelectorAll('.mobile-nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 hamburgerBtn.classList.remove('open');
@@ -1081,7 +1247,6 @@
             });
         });
 
-        // Close mobile menu on outside click
         document.addEventListener('click', (e) => {
             if (!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
                 hamburgerBtn.classList.remove('open');
@@ -1097,7 +1262,7 @@
                     obs.unobserve(entry.target);
                 }
             });
-        }, { root: null, rootMargin: '0px', threshold: 0.15 });
+        }, { root: null, rootMargin: '0px', threshold: 0.12 });
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
@@ -1108,15 +1273,11 @@
         function updateActiveNav() {
             let current = '';
             sections.forEach(section => {
-                if (scrollY >= section.offsetTop - 200) {
-                    current = section.getAttribute('id');
-                }
+                if (scrollY >= section.offsetTop - 200) current = section.getAttribute('id');
             });
-
             allNavLinks.forEach(link => {
                 link.classList.remove('active');
                 link.style.color = '';
-                link.style.textShadow = '';
                 if (current && link.getAttribute('href') === '#' + current) {
                     link.classList.add('active');
                     link.style.color = 'var(--primary)';
@@ -1126,6 +1287,33 @@
 
         window.addEventListener('scroll', updateActiveNav, { passive: true });
         updateActiveNav();
+
+        // ── PHASE FILTER TABS ─────────────────────────────
+        document.querySelectorAll('.phase-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const filter = tab.dataset.filter;
+                document.querySelectorAll('.tl-phase').forEach(phase => {
+                    phase.classList.toggle('hidden', filter !== 'all' && phase.dataset.group !== filter);
+                });
+                document.querySelectorAll('.tl-connector').forEach(conn => {
+                    conn.style.display = filter === 'all' ? '' : 'none';
+                });
+            });
+        });
+
+        // ── BUDGET TIER TABS ──────────────────────────────
+        document.querySelectorAll('.tier-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tier-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const tier = tab.dataset.tier;
+                document.querySelectorAll('.tier-content').forEach(c => c.style.display = 'none');
+                document.getElementById('tier-' + tier).style.display = 'block';
+            });
+        });
+
     </script>
 </body>
 </html>
