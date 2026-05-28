@@ -331,14 +331,12 @@
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav>
         <div class="container nav-content">
             <a href="#" class="logo">
                 <img src="./materi/logo.webp" alt="Logo Cuatrodia" style="height: 40px; width: auto;">
             </a>
             
-            <!-- Nav links yang sudah disesuaikan urutannya -->
             <div class="nav-links">
                 <a href="#analisis">Analisis Kapasitas</a>
                 <a href="#urgensi-upgrade">Urgensi &amp; ISP</a>
@@ -357,7 +355,6 @@
                 <span></span><span></span><span></span>
             </button>
         </div>
-        <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
             <a href="#analisis" class="mobile-nav-link">Analisis Kapasitas</a>
             <a href="#urgensi-upgrade" class="mobile-nav-link">Urgensi &amp; ISP</a>
@@ -370,7 +367,6 @@
         </div>
     </nav>
 
-    <!-- 1. Hero & Pembukaan -->
     <section class="hero" id="home">
         <div class="container fade-in">
             <h1>Proposal Peningkatan Infrastruktur<br><span class="text-primary">Jaringan Cuatrodia Tahap 1</span></h1>
@@ -378,13 +374,12 @@
         </div>
     </section>
 
-    <!-- Document Links Section -->
     <section id="dokumen-unduh" style="padding: 0 0 4rem 0; border: none;">
         <div class="container fade-in">
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="./materi/Infrastruktur_Jaringan_Kantor_v1.1.docx" download class="btn-aesthetic btn-primary-aesthetic">
+                <a href="./materi/Dokumentasi Infrastruktur Jaringan Cuatrodia - Tahap 1 V2.docx" download class="btn-aesthetic btn-primary-aesthetic">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Unduh Proposal (Word)
+                    Unduh Dokumentasi (Word)
                 </a>
                 <a href="./materi/Topologi.drawio.png" target="_blank" class="btn-aesthetic">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
@@ -398,7 +393,6 @@
         </div>
     </section>
 
-    <!-- 2. Hasil Perhitungan -->
     <section id="analisis">
         <div class="container">
             <div class="grid-2">
@@ -446,7 +440,6 @@
         </div>
     </section>
 
-    <!-- 3. Alasan Menambahkan ISP Dahulu / Urgensi Upgrade -->
     <section id="urgensi-upgrade">
         <div class="container fade-in">
             <h2 class="text-center mb-4">Executive Summary: Urgensi Implementasi</h2>
@@ -475,7 +468,6 @@
         </div>
     </section>
 
-    <!-- 4. Perbandingan ISP (Home vs Bisnis vs Dedicated) -->
     <section id="internet-comparison">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Komparasi Layanan ISP</h2>
@@ -500,7 +492,6 @@
                 </table>
             </div>
 
-            <!-- ====== SEGMEN BARU: PERBANDINGAN PROVIDER INTERNET BISNIS (MIN. 200 MBPS) ====== -->
             <h3 class="text-center mt-5 mb-1 text-primary">Komparasi Provider Internet Bisnis (Min. 200 Mbps)</h3>
             <p class="text-center text-muted mb-4 text-sm">Evaluasi paket internet khusus bisnis/SME dari provider terkemuka di Indonesia dengan bandwidth tinggi guna menopang produktivitas digital Cuatrodia.</p>
             <div class="table-responsive mb-4">
@@ -554,20 +545,17 @@
         </div>
     </section>
 
-    <!-- 5. Harga (Proyeksi CAPEX) -->
     <section id="budgeting">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Proyeksi Kebutuhan Perangkat (CAPEX)</h2>
             <p class="text-center text-muted mb-4">Pemilihan perangkat didasarkan pada strategi <em>Cost-Effective Performance</em> (Mid-tier Enterprise) guna mengakomodasi eskalasi beban tanpa over-engineering. Tersedia 3 opsi tier berdasarkan budget.</p>
 
-            <!-- Tier Selector -->
             <div class="tier-tabs">
                 <button class="tier-tab" data-tier="murah">🟡 Minimal Layak</button>
                 <button class="tier-tab active" data-tier="sedang">✅ Best Value (Rekomendasi)</button>
                 <button class="tier-tab" data-tier="enterprise">🔵 Enterprise</button>
             </div>
 
-            <!-- ===== TIER: SEDANG (default visible) ===== -->
             <div id="tier-sedang" class="tier-content">
                 <div class="table-responsive">
                     <table>
@@ -639,7 +627,6 @@
                     </table>
                 </div>
 
-                <!-- Infrastruktur Pendukung -->
                 <h3 class="mt-5 mb-3">Infrastruktur Pendukung (Kabel &amp; Instalasi)</h3>
                 <div class="table-responsive">
                     <table>
@@ -719,7 +706,6 @@
                     </table>
                 </div>
 
-                <!-- Grand Total Box -->
                 <div class="grand-total-box">
                     <div>
                         <div class="label">Total Estimasi CAPEX</div>
@@ -738,7 +724,6 @@
                 </div>
             </div>
 
-            <!-- ===== TIER: MURAH ===== -->
             <div id="tier-murah" class="tier-content" style="display:none;">
                 <div class="table-responsive">
                     <table>
@@ -768,7 +753,6 @@
                 </div>
             </div>
 
-            <!-- ===== TIER: ENTERPRISE ===== -->
             <div id="tier-enterprise" class="tier-content" style="display:none;">
                 <div class="table-responsive">
                     <table>
@@ -820,7 +804,6 @@
         </div>
     </section>
 
-    <!-- 6. Pembahasan Topologi -->
     <section id="topologi">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Arsitektur Topologi Jaringan</h2>
@@ -833,7 +816,6 @@
                 </button>
             </div>
 
-            <!-- TAB 1: TOPOLOGI BARU -->
             <div id="kontenBaru">
                 <p class="text-center text-muted mb-4">Desain infrastruktur dioptimalkan menggunakan pendekatan sentralisasi <em>Layer 3 Routing</em> dan distribusi <em>Layer 2 Switching</em> untuk mitigasi latensi.</p>
                 <div class="topology-image-container">
@@ -860,7 +842,6 @@
                 </ul>
             </div>
 
-            <!-- TAB 2: TOPOLOGI LAMA (TIDAK DIUBAH) -->
             <div id="kontenLama" style="display: none;">
                 <p class="text-center text-muted mb-4">Infrastruktur <em>legacy</em> berjalan dalam mode <em>Flat Network</em> (Single Broadcast Domain) tanpa manajemen trafik dan pemisahan <em>broadcast</em>.</p>
                 <div class="topology-image-container">
@@ -885,7 +866,6 @@
         </div>
     </section>
 
-    <!-- VLAN & SSID (Lanjutan dari Topologi) -->
     <section id="vlan-ssid">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Alokasi VLAN &amp; SSID per Divisi</h2>
@@ -932,12 +912,21 @@
                             <td>Karyawan Design Dorm</td>
                         </tr>
                         <tr>
-                            <td><strong>Meeting Room</strong></td>
+                            <td><strong>R. Meeting Sebelah</strong></td>
                             <td><span class="price">30</span></td>
                             <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.30.0/24</td>
-                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Meeting_Room</code></td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Meet_Sebelah</code></td>
                             <td>2.4 GHz</td>
-                            <td>15 Mbps / 5 Mbps</td>
+                            <td>40 Mbps / 25 Mbps</td>
+                            <td><span style="color:var(--success)">🔄 Auto-rotate harian</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>R. Meeting Rumput</strong></td>
+                            <td><span class="price">31</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.31.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Meet_Rumput</code></td>
+                            <td>2.4 GHz</td>
+                            <td>40 Mbps / 25 Mbps</td>
                             <td><span style="color:var(--success)">🔄 Auto-rotate harian</span></td>
                         </tr>
                         <tr>
@@ -995,7 +984,7 @@
                 </div>
                 <div class="justification-card">
                     <h4 class="text-primary mb-1">🔄 Auto-Rotate Password Meeting</h4>
-                    <p class="text-muted text-sm">SSID <strong>Meeting_Room</strong> menggunakan script MikroTik yang merotasi password otomatis setiap tengah malam dan mengirimkan kata sandi baru via Telegram Bot — mencegah penyalahgunaan akun tamu yang overstay.</p>
+                    <p class="text-muted text-sm">SSID <strong>Meet_Sebelah</strong> dan <strong>Meet_Rumput</strong> menggunakan script MikroTik yang merotasi password otomatis setiap tengah malam dan mengirimkan 2 kata sandi baru (spesifik per ruangan) via Telegram Bot — mencegah penyalahgunaan akun tamu yang overstay sekaligus memudahkan isolasi traffic antar ruang.</p>
                 </div>
                 <div class="justification-card">
                     <h4 class="text-primary mb-1">🔒 Isolasi Guest Network</h4>
@@ -1009,7 +998,6 @@
         </div>
     </section>
 
-    <!-- 7. Monitoring & Roadmap (Sisanya) -->
     <section id="monitoring">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Rencana Monitoring Jaringan</h2>
@@ -1063,13 +1051,11 @@
         </div>
     </section>
 
-    <!-- Roadmap -->
     <section id="roadmap">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Roadmap Implementasi</h2>
             <p class="text-center text-muted mb-2">Rencana eksekusi bertahap dalam <strong style="color:var(--primary)">6 minggu</strong> — dari pengadaan hingga jaringan fully operational.</p>
 
-            <!-- Phase filter tabs -->
             <div class="phase-tabs">
                 <button class="phase-tab active" data-filter="all">Semua Fase</button>
                 <button class="phase-tab" data-filter="infra">Infrastruktur</button>
@@ -1077,7 +1063,6 @@
                 <button class="phase-tab" data-filter="golive">Go-Live</button>
             </div>
 
-            <!-- Timeline -->
             <div class="timeline-wrap">
 
                 <div class="tl-phase" data-group="infra">
@@ -1130,14 +1115,14 @@
                             <span class="tl-duration">5 hari</span>
                         </div>
                         <ul class="tl-tasks">
-                            <li><span class="tl-dot"></span>Setup Bridge + VLAN Filtering pada RB5009 (9 VLAN: ID 10, 20, 25, 30, 40, 50, 60, 70, 99)</li>
+                            <li><span class="tl-dot"></span>Setup Bridge + VLAN Filtering pada RB5009 (10 VLAN: ID 10, 20, 25, 30, 31, 40, 50, 60, 70, 99)</li>
                             <li><span class="tl-dot"></span>IP addressing &amp; DHCP Server per VLAN interface</li>
                             <li><span class="tl-dot"></span>Firewall filter: Default-Deny inter-VLAN + allow rules per kebijakan divisi</li>
                             <li><span class="tl-dot"></span>NAT Masquerade untuk akses internet semua VLAN</li>
                             <li><span class="tl-dot"></span>VLAN trunk config pada Core Switch → port ke switch distribusi</li>
                             <li><span class="tl-dot"></span>Test DHCP lease per VLAN dengan laptop uji</li>
                         </ul>
-                        <div class="tl-output"><span class="tl-output-label">Output:</span> Semua 9 VLAN aktif, isolasi antar-divisi verified ✓</div>
+                        <div class="tl-output"><span class="tl-output-label">Output:</span> Semua 10 VLAN aktif, isolasi antar-divisi verified ✓</div>
                     </div>
                 </div>
 
@@ -1176,9 +1161,9 @@
                             <li><span class="tl-dot"></span>Mount 5 unit hAP ax2 sesuai coverage plan — ceiling/wall mount per area (Notion, Motion, Design Dorm, Director, Meeting)</li>
                             <li><span class="tl-dot"></span>Koneksi PoE via Switch Server TL-SG2210MP → semua AP satu jalur power+data</li>
                             <li><span class="tl-dot"></span>Konfigurasi CAPsMAN: security profile, channel plan (2.4 GHz &amp; 5 GHz), datapath per VLAN</li>
-                            <li><span class="tl-dot"></span>Provisioning 6 SSID: Motion_Team, DD_Team, Directory_Net, Notion_Net, Meeting_Room, Office_Roaming</li>
+                            <li><span class="tl-dot"></span>Provisioning 7 SSID: Motion_Team, DD_Team, Directory_Net, Notion_Net, Meet_Sebelah, Meet_Rumput, Office_Roaming</li>
                             <li><span class="tl-dot"></span>Setup PCQ Queue Tree — bandwidth limit per divisi sesuai prioritas</li>
-                            <li><span class="tl-dot"></span>Aktifkan script AutoPassRapat + jadwal Telegram Bot untuk Meeting_Room</li>
+                            <li><span class="tl-dot"></span>Aktifkan script AutoPassRapat + jadwal Telegram Bot untuk Meet_Sebelah &amp; Meet_Rumput</li>
                             <li><span class="tl-dot"></span>Setup The Dude + Telegram Bot Alert untuk monitoring</li>
                             <li><span class="tl-dot"></span>Roaming test: perpindahan antar AP tanpa disconnect pada perangkat mobile</li>
                         </ul>
@@ -1210,17 +1195,14 @@
                     </div>
                 </div>
 
-            </div><!-- end timeline-wrap -->
-
-            <!-- Summary bar -->
-            <div class="tl-summary">
+            </div><div class="tl-summary">
                 <div class="tl-summary-item"><span class="tl-summary-val">6</span><span class="tl-summary-label">Minggu Total</span></div>
                 <div class="tl-summary-divider"></div>
                 <div class="tl-summary-item"><span class="tl-summary-val">6</span><span class="tl-summary-label">Fase Eksekusi</span></div>
                 <div class="tl-summary-divider"></div>
-                <div class="tl-summary-item"><span class="tl-summary-val">9</span><span class="tl-summary-label">VLAN Dikonfigurasi</span></div>
+                <div class="tl-summary-item"><span class="tl-summary-val">10</span><span class="tl-summary-label">VLAN Dikonfigurasi</span></div>
                 <div class="tl-summary-divider"></div>
-                <div class="tl-summary-item"><span class="tl-summary-val">6</span><span class="tl-summary-label">SSID Di-deploy</span></div>
+                <div class="tl-summary-item"><span class="tl-summary-val">7</span><span class="tl-summary-label">SSID Di-deploy</span></div>
                 <div class="tl-summary-divider"></div>
                 <div class="tl-summary-item"><span class="tl-summary-val text-success">Zero</span><span class="tl-summary-label">Downtime Target</span></div>
             </div>
@@ -1228,14 +1210,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2026 Cuatrodia Network Infrastructure Proposal &nbsp;·&nbsp; Disiapkan oleh <strong>Nouva Prasetya Ardhana</strong> — MTCNA Certified</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script>
         function switchTopology(type) {
             const kontenBaru = document.getElementById('kontenBaru');
