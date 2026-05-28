@@ -332,19 +332,20 @@
 <body>
 
     <!-- Navigation -->
-   <nav>
+    <nav>
         <div class="container nav-content">
-            <!-- Teks Cuatrodia diubah menjadi gambar logo.webp -->
             <a href="#" class="logo">
                 <img src="./materi/logo.webp" alt="Logo Cuatrodia" style="height: 40px; width: auto;">
             </a>
             
+            <!-- Nav links yang sudah disesuaikan urutannya -->
             <div class="nav-links">
-                <a href="#urgensi-upgrade">Executive Summary</a>
                 <a href="#analisis">Analisis Kapasitas</a>
+                <a href="#urgensi-upgrade">Urgensi &amp; ISP</a>
+                <a href="#internet-comparison">Komparasi ISP</a>
+                <a href="#budgeting">Proyeksi CAPEX</a>
                 <a href="#topologi">Arsitektur Topologi</a>
                 <a href="#vlan-ssid">VLAN &amp; SSID</a>
-                <a href="#budgeting">Proyeksi CAPEX</a>
                 <a href="#monitoring">Monitoring</a>
                 <a href="#roadmap">Roadmap</a>
             </div>
@@ -358,17 +359,18 @@
         </div>
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
-            <a href="#urgensi-upgrade" class="mobile-nav-link">Executive Summary</a>
             <a href="#analisis" class="mobile-nav-link">Analisis Kapasitas</a>
+            <a href="#urgensi-upgrade" class="mobile-nav-link">Urgensi &amp; ISP</a>
+            <a href="#internet-comparison" class="mobile-nav-link">Komparasi ISP</a>
+            <a href="#budgeting" class="mobile-nav-link">Proyeksi CAPEX</a>
             <a href="#topologi" class="mobile-nav-link">Arsitektur Topologi</a>
             <a href="#vlan-ssid" class="mobile-nav-link">VLAN &amp; SSID</a>
-            <a href="#budgeting" class="mobile-nav-link">Proyeksi CAPEX</a>
             <a href="#monitoring" class="mobile-nav-link">Monitoring</a>
             <a href="#roadmap" class="mobile-nav-link">Roadmap</a>
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- 1. Hero & Pembukaan -->
     <section class="hero" id="home">
         <div class="container fade-in">
             <h1>Proposal Peningkatan Infrastruktur<br><span class="text-primary">Jaringan Cuatrodia Tahap 1</span></h1>
@@ -396,36 +398,7 @@
         </div>
     </section>
 
-    <!-- ========== EXECUTIVE SUMMARY (dipindah ke atas) ========== -->
-    <section id="urgensi-upgrade">
-        <div class="container fade-in">
-            <h2 class="text-center mb-4">Executive Summary: Urgensi Implementasi</h2>
-            <div class="grid-2">
-                <div class="justification-card">
-                    <h4 class="text-primary mb-1">1. Limitasi Kapasitas Hardware Lama</h4>
-                    <p class="text-muted text-sm">Router consumer-grade memiliki batas optimal utilisasi ~25 perangkat. Memaksakan beban 76 perangkat (estimasi Lantai 1 &amp; 2) pada arsitektur lama akan memicu degradasi performa masif harian.</p>
-                </div>
-                <div class="justification-card">
-                    <h4 class="text-primary mb-1">2. Mitigasi Latensi Internal</h4>
-                    <p class="text-muted text-sm">Distribusi melalui kabel (Switch) untuk stasiun kerja berat (PC Editing), dipadukan dengan Seamless Roaming AP, mengeliminasi isu putusnya koneksi saat mobilitas di area kantor.</p>
-                </div>
-                <div class="justification-card">
-                    <h4 class="text-primary mb-1">3. Biaya Downtime vs Biaya Infrastruktur</h4>
-                    <p class="text-muted text-sm">Kerugian finansial akibat tertundanya produktivitas (idle time) dan deadline klien secara signifikan melampaui biaya investasi alat jaringan (CAPEX).</p>
-                </div>
-                <div class="justification-card">
-                    <h4 class="text-primary mb-1">4. Simbiosis Alat dan ISP</h4>
-                    <p class="text-muted text-sm">Meningkatkan paket ISP tanpa upgrade hardware lokal akan menciptakan bottleneck internal. Sebaliknya, hardware canggih tanpa dukungan ISP bisnis tidak akan menghasilkan performa maksimal. Keduanya harus diselaraskan.</p>
-                </div>
-            </div>
-            <div class="mt-5 p-4" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
-                <h3 class="text-primary mb-2 text-center">Kesimpulan</h3>
-                <p class="text-muted mb-0 mx-auto text-center" style="max-width: 800px;">Pembaruan topologi dan transisi layanan ISP ini diposisikan sebagai <strong>Inisiatif Business Continuity</strong>. Hal ini krusial untuk mengamankan arus operasional digital dan memastikan produktivitas tim di seluruh area dapat berjalan pada tingkat efisiensi tertinggi tanpa interupsi teknis.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== Section 1: Analisis Kapasitas ========== -->
+    <!-- 2. Hasil Perhitungan -->
     <section id="analisis">
         <div class="container">
             <div class="grid-2">
@@ -473,218 +446,115 @@
         </div>
     </section>
 
-    <!-- ========== Section 2: Topologi Jaringan ========== -->
-    <section id="topologi">
+    <!-- 3. Alasan Menambahkan ISP Dahulu / Urgensi Upgrade -->
+    <section id="urgensi-upgrade">
         <div class="container fade-in">
-            <h2 class="text-center mb-1">Arsitektur Topologi Jaringan</h2>
-            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; margin-bottom: 2rem;">
-                <button id="btnBaru" onclick="switchTopology('baru')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--primary); background-color: var(--primary); color: var(--primary-btn-text);">
-                    Rancangan (Baru)
-                </button>
-                <button id="btnLama" onclick="switchTopology('lama')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--text-muted); background-color: transparent; color: var(--text-muted);">
-                    Topologi Lama
-                </button>
-            </div>
-
-            <!-- TAB 1: TOPOLOGI BARU -->
-            <div id="kontenBaru">
-                <p class="text-center text-muted mb-4">Desain infrastruktur dioptimalkan menggunakan pendekatan sentralisasi <em>Layer 3 Routing</em> dan distribusi <em>Layer 2 Switching</em> untuk mitigasi latensi.</p>
-                <div class="topology-image-container">
-                    <img src="./materi/Topologi.drawio.png" alt="Diagram Topologi Jaringan Cuatrodia">
+            <h2 class="text-center mb-4">Executive Summary: Urgensi Implementasi</h2>
+            <div class="grid-2">
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">1. Limitasi Kapasitas Hardware Lama</h4>
+                    <p class="text-muted text-sm">Router consumer-grade memiliki batas optimal utilisasi ~25 perangkat. Memaksakan beban 76 perangkat (estimasi Lantai 1 &amp; 2) pada arsitektur lama akan memicu degradasi performa masif harian.</p>
                 </div>
-                <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat</h3>
-                <ul class="node-list">
-                    <li class="node-item">
-                        <h4><span style="font-size:1.2rem;">🧠</span> Core Gateway (MikroTik)</h4>
-                        <p class="text-muted text-sm">Pusat kontrol utama. Menangani Inter-VLAN Routing, manajemen bandwidth (PCQ), dan orkestrasi WiFi terpusat via CAPsMAN.</p>
-                    </li>
-                    <li class="node-item">
-                        <h4><span style="font-size:1.2rem;">🔀</span> Core Switch (Managed L2)</h4>
-                        <p class="text-muted text-sm">Agregator utama. Menerima trunk VLAN dari Gateway dan mendistribusikan jalur ke Switch area spesifik secara terstruktur.</p>
-                    </li>
-                    <li class="node-item">
-                        <h4><span style="font-size:1.2rem;">🏢</span> Switch Distribusi</h4>
-                        <p class="text-muted text-sm">Fasilitator wired connection per departemen (terutama PC Editing) untuk memastikan stabilitas transfer data lokal tanpa utilisasi WiFi.</p>
-                    </li>
-                    <li class="node-item">
-                        <h4><span style="font-size:1.2rem;">📡</span> Access Point (WiFi)</h4>
-                        <p class="text-muted text-sm">Distribusi nirkabel terintegrasi dengan kapabilitas <em>seamless roaming</em>, menjaga koneksi rapat virtual tetap stabil saat mobilitas antar area.</p>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- TAB 2: TOPOLOGI LAMA (TIDAK DIUBAH) -->
-            <div id="kontenLama" style="display: none;">
-                <p class="text-center text-muted mb-4">Infrastruktur <em>legacy</em> berjalan dalam mode <em>Flat Network</em> (Single Broadcast Domain) tanpa manajemen trafik dan pemisahan <em>broadcast</em>.</p>
-                <div class="topology-image-container">
-                    <img src="./materi/Topologi Lama.drawio.png" alt="Diagram Topologi Jaringan Lama">
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">2. Mitigasi Latensi Internal</h4>
+                    <p class="text-muted text-sm">Distribusi melalui kabel (Switch) untuk stasiun kerja berat (PC Editing), dipadukan dengan Seamless Roaming AP, mengeliminasi isu putusnya koneksi saat mobilitas di area kantor.</p>
                 </div>
-                <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat (Legacy)</h3>
-                <ul class="node-list">
-                    <li class="node-item" style="border-left-color: #dc3545;">
-                        <h4><span style="font-size:1.2rem;">⚠️</span> Router ISP (Default Gateway)</h4>
-                        <p class="text-muted text-sm">Menjadi <em>Single Point of Failure</em>. Menangani seluruh proses NAT, DHCP, dan DNS secara bersamaan tanpa adanya fitur QoS atau Bandwidth Management.</p>
-                    </li>
-                    <li class="node-item">
-                        <h4><span style="font-size:1.2rem;">🔌</span> Unmanaged Switch</h4>
-                        <p class="text-muted text-sm">Berfungsi sebagai distribusi pasif. Tidak mendukung fitur VLAN 802.1Q, sehingga seluruh perangkat berada dalam satu <em>broadcast domain</em> yang rawan akan kolisi data.</p>
-                    </li>
-                    <li class="node-item">
-                        <h4><span style="font-size:1.2rem;">📶</span> Standalone Access Point</h4>
-                        <p class="text-muted text-sm">Memancarkan SSID secara independen. Sering mengalami tumpang tindih channel (interferensi) dan mengharuskan perangkat melakukan <em>re-connect</em> manual saat berpindah ruangan.</p>
-                    </li>
-                </ul>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">3. Biaya Downtime vs Biaya Infrastruktur</h4>
+                    <p class="text-muted text-sm">Kerugian finansial akibat tertundanya produktivitas (idle time) dan deadline klien secara signifikan melampaui biaya investasi alat jaringan (CAPEX).</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">4. Simbiosis Alat dan ISP</h4>
+                    <p class="text-muted text-sm">Meningkatkan paket ISP tanpa upgrade hardware lokal akan menciptakan bottleneck internal. Sebaliknya, hardware canggih tanpa dukungan ISP bisnis tidak akan menghasilkan performa maksimal. Keduanya harus diselaraskan.</p>
+                </div>
+            </div>
+            <div class="mt-5 p-4" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+                <h3 class="text-primary mb-2 text-center">Kesimpulan</h3>
+                <p class="text-muted mb-0 mx-auto text-center" style="max-width: 800px;">Pembaruan topologi dan transisi layanan ISP ini diposisikan sebagai <strong>Inisiatif Business Continuity</strong>. Hal ini krusial untuk mengamankan arus operasional digital dan memastikan produktivitas tim di seluruh area dapat berjalan pada tingkat efisiensi tertinggi tanpa interupsi teknis.</p>
             </div>
         </div>
     </section>
 
-    <script>
-        function switchTopology(type) {
-            const kontenBaru = document.getElementById('kontenBaru');
-            const kontenLama = document.getElementById('kontenLama');
-            const btnBaru = document.getElementById('btnBaru');
-            const btnLama = document.getElementById('btnLama');
-            const activeBg = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
-            const activeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-btn-text').trim();
-            const inactiveBg = 'transparent';
-            const inactiveColor = '#94a3b8';
-            if (type === 'baru') {
-                kontenBaru.style.display = 'block'; kontenLama.style.display = 'none';
-                btnBaru.style.backgroundColor = activeBg; btnBaru.style.color = activeColor; btnBaru.style.borderColor = activeBg;
-                btnLama.style.backgroundColor = inactiveBg; btnLama.style.color = inactiveColor; btnLama.style.borderColor = inactiveColor;
-            } else {
-                kontenBaru.style.display = 'none'; kontenLama.style.display = 'block';
-                btnLama.style.backgroundColor = activeBg; btnLama.style.color = activeColor; btnLama.style.borderColor = activeBg;
-                btnBaru.style.backgroundColor = inactiveBg; btnBaru.style.color = inactiveColor; btnBaru.style.borderColor = inactiveColor;
-            }
-        }
-    </script>
-
-    <!-- ========== Section: VLAN & SSID ========== -->
-    <section id="vlan-ssid">
+    <!-- 4. Perbandingan ISP (Home vs Bisnis vs Dedicated) -->
+    <section id="internet-comparison">
         <div class="container fade-in">
-            <h2 class="text-center mb-1">Alokasi VLAN &amp; SSID per Divisi</h2>
-            <p class="text-center text-muted mb-4">Setiap divisi memiliki segmen jaringan (VLAN) dan SSID Wi-Fi tersendiri yang dikendalikan terpusat oleh CAPsMAN. Bandwidth dialokasikan berbasis prioritas operasional.</p>
+            <h2 class="text-center mb-1">Komparasi Layanan ISP</h2>
+            <p class="text-center text-muted mb-4">Evaluasi parameter teknis untuk peningkatan kelas layanan internet perusahaan.</p>
             <div class="table-responsive mb-4">
                 <table>
                     <thead>
                         <tr>
-                            <th>Divisi</th>
-                            <th>VLAN ID</th>
-                            <th>Subnet</th>
-                            <th>SSID Wi-Fi</th>
-                            <th>Band</th>
-                            <th>Bandwidth Max ↓ / ↑</th>
-                            <th>Akses</th>
+                            <th>Parameter Teknis</th>
+                            <th>Home Broadband <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(MyRepublic Prime)</span></th>
+                            <th>Business Broadband <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(Biznet Metro)</span></th>
+                            <th>Dedicated Internet <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(Corporate Leased Line)</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Estimasi Harga (Opex)</strong></td><td class="price">± Rp 565.000 / bln</td><td class="price">± Rp 2.700.000 / bln</td><td class="price">Mulai Rp 5.000.000 (100 Mbps)</td></tr>
+                        <tr><td><strong>Alokasi Bandwidth</strong></td><td>Shared (Kontensi tinggi)</td><td>Shared Priority (Prioritas traffic tinggi)</td><td>Dedicated 1:1 (Garansi penuh)</td></tr>
+                        <tr><td><strong>Alamat IP</strong></td><td>Dynamic Private / NAT</td><td>1 IP Public Static</td><td>Blok IP Public Static (/29 atau /28)</td></tr>
+                        <tr><td><strong>Rasio Kecepatan (Up/Down)</strong></td><td>Asimetris (Fluktuatif)</td><td>Simetris (1:1 Terjamin)</td><td>Simetris (1:1 Garansi 100%)</td></tr>
+                        <tr><td><strong>Service Level Agreement</strong></td><td>Best-effort (Tanpa penjaminan)</td><td>Support Prioritas</td><td>SLA 99.5% (Ada klausul kompensasi)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ====== SEGMEN BARU: PERBANDINGAN PROVIDER INTERNET BISNIS (MIN. 200 MBPS) ====== -->
+            <h3 class="text-center mt-5 mb-1 text-primary">Komparasi Provider Internet Bisnis (Min. 200 Mbps)</h3>
+            <p class="text-center text-muted mb-4 text-sm">Evaluasi paket internet khusus bisnis/SME dari provider terkemuka di Indonesia dengan bandwidth tinggi guna menopang produktivitas digital Cuatrodia.</p>
+            <div class="table-responsive mb-4">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Provider &amp; Paket</th>
+                            <th>Bandwidth (Up / Down)</th>
+                            <th>Rasio Kontensi</th>
+                            <th>Fitur Utama &amp; Layanan (SLA / IP)</th>
+                            <th>Estimasi Harga (Opex)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Management IT</strong></td>
-                            <td><span class="price">10</span></td>
-                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.10.0/24</td>
-                            <td><em class="text-muted">— Wired Only —</em></td>
-                            <td class="text-muted">—</td>
-                            <td><span style="color:var(--success)">Unlimited</span></td>
-                            <td>IT Admin</td>
+                            <td><strong>Biznet Metronet 3D</strong></td>
+                            <td><span class="text-primary font-semibold">200 Mbps</span> (Simetris 1:1)</td>
+                            <td>1:4 (Shared Priority)</td>
+                            <td>Gratis 1 IP Public Static, Prioritas lalu lintas data bisnis, support 24/7.</td>
+                            <td class="price">± Rp 2.700.000 / bln</td>
                         </tr>
                         <tr>
-                            <td><strong>Motion Tim 1</strong></td>
-                            <td><span class="price">20</span></td>
-                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.20.0/24</td>
-                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Motion_Team</code></td>
-                            <td>5 GHz</td>
-                            <td>30 Mbps / 10 Mbps</td>
-                            <td>Karyawan Motion</td>
+                            <td><strong>MyRepublic Business Pro 300</strong></td>
+                            <td><span class="text-primary font-semibold">300 Mbps</span> (Simetris 1:1)</td>
+                            <td>1:4 (Shared Priority)</td>
+                            <td>Termasuk 1 IP Public Static, Tanpa FUP (Kuota Unlimited), Prioritas penanganan kendala teknis.</td>
+                            <td class="price">± Rp 2.399.000 / bln</td>
                         </tr>
                         <tr>
-                            <td><strong>Design Dorm Tim</strong></td>
-                            <td><span class="price">25</span></td>
-                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.25.0/24</td>
-                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">DD_Team</code></td>
-                            <td>5 GHz</td>
-                            <td>30 Mbps / 10 Mbps</td>
-                            <td>Karyawan Design Dorm</td>
+                            <td><strong>Indibiz (Telkomsel) Pro 200</strong></td>
+                            <td><span class="text-primary font-semibold">200 Mbps</span> (Simetris 1:1)</td>
+                            <td>1:5 (Shared Priority)</td>
+                            <td>IP Public Static (Add-on berbayar), Garansi jaringan serat optik Telkom, akses platform ekosistem Indibiz.</td>
+                            <td class="price">± Rp 790.000 / bln (Minimal 1 tahun)</td>
                         </tr>
                         <tr>
-                            <td><strong>Meeting Room</strong></td>
-                            <td><span class="price">30</span></td>
-                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.30.0/24</td>
-                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Meeting_Room</code></td>
-                            <td>2.4 GHz</td>
-                            <td>15 Mbps / 5 Mbps</td>
-                            <td><span style="color:var(--success)">🔄 Auto-rotate harian</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Directory</strong></td>
-                            <td><span class="price">40</span></td>
-                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.40.0/24</td>
-                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Directory_Net</code></td>
-                            <td>5 GHz</td>
-                            <td>20 Mbps / 5 Mbps</td>
-                            <td>Karyawan Directory</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Notion Tim</strong></td>
-                            <td><span class="price">50</span></td>
-                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.50.0/24</td>
-                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Notion_Net</code></td>
-                            <td>5 GHz</td>
-                            <td>20 Mbps / 5 Mbps</td>
-                            <td>Karyawan Notion</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Server Room</strong></td>
-                            <td><span class="price">60</span></td>
-                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.60.0/24</td>
-                            <td><em class="text-muted">— Wired Only —</em></td>
-                            <td class="text-muted">—</td>
-                            <td><span style="color:var(--success)">Unlimited</span></td>
-                            <td>Server / Infra</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Ekspansi Lantai 2</strong></td>
-                            <td><span class="price">70</span></td>
-                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.70.0/24</td>
-                            <td><em class="text-muted">— Reserved —</em></td>
-                            <td class="text-muted">—</td>
-                            <td class="text-muted">TBD</td>
-                            <td class="text-muted">Future Use</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Office Roaming</strong></td>
-                            <td><span class="price">99</span></td>
-                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.99.0/24</td>
-                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Office_Roaming</code></td>
-                            <td>5 GHz</td>
-                            <td>10 Mbps / 3 Mbps</td>
-                            <td>Tamu / Non-staff</td>
+                            <td><strong>CBN DirectNet Business 200</strong></td>
+                            <td><span class="text-primary font-semibold">200 Mbps</span> (Simetris 1:1)</td>
+                            <td>1:4 (Shared Priority)</td>
+                            <td>Termasuk 1 IP Public Static, Keamanan DNS terintegrasi, 24/7 helpdesk prioritas khusus korporat.</td>
+                            <td class="price">± Rp 999.000 / bln (Minimal 1 tahun)</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="justification-grid">
-                <div class="justification-card">
-                    <h4 class="text-primary mb-1">📡 Dual SSID Motion Team</h4>
-                    <p class="text-muted text-sm">Tim Motion menggunakan satu nama SSID <strong>Motion_Team</strong> namun terbagi ke VLAN 20 &amp; 25. Setiap unit tim mendapat segmen IP dan queue bandwidth yang sepenuhnya independen, mencegah interferensi beban kerja antar-tim.</p>
-                </div>
-                <div class="justification-card">
-                    <h4 class="text-primary mb-1">🔄 Auto-Rotate Password Meeting</h4>
-                    <p class="text-muted text-sm">SSID <strong>Meeting_Room</strong> menggunakan script MikroTik yang merotasi password otomatis setiap tengah malam dan mengirimkan kata sandi baru via Telegram Bot — mencegah penyalahgunaan akun tamu yang overstay.</p>
-                </div>
-                <div class="justification-card">
-                    <h4 class="text-primary mb-1">🔒 Isolasi Guest Network</h4>
-                    <p class="text-muted text-sm">SSID <strong>Office_Roaming</strong> (VLAN 99) diblokir secara total dari seluruh subnet internal perusahaan oleh firewall rule. Tamu hanya mendapat akses internet keluar, tanpa visibilitas ke resource jaringan internal sama sekali.</p>
-                </div>
-                <div class="justification-card">
-                    <h4 class="text-primary mb-1">📶 Semua SSID via CAPsMAN</h4>
-                    <p class="text-muted text-sm">Seluruh SSID dipancarkan oleh AP Node (hAP ax2) namun dikonfigurasi dan dikontrol dari satu titik — Core Router MikroTik RB5009. Penambahan atau perubahan konfigurasi Wi-Fi cukup dilakukan sekali di controller, berlaku ke semua AP sekaligus.</p>
-                </div>
+
+            <div class="card mt-4" style="border-left: 4px solid var(--primary); padding: 1.5rem;">
+                <h4 class="mb-2">Rekomendasi Strategis</h4>
+                <p class="text-muted text-sm mb-0">Untuk menyeimbangkan biaya dan kebutuhan operasional bersama arsitektur baru, transisi menuju <strong>Business Broadband (mis. Biznet Metronet / Indibiz / Lintasarta)</strong> adalah langkah esensial. Namun, jika urgensi stabilitas server lokal (NAS Synology) bersifat kritikal untuk remote access, opsi <strong>Dedicated Internet 50–100 Mbps</strong> sangat disarankan karena memberikan IP Publik Statis dan SLA tertulis.</p>
             </div>
         </div>
     </section>
 
-    <!-- ========== Section: CAPEX / Budgeting ========== -->
+    <!-- 5. Harga (Proyeksi CAPEX) -->
     <section id="budgeting">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Proyeksi Kebutuhan Perangkat (CAPEX)</h2>
@@ -950,38 +820,196 @@
         </div>
     </section>
 
-    <!-- ========== Section: ISP Comparison ========== -->
-    <section id="internet-comparison">
+    <!-- 6. Pembahasan Topologi -->
+    <section id="topologi">
         <div class="container fade-in">
-            <h2 class="text-center mb-1">Komparasi Layanan ISP</h2>
-            <p class="text-center text-muted mb-4">Evaluasi parameter teknis untuk peningkatan kelas layanan internet perusahaan.</p>
-            <div class="table-responsive mb-4">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter Teknis</th>
-                            <th>Home Broadband <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(MyRepublic Prime)</span></th>
-                            <th>Business Broadband <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(Biznet Metro)</span></th>
-                            <th>Dedicated Internet <br><span style="font-weight: normal; color: var(--text-muted); font-size:0.8em">(Corporate Leased Line)</span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><strong>Estimasi Harga (Opex)</strong></td><td class="price">± Rp 565.000 / bln</td><td class="price">± Rp 1.700.000 / bln</td><td class="price">Mulai Rp 5.000.000 (100 Mbps)</td></tr>
-                        <tr><td><strong>Alokasi Bandwidth</strong></td><td>Shared (Kontensi tinggi)</td><td>Shared Priority (Prioritas traffic tinggi)</td><td>Dedicated 1:1 (Garansi penuh)</td></tr>
-                        <tr><td><strong>Alamat IP</strong></td><td>Dynamic Private / NAT</td><td>1 IP Public Static</td><td>Blok IP Public Static (/29 atau /28)</td></tr>
-                        <tr><td><strong>Rasio Kecepatan (Up/Down)</strong></td><td>Asimetris (Fluktuatif)</td><td>Simetris (1:1 Terjamin)</td><td>Simetris (1:1 Garansi 100%)</td></tr>
-                        <tr><td><strong>Service Level Agreement</strong></td><td>Best-effort (Tanpa penjaminan)</td><td>Support Prioritas</td><td>SLA 99.5% (Ada klausul kompensasi)</td></tr>
-                    </tbody>
-                </table>
+            <h2 class="text-center mb-1">Arsitektur Topologi Jaringan</h2>
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; margin-bottom: 2rem;">
+                <button id="btnBaru" onclick="switchTopology('baru')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--primary); background-color: var(--primary); color: var(--primary-btn-text);">
+                    Rancangan (Baru)
+                </button>
+                <button id="btnLama" onclick="switchTopology('lama')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--text-muted); background-color: transparent; color: var(--text-muted);">
+                    Topologi Lama
+                </button>
             </div>
-            <div class="card mt-4" style="border-left: 4px solid var(--primary); padding: 1.5rem;">
-                <h4 class="mb-2">Rekomendasi Strategis</h4>
-                <p class="text-muted text-sm mb-0">Untuk menyeimbangkan biaya dan kebutuhan operasional bersama arsitektur baru, transisi menuju <strong>Business Broadband (mis. Biznet Metronet / Indibiz / Lintasarta)</strong> adalah langkah esensial. Namun, jika urgensi stabilitas server lokal (NAS Synology) bersifat kritikal untuk remote access, opsi <strong>Dedicated Internet 50–100 Mbps</strong> sangat disarankan karena memberikan IP Publik Statis dan SLA tertulis.</p>
+
+            <!-- TAB 1: TOPOLOGI BARU -->
+            <div id="kontenBaru">
+                <p class="text-center text-muted mb-4">Desain infrastruktur dioptimalkan menggunakan pendekatan sentralisasi <em>Layer 3 Routing</em> dan distribusi <em>Layer 2 Switching</em> untuk mitigasi latensi.</p>
+                <div class="topology-image-container">
+                    <img src="./materi/Topologi.drawio.png" alt="Diagram Topologi Jaringan Cuatrodia">
+                </div>
+                <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat</h3>
+                <ul class="node-list">
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">🧠</span> Core Gateway (MikroTik)</h4>
+                        <p class="text-muted text-sm">Pusat kontrol utama. Menangani Inter-VLAN Routing, manajemen bandwidth (PCQ), dan orkestrasi WiFi terpusat via CAPsMAN.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">🔀</span> Core Switch (Managed L2)</h4>
+                        <p class="text-muted text-sm">Agregator utama. Menerima trunk VLAN dari Gateway dan mendistribusikan jalur ke Switch area spesifik secara terstruktur.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">🏢</span> Switch Distribusi</h4>
+                        <p class="text-muted text-sm">Fasilitator wired connection per departemen (terutama PC Editing) untuk memastikan stabilitas transfer data lokal tanpa utilisasi WiFi.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">📡</span> Access Point (WiFi)</h4>
+                        <p class="text-muted text-sm">Distribusi nirkabel terintegrasi dengan kapabilitas <em>seamless roaming</em>, menjaga koneksi rapat virtual tetap stabil saat mobilitas antar area.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- TAB 2: TOPOLOGI LAMA (TIDAK DIUBAH) -->
+            <div id="kontenLama" style="display: none;">
+                <p class="text-center text-muted mb-4">Infrastruktur <em>legacy</em> berjalan dalam mode <em>Flat Network</em> (Single Broadcast Domain) tanpa manajemen trafik dan pemisahan <em>broadcast</em>.</p>
+                <div class="topology-image-container">
+                    <img src="./materi/Topologi Lama.drawio.png" alt="Diagram Topologi Jaringan Lama">
+                </div>
+                <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat (Legacy)</h3>
+                <ul class="node-list">
+                    <li class="node-item" style="border-left-color: #dc3545;">
+                        <h4><span style="font-size:1.2rem;">⚠️</span> Router ISP (Default Gateway)</h4>
+                        <p class="text-muted text-sm">Menjadi <em>Single Point of Failure</em>. Menangani seluruh proses NAT, DHCP, dan DNS secara bersamaan tanpa adanya fitur QoS atau Bandwidth Management.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">🔌</span> Unmanaged Switch</h4>
+                        <p class="text-muted text-sm">Berfungsi sebagai distribusi pasif. Tidak mendukung fitur VLAN 802.1Q, sehingga seluruh perangkat berada dalam satu <em>broadcast domain</em> yang rawan akan kolisi data.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">📶</span> Standalone Access Point</h4>
+                        <p class="text-muted text-sm">Memancarkan SSID secara independen. Sering mengalami tumpang tindih channel (interferensi) dan mengharuskan perangkat melakukan <em>re-connect</em> manual saat berpindah ruangan.</p>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- ========== Section: Monitoring (BARU) ========== -->
+    <!-- VLAN & SSID (Lanjutan dari Topologi) -->
+    <section id="vlan-ssid">
+        <div class="container fade-in">
+            <h2 class="text-center mb-1">Alokasi VLAN &amp; SSID per Divisi</h2>
+            <p class="text-center text-muted mb-4">Setiap divisi memiliki segmen jaringan (VLAN) dan SSID Wi-Fi tersendiri yang dikendalikan terpusat oleh CAPsMAN. Bandwidth dialokasikan berbasis prioritas operasional.</p>
+            <div class="table-responsive mb-4">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Divisi</th>
+                            <th>VLAN ID</th>
+                            <th>Subnet</th>
+                            <th>SSID Wi-Fi</th>
+                            <th>Band</th>
+                            <th>Bandwidth Max ↓ / ↑</th>
+                            <th>Akses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Management IT</strong></td>
+                            <td><span class="price">10</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.10.0/24</td>
+                            <td><em class="text-muted">— Wired Only —</em></td>
+                            <td class="text-muted">—</td>
+                            <td><span style="color:var(--success)">Unlimited</span></td>
+                            <td>IT Admin</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Motion Tim 1</strong></td>
+                            <td><span class="price">20</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.20.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Motion_Team</code></td>
+                            <td>5 GHz</td>
+                            <td>30 Mbps / 10 Mbps</td>
+                            <td>Karyawan Motion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Design Dorm Tim</strong></td>
+                            <td><span class="price">25</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.25.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">DD_Team</code></td>
+                            <td>5 GHz</td>
+                            <td>30 Mbps / 10 Mbps</td>
+                            <td>Karyawan Design Dorm</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Meeting Room</strong></td>
+                            <td><span class="price">30</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.30.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Meeting_Room</code></td>
+                            <td>2.4 GHz</td>
+                            <td>15 Mbps / 5 Mbps</td>
+                            <td><span style="color:var(--success)">🔄 Auto-rotate harian</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Directory</strong></td>
+                            <td><span class="price">40</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.40.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Directory_Net</code></td>
+                            <td>5 GHz</td>
+                            <td>20 Mbps / 5 Mbps</td>
+                            <td>Karyawan Directory</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Notion Tim</strong></td>
+                            <td><span class="price">50</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.50.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Notion_Net</code></td>
+                            <td>5 GHz</td>
+                            <td>20 Mbps / 5 Mbps</td>
+                            <td>Karyawan Notion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Server Room</strong></td>
+                            <td><span class="price">60</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.60.0/24</td>
+                            <td><em class="text-muted">— Wired Only —</em></td>
+                            <td class="text-muted">—</td>
+                            <td><span style="color:var(--success)">Unlimited</span></td>
+                            <td>Server / Infra</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ekspansi Lantai 2</strong></td>
+                            <td><span class="price">70</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.70.0/24</td>
+                            <td><em class="text-muted">— Reserved —</em></td>
+                            <td class="text-muted">—</td>
+                            <td class="text-muted">TBD</td>
+                            <td class="text-muted">Future Use</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Office Roaming</strong></td>
+                            <td><span class="price">99</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.99.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Office_Roaming</code></td>
+                            <td>5 GHz</td>
+                            <td>10 Mbps / 3 Mbps</td>
+                            <td>Tamu / Non-staff</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="justification-grid">
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">📡 Dual SSID Motion Team</h4>
+                    <p class="text-muted text-sm">Tim Motion menggunakan satu nama SSID <strong>Motion_Team</strong> namun terbagi ke VLAN 20 &amp; 25. Setiap unit tim mendapat segmen IP dan queue bandwidth yang sepenuhnya independen, mencegah interferensi beban kerja antar-tim.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">🔄 Auto-Rotate Password Meeting</h4>
+                    <p class="text-muted text-sm">SSID <strong>Meeting_Room</strong> menggunakan script MikroTik yang merotasi password otomatis setiap tengah malam dan mengirimkan kata sandi baru via Telegram Bot — mencegah penyalahgunaan akun tamu yang overstay.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">🔒 Isolasi Guest Network</h4>
+                    <p class="text-muted text-sm">SSID <strong>Office_Roaming</strong> (VLAN 99) diblokir secara total dari seluruh subnet internal perusahaan oleh firewall rule. Tamu hanya mendapat akses internet keluar, tanpa visibilitas ke resource jaringan internal sama sekali.</p>
+                </div>
+                <div class="justification-card">
+                    <h4 class="text-primary mb-1">📶 Semua SSID via CAPsMAN</h4>
+                    <p class="text-muted text-sm">Seluruh SSID dipancarkan oleh AP Node (hAP ax2) namun dikonfigurasi dan dikontrol dari satu titik — Core Router MikroTik RB5009. Penambahan atau perubahan konfigurasi Wi-Fi cukup dilakukan sekali di controller, berlaku ke semua AP sekaligus.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Monitoring & Roadmap (Sisanya) -->
     <section id="monitoring">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Rencana Monitoring Jaringan</h2>
@@ -1035,7 +1063,7 @@
         </div>
     </section>
 
-    <!-- ========== Section: Roadmap ========== -->
+    <!-- Roadmap -->
     <section id="roadmap">
         <div class="container fade-in">
             <h2 class="text-center mb-1">Roadmap Implementasi</h2>
@@ -1209,6 +1237,26 @@
 
     <!-- Scripts -->
     <script>
+        function switchTopology(type) {
+            const kontenBaru = document.getElementById('kontenBaru');
+            const kontenLama = document.getElementById('kontenLama');
+            const btnBaru = document.getElementById('btnBaru');
+            const btnLama = document.getElementById('btnLama');
+            const activeBg = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+            const activeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-btn-text').trim();
+            const inactiveBg = 'transparent';
+            const inactiveColor = '#94a3b8';
+            if (type === 'baru') {
+                kontenBaru.style.display = 'block'; kontenLama.style.display = 'none';
+                btnBaru.style.backgroundColor = activeBg; btnBaru.style.color = activeColor; btnBaru.style.borderColor = activeBg;
+                btnLama.style.backgroundColor = inactiveBg; btnLama.style.color = inactiveColor; btnLama.style.borderColor = inactiveColor;
+            } else {
+                kontenBaru.style.display = 'none'; kontenLama.style.display = 'block';
+                btnLama.style.backgroundColor = activeBg; btnLama.style.color = activeColor; btnLama.style.borderColor = activeBg;
+                btnBaru.style.backgroundColor = inactiveBg; btnBaru.style.color = inactiveColor; btnBaru.style.borderColor = inactiveColor;
+            }
+        }
+
         // ── THEME TOGGLE ──────────────────────────────────
         const html = document.documentElement;
         const themeToggle = document.getElementById('themeToggle');
