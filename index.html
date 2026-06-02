@@ -369,7 +369,9 @@
 
     <section class="hero" id="home">
         <div class="container fade-in">
-            <h1>Proposal Peningkatan Infrastruktur<br><span class="text-primary">Jaringan Cuatrodia Tahap 1</span></h1>
+            <h1>Proposal Peningkatan Infrastruktur<br><span class="text-primary">Jaringan Cuatrodia
+                <br>
+                Tahap 1</span></h1>
             <p>Evaluasi komprehensif performa jaringan aktual, rancangan arsitektur operasional, dan justifikasi investasi (CAPEX) untuk menjamin stabilitas produktivitas perusahaan.</p>
         </div>
     </section>
@@ -410,7 +412,7 @@
                     <h4 class="mb-1 text-primary">Proyeksi Beban Perangkat (Skalabilitas)</h4>
                     <ul class="text-muted text-sm" style="padding-left:1.25rem;">
                         <li><strong>Beban Saat Ini (Lantai 1):</strong> 48 perangkat aktif (rasio ~4 Mbps/perangkat saat utilisasi puncak).</li>
-                        <li><strong>Proyeksi Penambahan (Lantai 2):</strong> Total beban naik menjadi <strong>~76 perangkat</strong>.</li>
+                        <li><strong>Proyeksi Penambahan (Lantai 2):</strong> Total beban naik menjadi <strong>76 perangkat (Laptop&Hp)</strong>.</li>
                         <li><strong>Dampak:</strong> Alokasi bandwidth anjlok drastis menjadi <strong>~2.6 Mbps/perangkat</strong>.</li>
                         <li><strong>Kesimpulan:</strong> Kapasitas ini jauh di bawah standar operasional untuk Video Conference paralel dan transfer aset visual skala besar.</li>
                     </ul>
@@ -442,28 +444,41 @@
 
     <section id="urgensi-upgrade">
         <div class="container fade-in">
-            <h2 class="text-center mb-4">Executive Summary: Urgensi Implementasi</h2>
-            <div class="grid-2">
+            <h2 class="text-center mb-2">Mengapa Kantor Perlu Dual ISP?</h2>
+            <p class="text-center text-muted mb-5" style="max-width: 700px; margin-left: auto; margin-right: auto;">Solusi yang diusulkan bukan mengganti MyRepublic—melainkan <strong style="color: var(--text-main);">menambahkan ISP bisnis sebagai jalur kedua</strong>. Dua koneksi ini dikelola bersama oleh router MikroTik untuk menghasilkan jaringan yang lebih cepat, lebih stabil, dan tidak pernah benar-benar down.</p>
+            <div class="justification-grid">
                 <div class="justification-card">
-                    <h4 class="text-primary mb-1">1. Limitasi Kapasitas Hardware Lama</h4>
-                    <p class="text-muted text-sm">Router consumer-grade memiliki batas optimal utilisasi ~25 perangkat. Memaksakan beban 76 perangkat (estimasi Lantai 1 &amp; 2) pada arsitektur lama akan memicu degradasi performa masif harian.</p>
+                    <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem;">
+                        <span style="background: rgba(56,189,248,0.12); color: var(--primary); border-radius: 6px; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;">01</span>
+                        <h4 class="text-primary" style="margin: 0;">Load Balancing — Bandwidth Berlipat</h4>
+                    </div>
+                    <p class="text-muted text-sm">Dengan dua jalur aktif, router MikroTik mendistribusikan traffic secara otomatis ke kedua ISP. Efek praktisnya: kapasitas total yang bisa dimanfaatkan <strong>meningkat signifikan</strong>. Alokasi per perangkat naik jauh dari ~2.6 Mbps, cukup untuk menopang 76 perangkat aktif secara bersamaan.</p>
                 </div>
                 <div class="justification-card">
-                    <h4 class="text-primary mb-1">2. Mitigasi Latensi Internal</h4>
-                    <p class="text-muted text-sm">Distribusi melalui kabel (Switch) untuk stasiun kerja berat (PC Editing), dipadukan dengan Seamless Roaming AP, mengeliminasi isu putusnya koneksi saat mobilitas di area kantor.</p>
+                    <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem;">
+                        <span style="background: rgba(56,189,248,0.12); color: var(--primary); border-radius: 6px; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;">02</span>
+                        <h4 class="text-primary" style="margin: 0;">Failover Otomatis — Nol Downtime</h4>
+                    </div>
+                    <p class="text-muted text-sm">Saat salah satu ISP mengalami gangguan, MikroTik secara otomatis mengalihkan <em>seluruh traffic</em> ke jalur yang masih aktif—tanpa intervensi manual. Kantor tetap online bahkan ketika MyRepublic atau ISP bisnis sedang down. <strong>Tidak ada lagi skenario "internet mati total."</strong></p>
                 </div>
                 <div class="justification-card">
-                    <h4 class="text-primary mb-1">3. Biaya Downtime vs Biaya Infrastruktur</h4>
-                    <p class="text-muted text-sm">Kerugian finansial akibat tertundanya produktivitas (idle time) dan deadline klien secara signifikan melampaui biaya investasi alat jaringan (CAPEX).</p>
+                    <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem;">
+                        <span style="background: rgba(56,189,248,0.12); color: var(--primary); border-radius: 6px; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;">03</span>
+                        <h4 class="text-primary" style="margin: 0;">Segregasi Traffic — Prioritas Tepat Sasaran</h4>
+                    </div>
+                    <p class="text-muted text-sm">ISP bisnis (bandwidth simetris, SLA terjamin) dialokasikan untuk traffic <strong>prioritas tinggi</strong>: video conference, upload aset klien, dan VoIP. MyRepublic menangani traffic umum seperti browsing dan media sosial. Hasilnya: task kritis tidak pernah terdegradasi oleh traffic ringan.</p>
                 </div>
                 <div class="justification-card">
-                    <h4 class="text-primary mb-1">4. Simbiosis Alat dan ISP</h4>
-                    <p class="text-muted text-sm">Meningkatkan paket ISP tanpa upgrade hardware lokal akan menciptakan bottleneck internal. Sebaliknya, hardware canggih tanpa dukungan ISP bisnis tidak akan menghasilkan performa maksimal. Keduanya harus diselaraskan.</p>
+                    <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem;">
+                        <span style="background: rgba(56,189,248,0.12); color: var(--primary); border-radius: 6px; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;">04</span>
+                        <h4 class="text-primary" style="margin: 0;">Cost-Effective Dibanding Dedicated Line</h4>
+                    </div>
+                    <p class="text-muted text-sm">Langsung beralih ke Dedicated Internet (leased line) membutuhkan biaya mulai <strong>Rp 5.000.000+/bulan</strong>. Strategi Dual ISP—mempertahankan MyRepublic &amp; menambah paket bisnis—memberikan keandalan setara dengan <strong>biaya yang jauh lebih terkelola</strong>, tanpa membuang investasi langganan yang sudah berjalan.</p>
                 </div>
             </div>
             <div class="mt-5 p-4" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
                 <h3 class="text-primary mb-2 text-center">Kesimpulan</h3>
-                <p class="text-muted mb-0 mx-auto text-center" style="max-width: 800px;">Pembaruan topologi dan transisi layanan ISP ini diposisikan sebagai <strong>Inisiatif Business Continuity</strong>. Hal ini krusial untuk mengamankan arus operasional digital dan memastikan produktivitas tim di seluruh area dapat berjalan pada tingkat efisiensi tertinggi tanpa interupsi teknis.</p>
+                <p class="text-muted mb-0 mx-auto text-center" style="max-width: 800px;">Dual ISP bukan pemborosan—ini adalah <strong>arsitektur redundansi minimum</strong> untuk operasional profesional. Dengan MikroTik sebagai pengendali, dua jalur internet berubah menjadi satu koneksi yang lebih kencang, cerdas dalam mendistribusikan beban, dan tidak pernah benar-benar terputus.</p>
             </div>
         </div>
     </section>
@@ -894,12 +909,12 @@
                             <td>IT Admin</td>
                         </tr>
                         <tr>
-                            <td><strong>Motion Tim 1</strong></td>
+                            <td><strong>Motion Tim </strong></td>
                             <td><span class="price">20</span></td>
                             <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.20.0/24</td>
                             <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Motion_Team</code></td>
                             <td>5 GHz</td>
-                            <td>30 Mbps / 10 Mbps</td>
+                            <td>50 Mbps / 30 Mbps</td>
                             <td>Karyawan Motion</td>
                         </tr>
                         <tr>
@@ -908,7 +923,7 @@
                             <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.25.0/24</td>
                             <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">DD_Team</code></td>
                             <td>5 GHz</td>
-                            <td>30 Mbps / 10 Mbps</td>
+                            <td>50 Mbps / 30 Mbps</td>
                             <td>Karyawan Design Dorm</td>
                         </tr>
                         <tr>
@@ -916,7 +931,7 @@
                             <td><span class="price">30</span></td>
                             <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.30.0/24</td>
                             <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Meet_Sebelah</code></td>
-                            <td>2.4 GHz</td>
+                            <td>5 GHz</td>
                             <td>40 Mbps / 25 Mbps</td>
                             <td><span style="color:var(--success)">🔄 Auto-rotate harian</span></td>
                         </tr>
@@ -925,7 +940,7 @@
                             <td><span class="price">31</span></td>
                             <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.31.0/24</td>
                             <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Meet_Rumput</code></td>
-                            <td>2.4 GHz</td>
+                            <td>5 GHz</td>
                             <td>40 Mbps / 25 Mbps</td>
                             <td><span style="color:var(--success)">🔄 Auto-rotate harian</span></td>
                         </tr>
@@ -935,7 +950,7 @@
                             <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.40.0/24</td>
                             <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Directory_Net</code></td>
                             <td>5 GHz</td>
-                            <td>20 Mbps / 5 Mbps</td>
+                            <td>25 Mbps / 15 Mbps</td>
                             <td>Karyawan Directory</td>
                         </tr>
                         <tr>
@@ -944,7 +959,7 @@
                             <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.50.0/24</td>
                             <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Notion_Net</code></td>
                             <td>5 GHz</td>
-                            <td>20 Mbps / 5 Mbps</td>
+                            <td>25 Mbps / 15 Mbps</td>
                             <td>Karyawan Notion</td>
                         </tr>
                         <tr>
