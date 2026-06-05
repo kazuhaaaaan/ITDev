@@ -340,9 +340,9 @@
             <div class="nav-links">
                 <a href="#analisis">Analisis Kapasitas</a>
                 <a href="#urgensi-upgrade">Urgensi &amp; ISP</a>
+                <a href="#topologi">Arsitektur Topologi</a>
                 <a href="#internet-comparison">Komparasi ISP</a>
                 <a href="#budgeting">Proyeksi CAPEX</a>
-                <a href="#topologi">Arsitektur Topologi</a>
                 <a href="#vlan-ssid">VLAN &amp; SSID</a>
                 <a href="#monitoring">Monitoring</a>
                 <a href="#roadmap">Roadmap</a>
@@ -358,9 +358,9 @@
         <div class="mobile-menu" id="mobileMenu">
             <a href="#analisis" class="mobile-nav-link">Analisis Kapasitas</a>
             <a href="#urgensi-upgrade" class="mobile-nav-link">Urgensi &amp; ISP</a>
+            <a href="#topologi" class="mobile-nav-link">Arsitektur Topologi</a>
             <a href="#internet-comparison" class="mobile-nav-link">Komparasi ISP</a>
             <a href="#budgeting" class="mobile-nav-link">Proyeksi CAPEX</a>
-            <a href="#topologi" class="mobile-nav-link">Arsitektur Topologi</a>
             <a href="#vlan-ssid" class="mobile-nav-link">VLAN &amp; SSID</a>
             <a href="#monitoring" class="mobile-nav-link">Monitoring</a>
             <a href="#roadmap" class="mobile-nav-link">Roadmap</a>
@@ -479,6 +479,68 @@
             <div class="mt-5 p-4" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
                 <h3 class="text-primary mb-2 text-center">Kesimpulan</h3>
                 <p class="text-muted mb-0 mx-auto text-center" style="max-width: 800px;">Dual ISP bukan pemborosan—ini adalah <strong>arsitektur redundansi minimum</strong> untuk operasional profesional. Dengan MikroTik sebagai pengendali, dua jalur internet berubah menjadi satu koneksi yang lebih kencang, cerdas dalam mendistribusikan beban, dan tidak pernah benar-benar terputus.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="topologi">
+        <div class="container fade-in">
+            <h2 class="text-center mb-1">Arsitektur Topologi Jaringan</h2>
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; margin-bottom: 2rem;">
+                <button id="btnBaru" onclick="switchTopology('baru')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--primary); background-color: var(--primary); color: var(--primary-btn-text);">
+                    Rancangan (Baru)
+                </button>
+                <button id="btnLama" onclick="switchTopology('lama')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--text-muted); background-color: transparent; color: var(--text-muted);">
+                    Topologi Lama
+                </button>
+            </div>
+
+            <div id="kontenBaru">
+                <p class="text-center text-muted mb-4">Desain infrastruktur dioptimalkan menggunakan pendekatan sentralisasi <em>Layer 3 Routing</em> dan distribusi <em>Layer 2 Switching</em> untuk mitigasi latensi.</p>
+                <div class="topology-image-container">
+                    <img src="./materi/Topologi.drawio.png" alt="Diagram Topologi Jaringan Cuatrodia">
+                </div>
+                <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat</h3>
+                <ul class="node-list">
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">🧠</span> Core Gateway (MikroTik)</h4>
+                        <p class="text-muted text-sm">Pusat kontrol utama. Menangani Inter-VLAN Routing, manajemen bandwidth (PCQ), dan orkestrasi WiFi terpusat via CAPsMAN.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">🔀</span> Core Switch (Managed L2)</h4>
+                        <p class="text-muted text-sm">Agregator utama. Menerima trunk VLAN dari Gateway dan mendistribusikan jalur ke Switch area spesifik secara terstruktur.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">🏢</span> Switch Distribusi</h4>
+                        <p class="text-muted text-sm">Fasilitator wired connection per departemen (terutama PC Editing) untuk memastikan stabilitas transfer data lokal tanpa utilisasi WiFi.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">📡</span> Access Point (WiFi)</h4>
+                        <p class="text-muted text-sm">Distribusi nirkabel terintegrasi dengan kapabilitas <em>seamless roaming</em>, menjaga koneksi rapat virtual tetap stabil saat mobilitas antar area.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="kontenLama" style="display: none;">
+                <p class="text-center text-muted mb-4">Infrastruktur <em>legacy</em> berjalan dalam mode <em>Flat Network</em> (Single Broadcast Domain) tanpa manajemen trafik dan pemisahan <em>broadcast</em>.</p>
+                <div class="topology-image-container">
+                    <img src="./materi/Topologi Lama.drawio.png" alt="Diagram Topologi Jaringan Lama">
+                </div>
+                <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat (Legacy)</h3>
+                <ul class="node-list">
+                    <li class="node-item" style="border-left-color: #dc3545;">
+                        <h4><span style="font-size:1.2rem;">⚠️</span> Router ISP (Default Gateway)</h4>
+                        <p class="text-muted text-sm">Menjadi <em>Single Point of Failure</em>. Menangani seluruh proses NAT, DHCP, dan DNS secara bersamaan tanpa adanya fitur QoS atau Bandwidth Management.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">🔌</span> Unmanaged Switch</h4>
+                        <p class="text-muted text-sm">Berfungsi sebagai distribusi pasif. Tidak mendukung fitur VLAN 802.1Q, sehingga seluruh perangkat berada dalam satu <em>broadcast domain</em> yang rawan akan kolisi data.</p>
+                    </li>
+                    <li class="node-item">
+                        <h4><span style="font-size:1.2rem;">📶</span> Standalone Access Point</h4>
+                        <p class="text-muted text-sm">Memancarkan SSID secara independen. Sering mengalami tumpang tindih channel (interferensi) dan mengharuskan perangkat melakukan <em>re-connect</em> manual saat berpindah ruangan.</p>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
@@ -618,14 +680,6 @@
                                 <td class="text-muted">WiFi 6, CAPsMAN managed, seamless roaming.</td>
                             </tr>
                             <tr>
-                                <td><strong>Switch Server (PoE)</strong></td>
-                                <td>1</td>
-                                <td>TP-Link TL-SG2210MP</td>
-                                <td class="price">Rp 2.400.000</td>
-                                <td class="price">Rp 2.400.000</td>
-                                <td class="text-muted">Managed PoE — power + data untuk semua AP.</td>
-                            </tr>
-                            <tr>
                                 <td><strong>UPS</strong></td>
                                 <td>1</td>
                                 <td>CyberPower UT1500E</td>
@@ -635,7 +689,7 @@
                             </tr>
                             <tr class="total-row">
                                 <td colspan="4"><strong>Subtotal Hardware Aktif</strong></td>
-                                <td class="price"><strong>Rp 24.500.000</strong></td>
+                                <td class="price"><strong>Rp 22.100.000</strong></td>
                                 <td></td>
                             </tr>
                         </tbody>
@@ -727,7 +781,7 @@
                         <div class="note">Best Value Tier · Hardware + Infrastruktur Pendukung · Belum termasuk jasa instalasi</div>
                     </div>
                     <div style="text-align:right;">
-                        <div class="amount">Rp 28.496.000</div>
+                        <div class="amount">Rp 26.096.000</div>
                         <div class="note" style="text-align:right;">Lihat rincian lengkap di spreadsheet →</div>
                     </div>
                 </div>
@@ -750,9 +804,8 @@
                             <tr><td><strong>Core Switch</strong></td><td>1</td><td>Ruijie RG-ES224GC</td><td class="price">Rp 1.900.000</td><td class="price">Rp 1.900.000</td><td class="text-muted">24 Port, VLAN support dasar.</td></tr>
                             <tr><td><strong>Switch Distribusi</strong></td><td>4</td><td>Tenda TEG1008D</td><td class="price">Rp 353.000</td><td class="price">Rp 1.412.000</td><td class="text-muted">Gigabit basic, unmanaged.</td></tr>
                             <tr><td><strong>Access Point</strong></td><td>5</td><td>MikroTik hAP ac2</td><td class="price">Rp 1.420.000</td><td class="price">Rp 7.100.000</td><td class="text-muted">WiFi 5, CAPsMAN support.</td></tr>
-                            <tr><td><strong>Switch Server (PoE)</strong></td><td>1</td><td>Ruijie RG-ES210GS-P</td><td class="price">Rp 1.500.000</td><td class="price">Rp 1.500.000</td><td class="text-muted">PoE basic.</td></tr>
                             <tr><td><strong>UPS</strong></td><td>1</td><td>ICA CE1200</td><td class="price">Rp 1.400.000</td><td class="price">Rp 1.400.000</td><td class="text-muted">Backup listrik minimal.</td></tr>
-                            <tr class="total-row"><td colspan="4"><strong>Subtotal Hardware</strong></td><td class="price"><strong>Rp 17.112.000</strong></td><td></td></tr>
+                            <tr class="total-row"><td colspan="4"><strong>Subtotal Hardware</strong></td><td class="price"><strong>Rp 15.612.000</strong></td><td></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -762,7 +815,7 @@
                         <div class="note">Minimal Layak Tier · ⚠️ Tidak ideal untuk bandwidth tinggi &gt;50 perangkat</div>
                     </div>
                     <div style="text-align:right;">
-                        <div class="amount" style="color:var(--warning);">Rp 17.112.000</div>
+                        <div class="amount" style="color:var(--warning);">Rp 15.612.000</div>
                         <div class="note">+ Infrastruktur pendukung ~Rp 2.8jt</div>
                     </div>
                 </div>
@@ -779,9 +832,8 @@
                             <tr><td><strong>Core Switch</strong></td><td>1</td><td>MikroTik CRS326-24G-2S+RM</td><td class="price">Rp 4.200.000</td><td class="price">Rp 4.200.000</td><td class="text-muted">24 Port + SFP+ uplink, rack-mount.</td></tr>
                             <tr><td><strong>Switch Distribusi</strong></td><td>4</td><td>MikroTik CRS112-8G-4S-IN</td><td class="price">Rp 2.300.000</td><td class="price">Rp 9.200.000</td><td class="text-muted">Advanced VLAN, 4x SFP per unit.</td></tr>
                             <tr><td><strong>Access Point</strong></td><td>5</td><td>MikroTik cAP ax</td><td class="price">Rp 2.200.000</td><td class="price">Rp 11.000.000</td><td class="text-muted">WiFi 6 ceiling-mount enterprise.</td></tr>
-                            <tr><td><strong>Switch Server</strong></td><td>1</td><td>MikroTik CRS310-8G+2S+IN</td><td class="price">Rp 3.500.000</td><td class="price">Rp 3.500.000</td><td class="text-muted">10G ready, future-proof uplink.</td></tr>
                             <tr><td><strong>UPS</strong></td><td>1</td><td>APC Smart-UPS 1500VA</td><td class="price">Rp 8.000.000</td><td class="price">Rp 8.000.000</td><td class="text-muted">Enterprise UPS, SNMP-managed.</td></tr>
-                            <tr class="total-row"><td colspan="4"><strong>Subtotal Hardware</strong></td><td class="price"><strong>Rp 43.850.000</strong></td><td></td></tr>
+                            <tr class="total-row"><td colspan="4"><strong>Subtotal Hardware</strong></td><td class="price"><strong>Rp 40.350.000</strong></td><td></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -791,7 +843,7 @@
                         <div class="note">Enterprise Tier · Cocok untuk traffic padat &amp; ekspansi jangka panjang</div>
                     </div>
                     <div style="text-align:right;">
-                        <div class="amount">Rp 43.850.000</div>
+                        <div class="amount">Rp 40.350.000</div>
                         <div class="note">+ Infrastruktur pendukung ~Rp 2.8jt</div>
                     </div>
                 </div>
@@ -815,68 +867,6 @@
                     <h4 class="text-primary mb-1">Efisiensi Finansial</h4>
                     <p class="text-muted text-sm">Bukan perangkat consumer-grade yang rentan hang, namun tidak perlu investasi level Enterprise yang berlebih — High ROI untuk kantor skala menengah.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="topologi">
-        <div class="container fade-in">
-            <h2 class="text-center mb-1">Arsitektur Topologi Jaringan</h2>
-            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; margin-bottom: 2rem;">
-                <button id="btnBaru" onclick="switchTopology('baru')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--primary); background-color: var(--primary); color: var(--primary-btn-text);">
-                    Rancangan (Baru)
-                </button>
-                <button id="btnLama" onclick="switchTopology('lama')" style="padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; border: 1px solid var(--text-muted); background-color: transparent; color: var(--text-muted);">
-                    Topologi Lama
-                </button>
-            </div>
-
-            <div id="kontenBaru">
-                <p class="text-center text-muted mb-4">Desain infrastruktur dioptimalkan menggunakan pendekatan sentralisasi <em>Layer 3 Routing</em> dan distribusi <em>Layer 2 Switching</em> untuk mitigasi latensi.</p>
-                <div class="topology-image-container">
-                    <img src="./materi/Topologi.drawio.png" alt="Diagram Topologi Jaringan Cuatrodia">
-                </div>
-                <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat</h3>
-                <ul class="node-list">
-                    <li class="node-item">
-                        <h4><span style="font-size:1.2rem;">🧠</span> Core Gateway (MikroTik)</h4>
-                        <p class="text-muted text-sm">Pusat kontrol utama. Menangani Inter-VLAN Routing, manajemen bandwidth (PCQ), dan orkestrasi WiFi terpusat via CAPsMAN.</p>
-                    </li>
-                    <li class="node-item">
-                        <h4><span style="font-size:1.2rem;">🔀</span> Core Switch (Managed L2)</h4>
-                        <p class="text-muted text-sm">Agregator utama. Menerima trunk VLAN dari Gateway dan mendistribusikan jalur ke Switch area spesifik secara terstruktur.</p>
-                    </li>
-                    <li class="node-item">
-                        <h4><span style="font-size:1.2rem;">🏢</span> Switch Distribusi</h4>
-                        <p class="text-muted text-sm">Fasilitator wired connection per departemen (terutama PC Editing) untuk memastikan stabilitas transfer data lokal tanpa utilisasi WiFi.</p>
-                    </li>
-                    <li class="node-item">
-                        <h4><span style="font-size:1.2rem;">📡</span> Access Point (WiFi)</h4>
-                        <p class="text-muted text-sm">Distribusi nirkabel terintegrasi dengan kapabilitas <em>seamless roaming</em>, menjaga koneksi rapat virtual tetap stabil saat mobilitas antar area.</p>
-                    </li>
-                </ul>
-            </div>
-
-            <div id="kontenLama" style="display: none;">
-                <p class="text-center text-muted mb-4">Infrastruktur <em>legacy</em> berjalan dalam mode <em>Flat Network</em> (Single Broadcast Domain) tanpa manajemen trafik dan pemisahan <em>broadcast</em>.</p>
-                <div class="topology-image-container">
-                    <img src="./materi/Topologi Lama.drawio.png" alt="Diagram Topologi Jaringan Lama">
-                </div>
-                <h3 class="mb-4 text-center mt-4">Alur Distribusi Perangkat (Legacy)</h3>
-                <ul class="node-list">
-                    <li class="node-item" style="border-left-color: #dc3545;">
-                        <h4><span style="font-size:1.2rem;">⚠️</span> Router ISP (Default Gateway)</h4>
-                        <p class="text-muted text-sm">Menjadi <em>Single Point of Failure</em>. Menangani seluruh proses NAT, DHCP, dan DNS secara bersamaan tanpa adanya fitur QoS atau Bandwidth Management.</p>
-                    </li>
-                    <li class="node-item">
-                        <h4><span style="font-size:1.2rem;">🔌</span> Unmanaged Switch</h4>
-                        <p class="text-muted text-sm">Berfungsi sebagai distribusi pasif. Tidak mendukung fitur VLAN 802.1Q, sehingga seluruh perangkat berada dalam satu <em>broadcast domain</em> yang rawan akan kolisi data.</p>
-                    </li>
-                    <li class="node-item">
-                        <h4><span style="font-size:1.2rem;">📶</span> Standalone Access Point</h4>
-                        <p class="text-muted text-sm">Memancarkan SSID secara independen. Sering mengalami tumpang tindih channel (interferensi) dan mengharuskan perangkat melakukan <em>re-connect</em> manual saat berpindah ruangan.</p>
-                    </li>
-                </ul>
             </div>
         </div>
     </section>
@@ -1089,7 +1079,7 @@
                             <span class="tl-duration">14 hari</span>
                         </div>
                         <ul class="tl-tasks">
-                            <li><span class="tl-dot"></span>Purchase order: RB5009, TL-SG3428, TL-SG108E ×4, hAP ax2 ×5, TL-SG2210MP, UPS CyberPower</li>
+                            <li><span class="tl-dot"></span>Purchase order: RB5009, TL-SG3428, TL-SG108E ×4, hAP ax2 ×5, UPS CyberPower</li>
                             <li><span class="tl-dot"></span>Purchase infrastruktur pendukung: rack 9U, patch panel, 2 roll UTP Cat6, ducting, RJ45, PDU</li>
                             <li><span class="tl-dot"></span>Survey jalur kabel — pemetaan denah Lantai 1 &amp; estimasi panjang kabel per area divisi</li>
                             <li><span class="tl-dot"></span>Labeling port plan untuk setiap switch distribusi per divisi</li>
@@ -1111,7 +1101,7 @@
                         </div>
                         <ul class="tl-tasks">
                             <li><span class="tl-dot"></span>Pasang &amp; nyalakan UPS CyberPower UT1500E — proteksi daya core device</li>
-                            <li><span class="tl-dot"></span>Rack mounting: Wall rack 9U + Patch Panel + MikroTik RB5009 + Core Switch TL-SG3428 + Switch Server TL-SG2210MP</li>
+                            <li><span class="tl-dot"></span>Rack mounting: Wall rack 9U + Patch Panel + MikroTik RB5009 + Core Switch TL-SG3428</li>
                             <li><span class="tl-dot"></span>Koneksi fisik: ISP ONT → ether1 RB5009 → Core Switch (uplink port)</li>
                             <li><span class="tl-dot"></span>Verifikasi konektivitas internet dasar sebelum VLAN dikonfigurasi</li>
                         </ul>
@@ -1174,7 +1164,7 @@
                         </div>
                         <ul class="tl-tasks">
                             <li><span class="tl-dot"></span>Mount 5 unit hAP ax2 sesuai coverage plan — ceiling/wall mount per area (Notion, Motion, Design Dorm, Director, Meeting)</li>
-                            <li><span class="tl-dot"></span>Koneksi PoE via Switch Server TL-SG2210MP → semua AP satu jalur power+data</li>
+                            <li><span class="tl-dot"></span>Koneksi AP via adaptor power bawaan + kabel LAN langsung ke Core Switch (TL-SG3428)</li>
                             <li><span class="tl-dot"></span>Konfigurasi CAPsMAN: security profile, channel plan (2.4 GHz &amp; 5 GHz), datapath per VLAN</li>
                             <li><span class="tl-dot"></span>Provisioning 7 SSID: Motion_Team, DD_Team, Directory_Net, Notion_Net, Meet_Sebelah, Meet_Rumput, Office_Roaming</li>
                             <li><span class="tl-dot"></span>Setup PCQ Queue Tree — bandwidth limit per divisi sesuai prioritas</li>
