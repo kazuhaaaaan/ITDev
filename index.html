@@ -389,7 +389,7 @@
                 </a>
                 <a href="#" download class="btn-aesthetic">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                    Konfigurasi Script (v1.2)
+                    Konfigurasi Script (v1.2) [Coming Soon]
                 </a>
             </div>
         </div>
@@ -831,7 +831,7 @@
                             <tr><td><strong>Core Router</strong></td><td>1</td><td>MikroTik CCR2004-16G-2S+</td><td class="price">Rp 7.950.000</td><td class="price">Rp 7.950.000</td><td class="text-muted">Enterprise routing, 16x Gigabit + 2x SFP+.</td></tr>
                             <tr><td><strong>Core Switch</strong></td><td>1</td><td>MikroTik CRS326-24G-2S+RM</td><td class="price">Rp 4.200.000</td><td class="price">Rp 4.200.000</td><td class="text-muted">24 Port + SFP+ uplink, rack-mount.</td></tr>
                             <tr><td><strong>Switch Distribusi</strong></td><td>4</td><td>MikroTik CRS112-8G-4S-IN</td><td class="price">Rp 2.300.000</td><td class="price">Rp 9.200.000</td><td class="text-muted">Advanced VLAN, 4x SFP per unit.</td></tr>
-                            <tr><td><strong>Access Point</strong></td><td>7/td><td>MikroTik cAP ax</td><td class="price">Rp 2.200.000</td><td class="price">Rp 11.000.000</td><td class="text-muted">WiFi 6 ceiling-mount enterprise.</td></tr>
+                            <tr><td><strong>Access Point</strong></td><td>7</td><td>MikroTik cAP ax</td><td class="price">Rp 2.200.000</td><td class="price">Rp 11.000.000</td><td class="text-muted">WiFi 6 ceiling-mount enterprise.</td></tr>
                             <tr><td><strong>UPS</strong></td><td>1</td><td>APC Smart-UPS 1500VA</td><td class="price">Rp 8.000.000</td><td class="price">Rp 8.000.000</td><td class="text-muted">Enterprise UPS, SNMP-managed.</td></tr>
                             <tr class="total-row"><td colspan="4"><strong>Subtotal Hardware</strong></td><td class="price"><strong>Rp 40.350.000</strong></td><td></td></tr>
                         </tbody>
@@ -978,6 +978,15 @@
                             <td>2.4 GHz</td>
                             <td>20 Mbps / 15 Mbps</td>
                             <td>IOT Kantor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Server Room</strong></td>
+                            <td><span class="price">95</span></td>
+                            <td class="text-muted" style="font-family:monospace;font-size:0.85rem">192.168.95.0/24</td>
+                            <td><code style="background:rgba(56,189,248,0.1);padding:2px 8px;border-radius:4px;color:var(--primary)">Cuatrodia IOT</code></td>
+                            <td>2.4 GHz</td>
+                            <td><span style="color:var(--success)">Unlimited</span></td>
+                            <td>Server Synology</td>
                         </tr>
                         <tr>
                             <td><strong>Office Roaming</strong></td>
@@ -1129,7 +1138,7 @@
                             <span class="tl-duration">5 hari</span>
                         </div>
                         <ul class="tl-tasks">
-                            <li><span class="tl-dot"></span>Setup Bridge + VLAN Filtering pada RB5009 (10 VLAN: ID 10, 20, 25, 30, 31, 40, 50, 60, 70, 99)</li>
+                            <li><span class="tl-dot"></span>Setup Bridge + VLAN Filtering pada RB5009 (11 VLAN:10, 20, 30, 40, 45, 50, 60, 70, 80, 90, 99)</li>
                             <li><span class="tl-dot"></span>IP addressing &amp; DHCP Server per VLAN interface</li>
                             <li><span class="tl-dot"></span>Firewall filter: Default-Deny inter-VLAN + allow rules per kebijakan divisi</li>
                             <li><span class="tl-dot"></span>NAT Masquerade untuk akses internet semua VLAN</li>
@@ -1175,7 +1184,7 @@
                             <li><span class="tl-dot"></span>Mount 7 unit hAP ax2 sesuai coverage plan — ceiling/wall mount per area (Notion, Motion, Design Dorm, Director, Meeting)</li>
                             <li><span class="tl-dot"></span>Koneksi AP via adaptor power bawaan + kabel LAN langsung ke Core Switch (TL-SG3428)</li>
                             <li><span class="tl-dot"></span>Konfigurasi CAPsMAN: security profile, channel plan (2.4 GHz &amp; 5 GHz), datapath per VLAN</li>
-                            <li><span class="tl-dot"></span>Provisioning 9 SSID: Motion_Team, DD_Team, Producers_Net, Notion_Net, Meet_Sebelah, Meet_Rumput, Office_Roaming</li>
+                            <li><span class="tl-dot"></span>Provisioning 9 SSID: Motion_Team, DD_Team, Producers_Net, Notion_Net, Meet_Sebelah, Meet_Rumput, Office_Roaming,Lt2 Office1,Lt2 Office2</li>
                             <li><span class="tl-dot"></span>Setup PCQ Queue Tree — bandwidth limit per divisi sesuai prioritas</li>
                             <li><span class="tl-dot"></span>Aktifkan script AutoPassRapat + jadwal Telegram Bot untuk Meet_Sebelah &amp; Meet_Rumput</li>
                             <li><span class="tl-dot"></span>Setup The Dude + Telegram Bot Alert untuk monitoring</li>
